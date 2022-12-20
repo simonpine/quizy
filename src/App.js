@@ -6,31 +6,42 @@ import mont1 from './img/1montain.png'
 import mont2 from './img/2montain.png'
 import tree from './img/trees.png'
 import stars from './img/stars.png'
+import logo from './img/logo1.svg'
 
 import './App.scss';
 
 const App = () => {
   const background = {
     image: bg,
-    translateY: [20, 50],
+    translateY: [0, 50],
     opacity:[1,0.4],
-    // speed: -20 ,
     shouldAlwaysCompleteAnimation: true,
   };
 
-  // const montains1: BannerLayer = {
-  //   translateY: [0, 30],
-  //   scale: [1, 1.05, 'easeOutCubic'],
-  //   shouldAlwaysCompleteAnimation: true,
-  //   expanded: false,
-  //   children: (
-  //     <div className="absolute inset-0 flex items-center justify-center">
-  //       <h1 className="text-6xl md:text-8xl text-white font-thin">
-  //         Hello World!
-  //       </h1>
-  //     </div>
-  //   ),
-  // };
+  const text = {
+    translateY: [2, 20],
+    translateX: [-100, 100],
+    shouldAlwaysCompleteAnimation: true,
+    expanded: false,
+    children: (
+      <div className="bannerText">
+        <h1 className="homeTitle">
+          Create and resolve quizzes
+        </h1>
+      </div>
+    ),
+  };
+  const text2 = {
+    translateY: [0 ,80],
+    shouldAlwaysCompleteAnimation: true,
+    expanded: false,
+    children: (
+      <div className="center nameOfSite">
+        <h2 className='Quizy'>Quizy</h2>
+        <img className='logoPresentation' src={logo}/>
+      </div>
+    ),
+  };
   const star = {
     image: stars,
     translateX: [0, -15],
@@ -59,7 +70,6 @@ const App = () => {
 
   const montains2 = {
     image:mont2,
-    // translateY: [2, 0],
     translateY: [2, 20],
     shouldAlwaysCompleteAnimation: true,
   };
@@ -69,6 +79,11 @@ const App = () => {
     // translateY: [0, -9],
     speed: -2,
     shouldAlwaysCompleteAnimation: true,
+    children: (
+      <div className='leftDown'>
+        <div class="arrows"></div>
+      </div>
+  ),
   };
 
   // const gradientOverlay: BannerLayer = {
@@ -82,7 +97,7 @@ const App = () => {
   return (
     <div className='containerStart'>
       <ParallaxBanner
-      layers={[background, star, clouds, clouds2, montains1, montains2, trees]}
+      layers={[background, text2, star, clouds, clouds2, montains1, text, montains2, trees]}
       className="banner"
     />
     </div>

@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@900&family=Kanit:wght@100;300;400;600;700;800;900&display=swap');
 $colors:(
     'main':#2F0C29,
-    'main_t': #1f1f1f88,
     'secu': #ffff,
-    'deta': #ff6666,
-    't':rgba(255, 255, 255, 0),
+    'deta': #ff755d,
 );
 @mixin flex($flex_d, $al_c, $ju_c, $al_i, $wr){
     display: flex;
@@ -27,5 +25,15 @@ html{
 .center{
     width: 100%;
     height: 100vh;
-    @include flex(row-reverse, space-around, space-around, center, wrap);
+    @include flex(row-reverse,center, center, center, wrap);
+}
+html::-webkit-scrollbar{
+  width: 2px;
+}
+html::-webkit-scrollbar-track {
+    background-color: map-get($map:$colors, $key: 'main');
+}
+html::-webkit-scrollbar-thumb {
+    background-color: map-get($map:$colors, $key: 'deta');
+  border-radius: 5px;
 }
