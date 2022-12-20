@@ -1,10 +1,11 @@
 import { useParallax } from 'react-scroll-parallax';
 import { ParallaxBanner } from 'react-scroll-parallax';
 import bg from './img/background.png'
-import claud from './img/clauds.png'
+import claud2 from './img/clauds2.png'
 import mont1 from './img/1montain.png'
 import mont2 from './img/2montain.png'
 import tree from './img/trees.png'
+import stars from './img/stars.png'
 
 import './App.scss';
 
@@ -30,18 +31,23 @@ const App = () => {
   //     </div>
   //   ),
   // };
+  const star = {
+    image: stars,
+    translateX: [0, -15],
+    translateY: [0, 50],
+    shouldAlwaysCompleteAnimation: true,
+  };
 
   const clouds = {
-    image: claud,
-    translateX: [-50, 90],
-    translateY: [30, 80],
+    image: claud2,
+    translateX: [0, 50],
+    translateY: [20, 50],
     shouldAlwaysCompleteAnimation: true,
   };
   const clouds2 = {
-    image: claud,
-    translateX: [0, 150],
-    translateY: [30, 80],
-    // translateY: [10, 20],
+    image: claud2,
+    translateX: [50, 100],
+    translateY: [15, 50],
     shouldAlwaysCompleteAnimation: true,
   };
 
@@ -76,7 +82,7 @@ const App = () => {
   return (
     <div className='containerStart'>
       <ParallaxBanner
-      layers={[background, clouds, clouds2, montains1, montains2, trees]}
+      layers={[background, star, clouds, clouds2, montains1, montains2, trees]}
       className="banner"
     />
     </div>
