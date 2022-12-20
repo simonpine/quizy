@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@900&family=Kanit:wght@100;300;400;600;700;800;900&display=swap');
+$colors:(
+    'main':#2F0C29,
+    'main_t': #1f1f1f88,
+    'secu': #ffff,
+    'deta': #ff6666,
+    't':rgba(255, 255, 255, 0),
+);
+@mixin flex($flex_d, $al_c, $ju_c, $al_i, $wr){
+    display: flex;
+    flex-direction: $flex_d;
+    align-content: $al_c;
+    align-items: $al_i;
+    justify-content: $ju_c;
+    flex-wrap: $wr;
+};
+*{
+    margin: 0;
+    padding: 0;
+    color: map-get($map:$colors, $key: 'secu');
+    font-family: 'Kanit', sans-serif;
+};
+html{
+    scroll-behavior: smooth;
+    background-color: map-get($map:$colors, $key: 'main');
+}
+.center{
+    width: 100%;
+    height: 100vh;
+    @include flex(row-reverse, space-around, space-around, center, wrap);
+}
