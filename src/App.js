@@ -9,7 +9,7 @@ import tree from './img/trees.png'
 import './App.scss';
 
 const App = () => {
-  const background: BannerLayer = {
+  const background = {
     image: bg,
     translateY: [20, 50],
     opacity:[1,0.4],
@@ -31,13 +31,13 @@ const App = () => {
   //   ),
   // };
 
-  const clouds: BannerLayer = {
+  const clouds = {
     image: claud,
     translateX: [-50, 90],
     translateY: [30, 80],
     shouldAlwaysCompleteAnimation: true,
   };
-  const clouds2: BannerLayer = {
+  const clouds2 = {
     image: claud,
     translateX: [0, 150],
     translateY: [30, 80],
@@ -45,20 +45,20 @@ const App = () => {
     shouldAlwaysCompleteAnimation: true,
   };
 
-  const montains1: BannerLayer = {
+  const montains1 = {
     image: mont1,
     translateY: [10, 40],
     shouldAlwaysCompleteAnimation: true,
   };
 
-  const montains2: BannerLayer = {
+  const montains2 = {
     image:mont2,
     // translateY: [2, 0],
     translateY: [2, 20],
     shouldAlwaysCompleteAnimation: true,
   };
 
-  const trees: BannerLayer = {
+  const trees = {
     image:tree,
     // translateY: [0, -9],
     speed: -2,
