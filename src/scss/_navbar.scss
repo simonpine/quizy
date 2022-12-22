@@ -1,0 +1,59 @@
+nav{
+    margin-top: 20px;
+    position: sticky;
+    top: 30px;
+    z-index: 1020;
+    width: 95%;
+    left: 2.5%;
+    border-bottom: 1px solid map-get($map:$colors, $key: 'deta');
+    padding: 10px;
+}
+.p-nav{
+    padding: 8px 20px 8px 20px;
+    
+}
+.mobile{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    transition: .5s ease;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.darkclose{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: map-get($map:$colors, $key: 'mainBlur');
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    transition: 0.5s;
+    backdrop-filter: blur(5px);
+}
+.mobileContainer{
+    width: 250px;
+    height: 100%;
+    background-color: map-get($map:$colors, $key: 'deta');
+    z-index: 100;
+    padding: 40px;
+    text-align: right;
+}
+.navLogo{
+    height: 30px;
+    margin-bottom: 2px;
+}
+.navbar-toggler{
+    border: none;
+}
+.close{
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+}
+.tras{
+    transform: translate(-30%);
+    margin-bottom: 20px;
+}

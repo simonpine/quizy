@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-import {RouterProvider} from "react-router-dom"
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './index.scss';
+
+import {Form, RouterProvider} from "react-router-dom"
 import { router } from './router';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";

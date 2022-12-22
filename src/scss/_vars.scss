@@ -3,6 +3,7 @@ $colors:(
     'main':#2F0C29,
     'secu': #ffff,
     'deta': #ff755d,
+    'mainBlur': #2f0c2967,
 );
 @mixin flex($flex_d, $al_c, $ju_c, $al_i, $wr){
     display: flex;
@@ -18,7 +19,7 @@ $colors:(
     color: map-get($map:$colors, $key: 'secu');
     font-family: 'Kanit', sans-serif;
 };
-html{
+body{
     scroll-behavior: smooth;
     background-color: map-get($map:$colors, $key: 'main');
 }
