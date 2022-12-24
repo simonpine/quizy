@@ -34,6 +34,6 @@
     letter-spacing: 6px;
 }
 .contentHome{
-    min-height: 500vh;
+    min-height: 100vh;
     background-color: map-get($map:$colors, $key: 'main');
 }

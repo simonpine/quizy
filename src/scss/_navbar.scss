@@ -33,7 +33,7 @@ nav{
     backdrop-filter: blur(5px);
 }
 .mobileContainer{
-    width: 250px;
+    width: 170px;
     height: 100%;
     background-color: map-get($map:$colors, $key: 'deta');
     z-index: 100;
@@ -43,6 +43,12 @@ nav{
 .navLogo{
     height: 30px;
     margin-bottom: 2px;
+    opacity: 0.6;
+    transition: opacity 0.5s;
+}
+.navLogo:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 .navbar-toggler{
     border: none;
