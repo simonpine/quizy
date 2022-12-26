@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+// import '../node_modules/bootstrap-icons/dist/css/bootstrap.min.css'
 import './index.scss';
 
 import {Form, RouterProvider} from "react-router-dom"

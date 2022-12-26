@@ -37,3 +37,32 @@
     min-height: 100vh;
     background-color: map-get($map:$colors, $key: 'main');
 }
+.create{
+    position: relative;
+}
+.pHome{
+    max-width: 450px;
+    font-weight: 100;
+    font-size: 20px;
+    text-align: justify;
+}
+.subtitleHome{
+    color: map-get($map:$colors, $key: 'deta');
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    border-left: solid 5px map-get($map:$colors, $key: 'deta');
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.sectionHome{
+    max-width: 1300px;
+    margin: auto;
+    margin-top: 25vh;
+
+    @media screen and (max-width: 1270px){
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+}

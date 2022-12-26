@@ -1,8 +1,9 @@
 footer{
     position:relative;
-    width: 95%;
-    left: 2.5%;
-    height: auto;
+    max-width: 1300px;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 20px 5% 0px 0%;
     border-top: 1px solid map-get($map:$colors, $key: 'deta');
     bottom: 0px;
     display: flex;
