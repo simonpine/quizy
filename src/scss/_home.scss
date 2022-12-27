@@ -3,7 +3,7 @@
     height: auto;
 }
 .banner{
-    height: 100vh;
+    height: 107vh;
     overflow: hidden;
 }
 .logoPresentation{
@@ -22,6 +22,9 @@
     width: 100%;
     height: 95%;
     @include flex(row-reverse,flex-end, flex-end, center, wrap);
+    @media screen and (max-width: 1270px){
+        justify-content: center
+    }
 }
 
 .nameOfSite{
@@ -39,12 +42,18 @@
 }
 .create{
     position: relative;
+    @media screen and (max-width: 1000px){
+        margin-top: 0px;
+    }
 }
 .pHome{
     max-width: 450px;
     font-weight: 100;
     font-size: 20px;
     text-align: justify;
+    @media screen and (max-width: 1000px){
+        max-width: 100%;
+    }
 }
 .subtitleHome{
     color: map-get($map:$colors, $key: 'deta');
@@ -57,12 +66,70 @@
     border-radius: 5px;
 }
 .sectionHome{
-    max-width: 1300px;
+    max-width: 1200px;
     margin: auto;
-    margin-top: 25vh;
-
+    margin-top: 100px;
+    @include flex(row,center, space-between, center, wrap);
     @media screen and (max-width: 1270px){
         margin-left: 2.5%;
         margin-right: 2.5%;
     }
+    @media screen and (max-width: 1000px){
+        flex-direction: column;
+        margin-top: 40px;
+    }
+}
+.textContentHome{
+    width: fit-content;
+}
+.test{
+    flex-direction: row-reverse;
+}
+.subtitleHome2{
+    @extend .subtitleHome;
+    border: none;
+    border-right: 5px solid map-get($map:$colors, $key: 'deta');
+    padding-right: 10px;
+}
+.textContentHome2{
+    @extend .textContentHome;
+    text-align: right;
+}
+.link{
+    color: map-get($map:$colors, $key: 'secu');
+    font-weight: 300;
+    padding: 5px 20px;
+    border: 1px solid map-get($map:$colors, $key: 'deta');
+    border-radius: 100px;
+    text-decoration: none;
+    background: linear-gradient(map-get($map:$colors, $key: 'deta'),map-get($map:$colors, $key: 'deta'));
+    background-position: 0% 0%;
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: ease 0.3s;
+}
+.link:hover{
+    font-weight: 500;
+    color: map-get($map:$colors, $key: 'main');
+    background-size: 100% 100%;
+}
+.person{
+    width: 100px;
+}
+.spinner{
+    height: 300px;
+    width: 300px;
+    display: grid;
+    display: grid;
+    justify-items: center;
+    align-items:center;
+    grid-template-rows: repeat(3, 33%);
+    grid-template-columns: repeat(3, 33%);
+
+}
+.spinnerContainer{
+    margin: 40px;
+}
+.secundaryMiniIcon{
+    width: 65px;
 }
