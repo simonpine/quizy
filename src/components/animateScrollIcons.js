@@ -25,15 +25,15 @@ export function AnimateScrollIcons(){
       });
       return(
         <div ref={general.ref} className="spinner">
-        <img ref={specific5.ref} id='one' className='secundaryMiniIcon' src={one} />
+        <img alt='secundaryMiniIcon' ref={specific5.ref} id='one' className='secundaryMiniIcon' src={one} />
         <div></div>
-        <img ref={specific4.ref} id='two' className='secundaryMiniIcon' src={two} />
+        <img alt='secundaryMiniIcon' ref={specific4.ref} id='two' className='secundaryMiniIcon' src={two} />
         <div></div>
-        <img ref={specific.ref} className='person' src={man} />
+        <img alt='Icon of a person' ref={specific.ref} className='person' src={man} />
         <div></div>
-        <img ref={specific2.ref} id='tree' className='secundaryMiniIcon' src={tree} />
+        <img alt='secundaryMiniIcon' ref={specific2.ref} id='tree' className='secundaryMiniIcon' src={tree} />
         <div></div>
-        <img ref={specific3.ref} id='four' className='secundaryMiniIcon' src={four} />
+        <img alt='secundaryMiniIcon' ref={specific3.ref} id='four' className='secundaryMiniIcon' src={four} />
       </div>
       )
 }

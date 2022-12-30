@@ -4,13 +4,14 @@ import { Layout } from './components/layout';
 import './App.scss';
 import { Link } from 'react-router-dom';
 import { AnimateScrollIcons } from './components/animateScrollIcons';
+import one from './img/1.jpg'
+import two from './img/2.jpg'
 const App = () => {
   return (
 
     <div className='containerStart'>
       <MontainParallaxBanner />
       <Layout selceted={1}>
-        <div className='contentHome'>
           <div className='sectionHome create'>
             <div className='textContentHome'>
               <h2 className='subtitleHome'>Create new quizzes</h2>
@@ -32,15 +33,12 @@ const App = () => {
               <Link to={{ pathname: "/tests" }} className="link">Resolve</Link>
             </div>
             <div>
-              {/* <div ref={parallax.ref} className="spinner">
-                <div className="diamond">💎💎💎💎</div>
-                <div className="clown">🤡💎💎💎</div>
-                <div className="money">💰💎💎💎</div>
-                <div className="hand">👌🏻💎💎💎</div>
-              </div> */}
+            <div className='imgContainer'>
+              <img className='firstImg' alt='img of a girl' src={one} />
+              <img className='MiniImg' alt='img of a laptop' src={two} />
+            </div>
             </div>
           </div>
-        </div>
       </Layout>
     </div>
   );

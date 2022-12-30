@@ -13,6 +13,9 @@ $colors:(
     justify-content: $ju_c;
     flex-wrap: $wr;
 };
+.App{
+    overflow: hidden;
+}
 *{
     margin: 0;
     padding: 0;
@@ -37,4 +40,13 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
     background-color: map-get($map:$colors, $key: 'deta');
   border-radius: 5px;
+}
+.content{
+    height: auto;
+    max-width: 1200px;
+    margin: auto;
+    @media screen and (max-width: 1270px){
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
 }
