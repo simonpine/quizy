@@ -42,11 +42,14 @@ html::-webkit-scrollbar-thumb {
   border-radius: 5px;
 }
 .content{
-    height: auto;
+    min-height: 80vh;
     max-width: 1200px;
     margin: auto;
     @media screen and (max-width: 1270px){
         margin-left: 2.5%;
         margin-right: 2.5%;
     }
+}
+.colorDeta{
+    color: map-get($map:$colors, $key: 'deta');
 }

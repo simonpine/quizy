@@ -57,7 +57,7 @@ export function Navbar({ selected }) {
                     setmo2({ left: '-100%', })
                 }} className="darkclose" />
             </div>
-            <a className="navbar-brand" onClick={() => window.scrollTo(0, 0)}><img className="navLogo" src={logo} /></a>
+            <a className="navbar-brand" style={ { zIndex: '-100' } } onClick={() => window.scrollTo(0, 0)}><img className="navLogo" src={logo} /></a>
             <button className="navbar-toggler" onClick={() => {
                 setmo2({ display: 'flex' })
                 setmo({ right: '0px', })

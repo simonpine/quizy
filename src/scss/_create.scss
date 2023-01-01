@@ -1,0 +1,65 @@
+#imgUrl{
+    grid-area: imgUrl;
+}
+#title{
+    grid-area: title;
+}
+#theme{
+    grid-area: theme;
+}
+#creator{
+    grid-area: creator;
+}
+#des{
+    grid-area: des;
+}
+
+.formCreateOne{
+    position: relative;
+    margin: auto;
+    width: 90%;
+    display: grid;
+    justify-items: center;
+    align-items:center;
+    grid-template-rows: repeat(3, 160px) 80px;
+    grid-template-columns: repeat(2, 45%);
+    grid-template-areas: 
+    "creator imgUrl"
+    "title des"
+    "theme des"
+    "SubmitButton a";
+    column-gap: 10%;
+    // @media screen and (max-width: 1000px){
+    //     grid-template-rows: repeat(34, 33%);
+    //     grid-template-columns: repeat(1, 100%);
+    //     grid-template-areas: 
+    //     "name"
+    //     "mail"
+    //     "problem";
+    //     margin-bottom: 30px;
+    // }
+}
+.formCreateOne div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.formCreateOne div input{
+    background: none;
+    border: 1px solid map-get($map:$colors, $key:deta );
+    border-radius: 20px;
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+}
+.SubmitButton{
+    @extend .link;
+    grid-area: SubmitButton;
+    justify-self: left;
+}
+#des textarea{
+    grid-area: des;
+    height: 210px;
+    width: 100%;
+
+}
