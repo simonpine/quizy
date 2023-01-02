@@ -1,16 +1,16 @@
 import { Navbar } from './navBar';
 import { Footer } from './footer';
-import { ContextCreateFather } from '../context/createContext';
+import ContextCreateFather from '../context/createContext';
 export function LayoutForCreate({ selceted, children }) {
     return (
-        <main className="App">
-            <Navbar selected={selceted} />
-            <ContextCreateFather>
+        <ContextCreateFather>
+            <main className="App">
+                <Navbar selected={selceted} />
                 <div className='content'>
                     {children}
                 </div>
-            </ContextCreateFather>
-            <Footer />
-        </main>
+                <Footer />
+            </main>
+        </ContextCreateFather>
     )
 }

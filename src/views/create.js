@@ -1,14 +1,21 @@
+import { useState } from "react"
 import { LayoutForCreate } from "../components/LayoutForCreate"
 import { ContextCreate } from "../context/createContext"
 import { useNavigate } from 'react-router-dom'
 export function Create() {
+    const [title, setTitle] = useState('')
+    const [theme, setTheme] = useState('')
+    const [creator, setCreator] = useState('')
+    const [urlImg, setUrlImg] = useState('')
+    const [description, setDescription] = useState('')
     const navigate = useNavigate();
     return (
         <LayoutForCreate selceted={2}>
             <ContextCreate.Consumer  >
-                {({ setTitle, setTheme, setCreator, setUrlImg, setDescription }) => {
+                {({newQuizzOne}) => {
                     const submitHandle = (evt) => {
                         evt.preventDefault();
+                        newQuizzOne(title, theme, creator, urlImg, description)
                         navigate(`/create/questions`)
                     }
                     return (

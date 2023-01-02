@@ -1,14 +1,21 @@
 import React, { createContext, useState } from "react";
 export const ContextCreate = createContext('')
-export const ContextCreateFather = ( { children } ) => {
-    const [title, setTitle] = useState('')
-    const [theme, setTheme] = useState('')
-    const [creator, setCreator] = useState('')
-    const [urlImg, setUrlImg] = useState('')
-    const [description, setDescription] = useState('')
+const ContextCreateFather = ( { children } ) => {
+    const [questions, setQuestions] = useState([])
+    function newQuizzOne(title, theme, creator, urlImg, description){
+        const theQuizStats = {
+            title,
+            theme,
+            creator,
+            urlImg,
+            description
+        }
+        localStorage.setItem('theQuizStats' ,JSON.stringify(theQuizStats))
+    }
     return(
-        <ContextCreate.Provider value={{setTitle, setTheme, setCreator, setUrlImg, setDescription}}>
+        <ContextCreate.Provider value={{newQuizzOne}}>
             {children}
         </ContextCreate.Provider>
     )
 }
+export default ContextCreateFather
