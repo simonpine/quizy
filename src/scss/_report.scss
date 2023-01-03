@@ -4,13 +4,13 @@
     align-items:center;
     grid-template-rows: repeat(2, 50%);
     grid-template-columns: repeat(2, 50%);
-    height: 660px;
+    
     margin-bottom: 120px;
     grid-template-areas: 
     "a mail"
     "problem problem";
     @media screen and (max-width: 1000px){
-        grid-template-rows: repeat(3, 33%);
+        grid-template-rows: repeat(2, 20%) 40%;
         grid-template-columns: repeat(1, 100%);
         grid-template-areas: 
         "name"

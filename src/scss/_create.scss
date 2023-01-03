@@ -1,65 +1,166 @@
-#imgUrl{
+#imgUrl {
     grid-area: imgUrl;
 }
-#title{
+
+#title {
     grid-area: title;
 }
-#theme{
+
+#theme {
     grid-area: theme;
 }
-#creator{
+
+#creator {
     grid-area: creator;
 }
-#des{
+
+#des {
     grid-area: des;
 }
 
-.formCreateOne{
+.formCreateOne {
     position: relative;
     margin: auto;
     width: 90%;
     display: grid;
     justify-items: center;
-    align-items:center;
+    align-items: center;
     grid-template-rows: repeat(3, 160px) 80px;
     grid-template-columns: repeat(2, 45%);
-    grid-template-areas: 
-    "creator imgUrl"
-    "title des"
-    "theme des"
-    "SubmitButton a";
+    grid-template-areas:
+        "creator imgUrl"
+        "title des"
+        "theme des"
+        "SubmitButton a";
     column-gap: 10%;
-    // @media screen and (max-width: 1000px){
-    //     grid-template-rows: repeat(34, 33%);
-    //     grid-template-columns: repeat(1, 100%);
-    //     grid-template-areas: 
-    //     "name"
-    //     "mail"
-    //     "problem";
-    //     margin-bottom: 30px;
-    // }
 }
-.formCreateOne div{
+
+.formCreateOne div {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.formCreateOne div input{
+
+.formCreateOne div input {
     background: none;
-    border: 1px solid map-get($map:$colors, $key:deta );
+    border: 1px solid map-get($map: $colors, $key: deta);
     border-radius: 20px;
     width: 100%;
     height: 50px;
     padding: 20px;
 }
-.SubmitButton{
+
+.SubmitButton {
     @extend .link;
     grid-area: SubmitButton;
     justify-self: left;
 }
-#des textarea{
+
+#des textarea {
     grid-area: des;
     height: 210px;
     width: 100%;
 
+}
+
+.question {
+    background-color: map-get($map: $colors, $key: 'mainBlur');
+    margin: 10px 0px;
+    border-radius: 20px;
+    padding: 25px;
+    width: 45%;
+    border: 1px solid map-get($map: $colors, $key: 'deta');
+
+    @media screen and (max-width: 1000px) {
+        width: 100%;
+    }
+}
+
+.questionsContiner {
+    @include flex(row, center, space-between, center, wrap);
+}
+
+.questionTitel {
+    background: none;
+    border: none;
+    border-bottom: 2px solid map-get($map: $colors, $key: 'deta');
+    margin-bottom: 20px;
+    font-size: 20px;
+    @media screen and (max-width: 1000px) {
+        width: 59%;
+    }
+}
+.questionTop{
+    @include flex(row, center, space-between, center, wrap);
+}
+.x{
+    @extend .link;
+    height: 30px;
+    width: 30px;
+    font-size: 14px;
+    padding: 0px;
+    border: 2px solid map-get($map: $colors, $key: 'deta');
+    margin-bottom: 20px;
+}
+.addItem{
+    @extend .link;
+    padding: 2px 15px;
+    border: 2px solid map-get($map: $colors, $key: 'deta');
+    border-radius: 0px;
+}
+.addItem:hover{
+    padding: 2px 15px;
+    border: 2px solid map-get($map: $colors, $key: 'deta');
+    border-radius: 0px;
+}
+.firstContainer{
+    width:370px;
+    @media screen and (max-width: 1000px) {
+        width: 100%;
+    }
+}
+
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -4px;
+    left: -2px;
+    position: relative;
+    background-color: #0c0c0c;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid map-get($map: $colors, $key: 'deta');
+  }
+input[type='radio']:hover{
+    cursor: pointer;
+}
+  input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -4px;
+    left: -2px;
+    position: relative;
+    background-color: map-get($map: $colors, $key: 'deta');
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid map-get($map: $colors, $key: 'deta');
+  }
+.answerInput{
+    @extend .questionTitel;
+    font-size: 17px;
+    margin: 10px 0 10px 10px;
+    border-bottom: 1px solid map-get($map: $colors, $key: 'deta');
+}
+.x2{
+    @extend .x;
+    margin: 0px;
+    border-radius: 0px;
+    padding: 9.5px;
+    border: 1px solid map-get($map: $colors, $key: 'deta');
+    font-size: 10px;
+    font-weight: 600;
 }

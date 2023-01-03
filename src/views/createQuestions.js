@@ -1,21 +1,26 @@
 import { LayoutForCreate } from "../components/LayoutForCreate"
 import { ContextCreate } from "../context/createContext"
-import { useNavigate } from 'react-router-dom'
-import { useState } from "react";
+// import { useState } from "react";
+import { Questions } from "../components/questions";
 export function CreateQuestions() {
-    const navigate = useNavigate();
-    const [arrayQuestions, setArrayQuestions] = useState([])
     return (
         <LayoutForCreate selceted={2}>
             <ContextCreate.Consumer  >
-                {({ setQuestions }) => {
-                    const submitHandle = (evt) => {
-                        evt.preventDefault();
-                        navigate(`/`)
+                {({ questions, newQuestion }) => {
+                    const submitHandle = () => {
+                        newQuestion()
                     }
                     return (
                         <div>
-                            <button onClick={submitHandle} />
+                            <button className="link" onClick={submitHandle}>Add question</button>
+                            <button className="link">Save quizz</button>
+                            <div className="questionsContiner">
+                                {questions.map((que) => {
+                                    return (
+                                        <Questions idQuestion={que.id} />
+                                    )
+                                })}
+                            </div>
                         </div>
                     )
                 }}
