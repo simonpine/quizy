@@ -7,14 +7,14 @@ export function Report() {
     const [problem, setProblem] = useState('')
     const submit = (evt) => {
         evt.preventDefault();
-        const newOrder = {
+        const newReport = {
             name,
             mail,
             problem,
         }
         const db = getFirestore()
-        const orderColection = collection(db, 'reports')
-        addDoc(orderColection, newOrder)
+        const reportColection = collection(db, 'reports')
+        addDoc(reportColection, newReport)
         setName('')
         setMail('')
         setProblem('')

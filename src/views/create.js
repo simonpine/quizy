@@ -21,19 +21,19 @@ export function Create() {
                     return (
                         <form className="formCreateOne" onSubmit={submitHandle}>
                             <div id="title">
-                                <label htmlFor="title"><span className="colorDeta">*</span>Quizz title:</label>
-                                <input required type="text" placeholder="The super epic quizz" onChange={(evt) => setTitle(evt.target.value)} />
+                                <label htmlFor="title"><span className="colorDeta">*</span>Quiz title:</label>
+                                <input required type="text" placeholder="The super epic quiz" onChange={(evt) => setTitle(evt.target.value)} />
                             </div>
                             <div id="theme">
-                                <label htmlFor="theme"><span className="colorDeta">*</span>Quizz theme:</label>
+                                <label htmlFor="theme"><span className="colorDeta">*</span>Quiz theme:</label>
                                 <input required type="text" placeholder="History" onChange={(evt) => setTheme(evt.target.value)} />
                             </div>
                             <div>
-                                <label htmlFor="creator"><span className="colorDeta">*</span>Quizz creator:</label>
+                                <label htmlFor="creator"><span className="colorDeta">*</span>Quiz creator:</label>
                                 <input required type="text" id="creator" placeholder="Gustavo Petro" onChange={(evt) => setCreator(evt.target.value)} />
                             </div>
                             <div>
-                                <label htmlFor="imgUrl">Quizz banner:</label>
+                                <label htmlFor="imgUrl">Quiz banner:</label>
                                 <input type="text" id="imgUrl" placeholder="url" onChange={(evt) => setUrlImg(evt.target.value)} />
                             </div>
                             <div id="des">
