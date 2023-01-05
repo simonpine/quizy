@@ -16,9 +16,9 @@ export function Questions({ idQuestion, que }) {
                         <div className="questionTop">
                             <div className="firstContainer">
                                 <input id={"q" + idQuestion} required value={que.question} onChange={(evt) => setQuestion(idQuestion, evt.target.value)} placeholder="The question" className='questionTitel' type='text'></input>
-                                <button className="addItem" onClick={() => { addAnswer(idQuestion) }} type='text'>Add answer</button>
+                                <button type="button" className="addItem" onClick={() => { addAnswer(idQuestion) }}>Add answer</button>
                             </div>
-                            <button className="x" onClick={() => { deleteQuestion(idQuestion) }}>X</button>
+                            <button type="button" className="x" onClick={() => { deleteQuestion(idQuestion) }}>X</button>
                         </div>
                         <div>
                             {an.map((anse) => {

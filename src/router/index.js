@@ -4,7 +4,7 @@ import { Report } from "../views/report.js";
 import { Tests } from "../views/tests.js";
 import { Create } from "../views/create.js";
 import { CreateQuestions } from "../views/createQuestions.js";
-
+import { Resolve } from "../views/resolve.js";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -29,6 +29,11 @@ export const router = createBrowserRouter([
     {
         path: '/create/questions',
         element: <CreateQuestions />,
+        
+    },  
+    {
+        path: `/tests/:id`,
+        element: <Resolve />,
         
     },   
 ])

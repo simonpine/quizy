@@ -3,7 +3,7 @@ $colors:(
     'main':#2F0C29,
     'secu': #ffff,
     'deta': #ff755d,
-    'mainBlur': #160a1470,
+    'mainBlur': #13051091,
 );
 @mixin flex($flex_d, $al_c, $ju_c, $al_i, $wr){
     display: flex;
@@ -28,7 +28,7 @@ body{
 }
 .center{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     @include flex(row-reverse,center, center, center, wrap);
 }
 html::-webkit-scrollbar{

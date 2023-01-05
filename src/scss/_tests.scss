@@ -1,0 +1,67 @@
+.inputCode{
+    border-radius: 20px;
+    background: none;
+    border: 1px solid map-get($map:$colors, $key:deta );
+    padding: 5px 15px;
+    width: 300px;
+    margin-bottom: 15px;
+}
+.codeForm{
+    width: 100%;
+    position: relative;
+    top: 30px;
+    margin-bottom: 30px;
+    @include flex(row, center, space-around, center, wrap);
+    & div{
+        width: 400px;
+        & p{
+            width: 100%;
+        }
+        @media screen and (max-width: 450px) {
+            width: 100%;
+            & input{
+                width: 100%;
+            }
+        }
+    }
+}
+.folerImg{
+    width: 200px;
+    @media screen and (max-width: 650px) {
+        display: none;
+    }
+}
+.quizzesContainer{
+    margin-top: 70px;
+    @include flex(row, center, space-around, center, wrap);
+}
+.card{
+    & img{
+        border-radius: 20px 20px 0px 0px;
+    }
+    width: 18rem;
+    background-color: map-get($map:$colors, $key:mainBlur );
+    border-radius: 20px;
+    margin: 20px;
+}
+.card-theme{
+    font-size: 17px;
+}
+.card-text{
+    font-size: 17px;
+    font-weight: 100;
+}
+.center2{
+    height: 75vh;
+}
+.textcont{
+    text-align: right;
+    width: 400px;
+    @media screen and (max-width: 450px) {
+        width: 100%;
+    }
+}
+.sectionerror{
+    @extend .sectionHome;
+    width: 70%;
+}

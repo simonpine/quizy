@@ -7,7 +7,7 @@ export function Answers({ idQuestion, ans }) {
                     <div>
                         <input required onClick={() => setAnsFinal(idQuestion, ans.answer)} value={ans.answer} name={idQuestion} type='radio'></input>
                         <input required id={idQuestion + ans} value={ans.answer} onChange={(evt) => setAns(idQuestion, ans.id, evt.target.value)} className="answerInput" placeholder="Answer" type='text'></input>
-                        <button className="x2" onClick={() => { deleteAnswer(idQuestion, ans.id) }}>X</button>
+                        <button type="button" className="x2" onClick={() => { deleteAnswer(idQuestion, ans.id) }}>X</button>
                     </div>
                 )
             }}

@@ -18,7 +18,7 @@ export function CreateQuestions() {
                     }
                     return (
                         <form className="formAddQuestions" onSubmit={submit}>
-                            <button className="link" onClick={submitHandle}>Add question</button>
+                            <button type="button" className="link" onClick={submitHandle}>Add question</button>
                             <div className="questionsContiner">
                                 {questions.map((que) => {
                                     return (
