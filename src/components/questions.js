@@ -23,7 +23,7 @@ export function Questions({ idQuestion, que }) {
                         <div>
                             {an.map((anse) => {
                                 return (
-                                    <Answers idQuestion={idQuestion} ans={anse} />
+                                    <Answers key={anse.id} idQuestion={idQuestion} ans={anse} />
                                 )
                             })
                             }

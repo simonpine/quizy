@@ -142,7 +142,7 @@ const ContextCreateFather = ({ children }) => {
             questions: questions,
 
         }
-        addDoc(quizzesColection, quizz)
+        return addDoc(quizzesColection, quizz).then((y) => {return(y.id)})
     }
     return (
         <ContextCreate.Provider value={{ newQuizzOne, questions, newQuestion, addAnswer, deleteQuestion, deleteAnswer, refresh, setAns, setQuestion, setAnsFinal, uploadQuizz }}>

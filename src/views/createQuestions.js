@@ -13,8 +13,7 @@ export function CreateQuestions() {
                     }
                     const submit = (evt) => {
                         evt.preventDefault()
-                        uploadQuizz()
-                        navigate(`/`)
+                        uploadQuizz().then((a) => navigate(`/tests/${a}`))
                     }
                     return (
                         <form className="formAddQuestions" onSubmit={submit}>
@@ -22,7 +21,7 @@ export function CreateQuestions() {
                             <div className="questionsContiner">
                                 {questions.map((que) => {
                                     return (
-                                        <Questions idQuestion={que.id} que={que} />
+                                        <Questions key={que.id} idQuestion={que.id} que={que} />
                                     )
                                 })}
                             </div>

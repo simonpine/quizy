@@ -48,7 +48,7 @@ export function Tests() {
                 {loading && <div className="loadingContainer center" ><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
                 {qizzes.map((quiz) => {
                     return (
-                        <Card title={quiz.title} theme={quiz.theme} img={quiz.urlImg} des={quiz.description} id={quiz.id}/>
+                        <Card key={quiz.id} title={quiz.title} theme={quiz.theme} img={quiz.urlImg} des={quiz.description} id={quiz.id}/>
                     )
                 })}
             </div>
