@@ -129,6 +129,9 @@ input[type='radio']:after {
     display: inline-block;
     visibility: visible;
     border: 2px solid map-get($map: $colors, $key: 'deta');
+    @media screen and (max-width: 450px) {
+        display: none;
+    }
   }
 input[type='radio']:hover{
     cursor: pointer;
@@ -145,6 +148,9 @@ input[type='radio']:checked:after {
     display: inline-block;
     visibility: visible;
     border: 2px solid map-get($map: $colors, $key: 'deta');
+    @media screen and (max-width: 450px) {
+        display: none;
+    }
 }
 .answerInput{
     @extend .questionTitel;
