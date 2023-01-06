@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Quizy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Quiz app to create and resolve quizzes
 
-## Available Scripts
+## Deploy
 
-In the project directory, you can run:
+[simonpine-design.netlify.app](https://quizy-pin.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a253097a-2925-4d33-bb21-7eb6cf663ab0/deploy-status)](https://app.netlify.com/sites/quizy-pin/deploys)
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In 'Quizy' is implemented firebase to save the quizzes that have been created in it, also to consume the firebase server to resolve the diferent quizzes. When you create a quiz, should at least have the author, the title, the description, the theme and one question, also que questions cannot have less than 2 answers. The main banner of the app is a forest that show a parallax effect (made with "react-scroll-parallax").
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Libraries
 
-### `npm test`
+- [Create React App][cra] - Project setup
+- [React Router][router] - Routing and navigation
+- [react-scroll-parallax][parallax] - Parallax scrolling effect
+- [Sass][ss] - Organized design
+- [Bootstrap][bts] -  Project design
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Scripts
 
-### `npm run build`
+- `npm start`
+    Start the project in the development enviroment.
+- `npm build`
+    Build the project for production.
+- `npm test`
+    Start the project and run tests.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Node.js](https://nodejs.org)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contact
 
-### `npm run eject`
+- https://twitter.com/SimonPine2
+- simonpineda0521@gmail.com
+- https://www.linkedin.com/in/simon-pineda-0b8abb251
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Folder Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `src`: Contains all the source code.
+    - `components`: General components used across the app.
+    - `views`: Specific components organized by view.
+    - `context`: React context providers.
+    - `scss`: Design components.
+    - `router`: The navigation of the app.
+- `App.js`: Main component.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[deploy]: https://quizy-pin.netlify.app/
+[status]: https://api.netlify.com/api/v1/badges/a253097a-2925-4d33-bb21-7eb6cf663ab0/deploy-status
+[netlify]: https://app.netlify.com/sites/quizy-pin/deploys
+[cra]: https://github.com/facebook/create-react-app
+[router]: https://github.com/remix-run/react-router
+[ss]: https://sass-lang.com/
+[parallax]: https://react-scroll-parallax.damnthat.tv/docs/intro
+[bts]: https://getbootstrap.com/
