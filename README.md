@@ -4,7 +4,7 @@ Quiz app to create and resolve quizzes
 
 ## Deploy
 
-[simonpine-design.netlify.app](https://quizy-pin.netlify.app/)
+[quizy-pin.netlify.app/](https://quizy-pin.netlify.app/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a253097a-2925-4d33-bb21-7eb6cf663ab0/deploy-status)](https://app.netlify.com/sites/quizy-pin/deploys)
 
 ## Description
