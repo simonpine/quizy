@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { ParallaxProvider } from 'react-scroll-parallax';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './index.scss';
 
-import {RouterProvider} from "react-router-dom"
-import { router } from './router';
+import { ParallaxProvider } from 'react-scroll-parallax';
+import { BrowserRouter } from "react-router-dom"
+import { RoutesForTheApp } from './router';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { Layout } from './components/layout';
 const firebaseConfig = {
   apiKey: "AIzaSyC6AtVb7hPaEwpTfs0Grf65Ef4Tg2w4ELc",
   authDomain: "quizy-b1cbf.firebaseapp.com",
@@ -24,10 +25,14 @@ getAnalytics(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <ParallaxProvider>
-      <RouterProvider router={router}/>
-    </ParallaxProvider>
-  </React.StrictMode>
+
+  <ParallaxProvider>
+    <BrowserRouter>
+      <Layout>
+        <RoutesForTheApp />
+      </Layout>
+    </BrowserRouter>
+  </ParallaxProvider>
+
 );
 reportWebVitals();

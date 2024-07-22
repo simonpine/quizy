@@ -1,31 +1,31 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 import logo from '../img/logo1.svg'
-export function Navbar({ selected }) {
-    const [mo, setmo] = useState({ right: '-100%', })
-    const [mo2, setmo2] = useState({ left: '-100%', })
-    const one = {}
-    const two = {}
-    const tree = {}
-    const four = {}
-    if(selected === 1){
-        one.color = "#ff755d"
-    }
-    else if (selected === 2){
-        two.color = "#ff755d"
-    }
-    else if (selected === 4){
-        four.color = "#ff755d"
-    }
-    else{
-        tree.color = "#ff755d"
-    }
-
+export function Navbar() {
     return (
 
-        <nav className="navbar navbar-expand-lg navbar-dark position-sticky p-nav">
-            <div style={mo} className="mobile">
+        <nav>
+            <NavLink className='navlinkGeneral' to='/'>
+                <img className="logoNav" src={logo} alt="SimonPine brand logo"/>
+            </NavLink>
+            <div>
+                <NavLink className='navlinkGeneral' to='/'>
+                    {({ isActive }) => (
+                        <h4 className={`navlink ${isActive && 'selectedNavlink'}`}>Home</h4>
+                    )}
+                </NavLink>
+                <NavLink className='navlinkGeneral' to='/tests'>
+                    {({ isActive }) => (
+                        <h4 className={`navlink ${isActive && 'selectedNavlink'}`}>Tests</h4>
+                    )}
+                </NavLink>
+                <NavLink className='navlinkGeneral' to='/create'>
+                    {({ isActive }) => (
+                        <h4 className={`navlink ${isActive && 'selectedNavlink'}`}>Create</h4>
+                    )}
+                </NavLink>
+            </div>
+            {/* <div style={mo} className="mobile">
                 <div className="mobileContainer">
                     <ul className="navbar-nav">
                         <li className="">
@@ -79,7 +79,7 @@ export function Navbar({ selected }) {
                         <Link style={four} to={{pathname:"/report"}} className="nav-link">Report</Link>
                     </li>
                 </ul>
-            </div>
+            </div> */}
         </nav>
     )
 }

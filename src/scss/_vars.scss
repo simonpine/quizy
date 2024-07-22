@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@900&family=Kanit:wght@100;300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@400;500;700&display=swap');
 $colors:(
     'main':#2F0C29,
     'secu': #ffff,
@@ -20,8 +20,14 @@ $colors:(
     margin: 0;
     padding: 0;
     color: map-get($map:$colors, $key: 'secu');
-    font-family: 'Kanit', sans-serif;
+    font-family: "Montserrat", sans-serif;
 };
+html{
+    background-image: radial-gradient(map-get($map:$colors, $key: 'dots') 1.2px, transparent 0);
+    background-size: 25px 25px;
+    font-size: 80%;
+    background-attachment: fixed
+}
 body{
     scroll-behavior: smooth;
     background-color: map-get($map:$colors, $key: 'main');
