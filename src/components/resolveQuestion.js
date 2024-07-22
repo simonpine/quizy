@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import { ResolveAnswers } from "./resolveAnswers"
 export function ResolveQuestion({ setMat, question, answers }) {
     const newMatch = (newWord) =>{

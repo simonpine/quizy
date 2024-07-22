@@ -37,7 +37,7 @@ export function Resolve() {
                 }
             }
         }).then((data) => setLoading(!!data))
-    }, [])
+    }, [params])
     const setMat = (idQuestion, newValue) => {
         setDisplay({
             display: 'none',

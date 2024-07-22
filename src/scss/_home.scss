@@ -3,11 +3,14 @@
     height: auto;
 }
 .banner{
-    height: 107vh;
+    height: 100vh;
     overflow: hidden;
 }
 .logoPresentation{
     width: 100px;
+}
+.clouds{
+    height: 100%
 }
 .bannerText{
     @include flex(row-reverse,flex-end, center, center, wrap);

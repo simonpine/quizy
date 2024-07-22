@@ -9,13 +9,13 @@ export function Navbar({ selected }) {
     const two = {}
     const tree = {}
     const four = {}
-    if(selected == 1){
+    if(selected === 1){
         one.color = "#ff755d"
     }
-    else if (selected == 2){
+    else if (selected === 2){
         two.color = "#ff755d"
     }
-    else if (selected == 4){
+    else if (selected === 4){
         four.color = "#ff755d"
     }
     else{

@@ -19,8 +19,8 @@ export function MontainParallaxBanner() {
         expanded: false,
         children: (
           <div className="center nameOfSite">
-            <h2 className='Quizy'>Quizy</h2>
-            <img className='logoPresentation' src={logo}/>
+            <h1 className='Quizy'>Quizy</h1>
+            <img alt='SimonPine brand logo' className='logoPresentation' src={logo}/>
           </div>
         ),
       };
@@ -32,24 +32,19 @@ export function MontainParallaxBanner() {
       };
     
       const clouds = {
-        image: claud2,
-        translateX: [0, 50],
+        translateX: [-5, 5],
         translateY: [20, 50],
         shouldAlwaysCompleteAnimation: true,
-      };
-      const clouds2 = {
-        image: claud2,
-        translateX: [50, 100],
-        translateY: [15, 50],
-        shouldAlwaysCompleteAnimation: true,
-      };
-    
+        children: (
+          
+          <img src={claud2} className='clouds' alt='Clouds for the parallax' />
+        )
+      };    
       const montains1 = {
         image: mont1,
         translateY: [10, 40],
         shouldAlwaysCompleteAnimation: true,
       };
-    
       const montains2 = {
         image:mont2,
         translateY: [2, 20],
@@ -68,7 +63,7 @@ export function MontainParallaxBanner() {
       };
     return(
         <ParallaxBanner
-        layers={[background, text2, star, clouds, clouds2, montains1, montains2, trees]}
+        layers={[background, text2, star, clouds, montains1, montains2, trees]}
         className="banner"
       />
     )

@@ -25,7 +25,7 @@ export function Tests() {
         const itemsColection = collection(db, 'quizzes')
         getDocs(itemsColection).then((snap) => {
             const prov = []
-            const pro = snap.docs.map((c) => {
+            snap.docs.forEach((c) => {
                 let a = { ...c.data(), id: c.id, }
                 prov.push(a)
             })
@@ -37,12 +37,12 @@ export function Tests() {
         <Layout>
             <form className="codeForm" onSubmit={handleSubmit}>
                 <div>
-                    <h1 className="subtitleHome">Find a specific quiz</h1>
+                    <h2 className="subtitleHome">Find a specific quiz</h2>
                     <p className="pHome">Enter the code to find and resolve a specific quiz, the result will be private</p>
                     <input className="inputCode" placeholder="n851PMAfkaBVfVNSx8Zg" type='text' value={code} onChange={newCode} />
                     <button className="link" type="submit">Find the test</button>
                 </div>
-                <img className="folerImg" src={folder} />
+                <img alt="Folder that shows there is not quizies" className="folerImg" src={folder} />
             </form>
             <div className="quizzesContainer">
                 {loading && <div className="loadingContainer center" ><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
