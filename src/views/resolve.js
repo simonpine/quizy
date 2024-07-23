@@ -1,5 +1,4 @@
 import { useParams, Link } from "react-router-dom";
-import { Layout } from "../components/layout";
 import { doc, getFirestore, getDoc } from "firebase/firestore"
 import { useState, useEffect } from "react";
 import { ResolveQuestion } from "../components/resolveQuestion";
@@ -57,22 +56,22 @@ export function Resolve() {
             setMatchQuestions([...matchQuestions, newit])
         }
     }
-    const hundleSubmit = (evt) =>{
+    const hundleSubmit = (evt) => {
         evt.preventDefault();
         setDisplay({
             display: '',
         })
         const one = quiz.questions.length
         let two = 0
-        for(let element of matchQuestions){
-            if(element.match){
+        for (let element of matchQuestions) {
+            if (element.match) {
                 two += 1
             }
         }
         setResult(`${two} / ${one}`)
     }
     return (
-        <Layout>
+        <>
             {loading && <div className="loadingContainer2 center" ><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
             {exis ?
                 <section>
@@ -118,6 +117,6 @@ export function Resolve() {
                     </div>
                 </div>
             }
-        </Layout>
+        </>
     )
 }

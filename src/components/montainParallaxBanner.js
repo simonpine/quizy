@@ -5,7 +5,6 @@ import mont1 from '../img/1montain.png'
 import mont2 from '../img/2montain.png'
 import tree from '../img/trees.png'
 import stars from '../img/stars.png'
-import logo from '../img/logo1.svg'
 export function MontainParallaxBanner() {
     const background = {
         image: bg,
@@ -14,13 +13,13 @@ export function MontainParallaxBanner() {
         shouldAlwaysCompleteAnimation: true,
       };
       const text2 = {
-        translateY: [0 ,80],
+        translateY: [5 ,70],
         shouldAlwaysCompleteAnimation: true,
         expanded: false,
         children: (
           <div className="center nameOfSite">
             <h1 className='Quizy'>Quizy</h1>
-            <img alt='SimonPine brand logo' className='logoPresentation' src={logo}/>
+            <p>Enjoy and test yourself</p>
           </div>
         ),
       };

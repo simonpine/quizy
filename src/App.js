@@ -1,17 +1,23 @@
-
 import { MontainParallaxBanner } from './components/montainParallaxBanner';
+import { useParallax } from 'react-scroll-parallax';
 import './App.scss';
 import { Link } from 'react-router-dom';
-import { AnimateScrollIcons } from './components/animateScrollIcons';
 import one from './img/1.jpg'
 import two from './img/2.jpg'
+import tape from './img/tape1.png'
+import tape2 from './img/tape2.png'
 const App = () => {
+  const parallax = useParallax({
+    easing: 'easeOutQuad',
+    translateX: [-30, 50],
+    rotate: [-10, 0]
+  });
   return (
 
     <div className='containerStart'>
       <MontainParallaxBanner />
-       <main>
-         <section className='sectionHome create'>
+      <main>
+        {/* <section className='sectionHome create'>
            <div className='textContentHome'>
              <h2 className='subtitleHome'>Create new quizzes</h2>
              <p className='pHome'>
@@ -20,7 +26,6 @@ const App = () => {
              <Link to={{ pathname: "/create" }} className="link">New quizz</Link>
            </div>
            <div className='spinnerContainer'>
-             <AnimateScrollIcons />
            </div>
          </section>
          <section className='sectionHome test'>
@@ -37,8 +42,24 @@ const App = () => {
                <img className='MiniImg' alt='img of a laptop' src={two} />
              </div>
            </div>
-         </section>
-       </main>
+         </section> */}
+        <section>
+          <div ref={parallax.ref} className='borderImgs'>
+            <img className='tapeTop' src={tape} alt='Tape ilustration to show that the polaroid in stiked' />
+            <img className='tapeBellow' src={tape2} alt='Tape ilustration to show that the polaroid in stiked' />
+
+            <img alt='Person making fire in a forest camp' src={two} />
+            <p>20/15/23</p>
+            <h4>Share quizies with your friends</h4>
+          </div>
+          <div>
+
+          </div>
+        </section>
+
+
+        
+      </main>
     </div>
   );
 };

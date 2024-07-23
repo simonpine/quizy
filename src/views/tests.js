@@ -1,4 +1,3 @@
-import { Layout } from "../components/layout"
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
 import folder from '../img/folder.png'
@@ -34,7 +33,7 @@ export function Tests() {
     }, [])
 
     return (
-        <Layout>
+        <>
             <form className="codeForm" onSubmit={handleSubmit}>
                 <div>
                     <h2 className="subtitleHome">Find a specific quiz</h2>
@@ -48,10 +47,10 @@ export function Tests() {
                 {loading && <div className="loadingContainer center" ><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
                 {qizzes.map((quiz) => {
                     return (
-                        <Card key={quiz.id} title={quiz.title} theme={quiz.theme} img={quiz.urlImg} des={quiz.description} id={quiz.id}/>
+                        <Card key={quiz.id} title={quiz.title} theme={quiz.theme} img={quiz.urlImg} des={quiz.description} id={quiz.id} />
                     )
                 })}
             </div>
-        </Layout>
+        </>
     )
 }

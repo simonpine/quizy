@@ -1,56 +1,198 @@
 nav {
     right: 0;
     left: 0;
-    width: 100%;
     z-index: 10;
     position: fixed;
     align-items: center;
-    height: auto;
-    padding-top: 20px;
     display: flex;
     justify-content: space-between;
-
-    max-width: 1200px;
+    padding: 30px;
     margin: auto;
-    // top: 0px;
-    border-bottom: 1px solid map-get($map: $colors, $key: 'deta');
 
-    // background-color: map-get($map:$colors, $key: 'main');
     & div {
         display: flex;
         flex-direction: row;
         gap: 20px;
+        padding: 10px;
     }
-
 }
 
 .logoNav {
-    margin: 10px;
     opacity: 0.7;
-    width: 30px;
-    height: 30px;
-}
-
-.navlinkGeneral {
-    width: fit-content;
-    text-decoration: none;
-
-}
-
-.navlink {
-    font-weight: 300;
-    font-size: 1.4rem;
-    width: fit-content;
-    opacity: 0.7;
-    transition: 0.3s;
-
-    &:hover {
-        // color: map-get($map:$colors, $key: 'deta');
+    width: 40px;
+    height: 40px;
+    transition: ease 0.3s;
+    &:hover{
         opacity: 1;
     }
 }
 
-.selectedNavlink {
-    opacity: 1;
+@keyframes menuIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.buttonMain {
+    text-transform: uppercase;
+    font-family: 'Alpino', sans-serif;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    border: 3px solid map-get($map: $colors, $key: 'deta');
+    border-radius: 100px;
+    background: none;
+    color: map-get($map: $colors, $key: 'deta');
+    background-image: url("../img/mountainsButton.png");
+    background-position: 0% -20%;
+    background-size: 200px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    font-weight: 800;
+    transition: ease 0.3s;
+
+    &:hover {
+        border-color: map-get($map: $colors, $key: 'main');
+        color: map-get($map: $colors, $key: 'secu');
+        background-position: 0% 50%;
+    }
+}
+
+.fullnav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: map-get($map: $colors, $key: 'mainBlur');
+    backdrop-filter: blur(3px);
+
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+
+}
+
+.nav-ul {
+    font-family: 'Alpino', sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+}
+
+.nav-li {
+    opacity: 0;
+    animation: menuIn .3s ease;
+    animation-fill-mode: forwards;
+    position: relative;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.nav-li+.nav-li {
+    margin-top: 1rem;
+}
+
+
+.nav-a {
+    display: inline-block;
+    position: relative;
+    transition: 0.4s linear color;
+}
+
+.nav-a-letters {
+    
+    display: flex;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nav-a>* {
+        pointer-events: none;
+    }
+}
+
+.nav-a-stripe {
+    position: absolute;
+    background-color: map-get($map: $colors, $key: 'deta');
+    width: calc(100% + 0.075em);
+    left: 0;
+    top: 0.5em;
+    height: 0.115em;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0, 1);
+}
+
+.nav-a-stripe--yellow {
+    background-color: map-get($map: $colors, $key: 'deta3');
+    transition-delay: 0.1s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nav-a:hover .nav-a-stripe {
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+
+    .nav-a:hover .nav-a-stripe--yellow {
+        transition-delay: 0s;
+    }
+}
+
+.nav-a-stripe--turquoise {
+    background-color: map-get($map: $colors, $key: 'deta2');
+    transition-delay: 50ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nav-a:hover .nav-a-stripe--turquoise {
+        transition-delay: 50ms;
+    }
+
+    .nav-a:hover .nav-a-stripe--purple {
+        transition-delay: 0.1s;
+    }
+}
+
+.nav-a-letters-top {
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+
+.nav-a-letter {
+    display: block;
+    will-change: transform, opacity;
+}
+
+.nav-a-letters .nav-a-letter:nth-child(2n) {
+    opacity: 0;
+}
+
+.nav-a-letters-top .nav-a-letter:nth-child(2n + 1) {
+    opacity: 0 !important;
+}
+.middleDelay{
+    animation-delay: 0.15s;
+}
+.lastDelay{
+    animation-delay: 0.3s;
+}
+.activelink{
     color: map-get($map: $colors, $key: 'deta');
 }

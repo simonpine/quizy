@@ -1,85 +1,114 @@
 import { NavLink } from "react-router-dom"
-
+import { useLocation } from 'react-router-dom';
 import logo from '../img/logo1.svg'
+import { useState, useEffect } from "react"
+
 export function Navbar() {
+    const [menu, setMenu] = useState(false)
+    const location = useLocation();
+
+    useEffect(() => {
+        setMenu(false)
+    }, [location]);
     return (
 
-        <nav>
-            <NavLink className='navlinkGeneral' to='/'>
-                <img className="logoNav" src={logo} alt="SimonPine brand logo"/>
-            </NavLink>
-            <div>
+        <>
+            <nav>
                 <NavLink className='navlinkGeneral' to='/'>
-                    {({ isActive }) => (
-                        <h4 className={`navlink ${isActive && 'selectedNavlink'}`}>Home</h4>
-                    )}
+                    <img className="logoNav" src={logo} alt="SimonPine brand logo" />
                 </NavLink>
-                <NavLink className='navlinkGeneral' to='/tests'>
-                    {({ isActive }) => (
-                        <h4 className={`navlink ${isActive && 'selectedNavlink'}`}>Tests</h4>
-                    )}
-                </NavLink>
-                <NavLink className='navlinkGeneral' to='/create'>
-                    {({ isActive }) => (
-                        <h4 className={`navlink ${isActive && 'selectedNavlink'}`}>Create</h4>
-                    )}
-                </NavLink>
-            </div>
-            {/* <div style={mo} className="mobile">
-                <div className="mobileContainer">
-                    <ul className="navbar-nav">
-                        <li className="">
-                            <button onClick={() => {
-                    setmo({ right: '-100%', })
-                    setmo2({ left: '-100%', })
-                }}  type="button" className="close" aria-label="Close">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-x tras" viewBox="0 0 16 16">
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                </svg>
-                            </button>
+                <button className="buttonMain" onClick={() => setMenu(!menu)}>
+                    {!menu ? 'Menu' : 'Close'}
+                </button>
+            </nav>
+            {menu &&
+                <aside className="fullnav">
+                    <ul className="nav-ul">
+                        <li className="nav-li">
+                            <NavLink to='/'>
+                                {({ isActive }) => {
+                                    return (
+                                        <div className="nav-a">
+                                            <span className="nav-a-letters">
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> H</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> o</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> m</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+                                            </span>
+                                            <span className="nav-a-stripe nav-a-stripe--yellow"> </span>
+                                            <span className="nav-a-stripe nav-a-stripe--turquoise"> </span>
+                                            <span className="nav-a-stripe nav-a-stripe--purple"> </span>
+                                            <span className="nav-a-letters-top">
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> H</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> o</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> m</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+
+                                            </span>
+                                        </div>
+                                    )
+                                }}
+                            </NavLink>
                         </li>
-                        <li className="nav-item active">
-                        <Link to={{pathname:"/"}} className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to={{pathname:"/create"}} className="nav-link">Create</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link  to={{pathname:"/tests"}} className="nav-link">Tests</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link  to={{pathname:"/report"}} className="nav-link">Report</Link>
-                    </li>
+                        <li className="nav-li middleDelay">
+                            <NavLink to='/create'>
+                                {({ isActive }) => {
+                                    return (
+                                        <div className="nav-a">
+                                            <span className="nav-a-letters">
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> C</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> r</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> a</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> t</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+                                            </span>
+                                            <span className="nav-a-stripe nav-a-stripe--yellow"> </span>
+                                            <span className="nav-a-stripe nav-a-stripe--turquoise"> </span>
+                                            <span className="nav-a-stripe nav-a-stripe--purple"> </span>
+                                            <span className="nav-a-letters-top">
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> C</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> r</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> a</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> t</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+                                            </span>
+                                        </div>
+                                    )
+                                }}
+                            </NavLink>
+                        </li>
+                        <li className="nav-li lastDelay">
+                            <NavLink to='/tests'>
+                                {({ isActive }) => {
+                                    return (
+                                        <div className="nav-a">
+                                            <span className="nav-a-letters">
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> T</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> s</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> t</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> s</span>
+                                            </span>
+                                            <span className="nav-a-stripe nav-a-stripe--yellow"> </span>
+                                            <span className="nav-a-stripe nav-a-stripe--turquoise"> </span>
+                                            <span className="nav-a-stripe nav-a-stripe--purple"> </span>
+                                            <span className="nav-a-letters-top">
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> T</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> e</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> s</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> t</span>
+                                                <span className={`nav-a-letter ${isActive && 'activelink'}`}> s</span>
+                                            </span>
+                                        </div>
+                                    )
+                                }}
+                            </NavLink>
+                        </li>
                     </ul>
-                </div>
-                <button style={mo2} onClick={() => {
-                    setmo({ right: '-100%', })
-                    setmo2({ left: '-100%', })
-                }} className="darkclose" />
-            </div>
-            <a className="navbar-brand" style={ { zIndex: '-100' } } onClick={() => window.scrollTo(0, 0)}><img className="navLogo" src={logo} /></a>
-            <button className="navbar-toggler" onClick={() => {
-                setmo2({ display: 'flex' })
-                setmo({ right: '0px', })
-            }}>
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
-                <ul className="navbar-nav">
-                    <li className="nav-item active">
-                        <Link style={one} to={{pathname:"/"}} className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link style={two} to={{pathname:"/create"}} className="nav-link">Create</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link style={tree} to={{pathname:"/tests"}} className="nav-link">Tests</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link style={four} to={{pathname:"/report"}} className="nav-link">Report</Link>
-                    </li>
-                </ul>
-            </div> */}
-        </nav>
+                </aside>
+            }
+        </>
     )
 }

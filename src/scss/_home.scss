@@ -1,159 +1,174 @@
-.containerStart{
+.containerStart {
     width: 100%;
     height: auto;
 }
-.banner{
+
+.banner {
     height: 100vh;
     overflow: hidden;
 }
-.logoPresentation{
-    width: 100px;
-}
-.clouds{
+
+
+.clouds {
     height: 100%
 }
-.bannerText{
-    @include flex(row-reverse,flex-end, center, center, wrap);
+
+.bannerText {
+    @include flex(row-reverse, flex-end, center, center, wrap);
     height: 70%;
 }
-.homeTitle{
+
+.homeTitle {
     font-size: 50px;
     text-transform: uppercase;
     opacity: 0.5;
 }
-.leftDown{
+
+.leftDown {
     width: 100%;
     height: 95%;
-    @include flex(row-reverse,flex-end, flex-end, center, wrap);
-    @media screen and (max-width: 1270px){
+    @include flex(row-reverse, flex-end, flex-end, center, wrap);
+
+    @media screen and (max-width: 1270px) {
         justify-content: center
     }
 }
 
-.nameOfSite{
-    height: 60%;
-    opacity: 0.4;
-    flex-direction: column-reverse;
+.nameOfSite {
+    height: 50%;
+    opacity: 0.8;
+    flex-direction: column;
+
+    & h1 {
+        font-family: 'Alpino', sans-serif;
+        font-size: 6.5rem;
+        font-weight: 900;
+    }
+
+    & p {
+        font-size: 1.8rem;
+    }
 }
-.Quizy{
-    text-transform: uppercase;
-    letter-spacing: 6px;
-}
-.creates{
+
+.creates {
     position: relative;
-    @media screen and (max-width: 1000px){
+
+    @media screen and (max-width: 1000px) {
         margin-top: 0px;
     }
 }
-.pHome{
-    max-width: 450px;
-    font-weight: 100;
-    font-size: 20px;
-    text-align: justify;
-    @media screen and (max-width: 1000px){
+
+.pHome {
+    max-width: 470px;
+    font-weight: 300;
+    font-size: 1.7rem;
+    font-family: 'Montserrat';
+
+    @media screen and (max-width: 1000px) {
         max-width: 100%;
     }
 }
-.subtitleHome{
-    color: map-get($map:$colors, $key: 'deta');
-    font-size: 35px;
-    font-weight: 600;
+
+.subtitleHome {
+    font-size: 3rem;
+    font-weight: 700;
     letter-spacing: 3px;
     margin-bottom: 20px;
-    border-left: solid 5px map-get($map:$colors, $key: 'deta');
+    border-left: solid 5px map-get($map: $colors, $key: 'deta');
     padding-left: 10px;
     border-radius: 5px;
 }
-.sectionHome{
+
+.sectionHome {
     max-width: 1200px;
     margin: auto;
     margin-top: 50px;
-    @include flex(row,center, space-between, center, wrap);
-    @media screen and (max-width: 1270px){
+    @include flex(row, center, space-between, center, wrap);
+
+    @media screen and (max-width: 1270px) {
         margin-left: 2.5%;
         margin-right: 2.5%;
     }
-    @media screen and (max-width: 1000px){
+
+    @media screen and (max-width: 1000px) {
         flex-direction: column;
         margin-top: 40px;
     }
 }
-.textContentHome{
+
+.textContentHome {
     width: fit-content;
-    
+
 }
-.test{
-    flex-direction: row-reverse;
-    @media screen and (max-width: 1000px){
-        flex-direction: column;
-        margin-top: 40px;
-    }
-    margin-bottom: 130px
-}
-.subtitleHome2{
-    @extend .subtitleHome;
-    border: none;
-    border-right: 5px solid map-get($map:$colors, $key: 'deta');
-    padding-right: 10px;
-}
-.textContentHome2{
-    @extend .textContentHome;
-    text-align: right;
-}
-.link{
-    color: map-get($map:$colors, $key: 'secu');
+
+
+
+.link {
+    color: map-get($map: $colors, $key: 'secu');
     font-weight: 500;
     padding: 5px 20px;
-    border: 1px solid map-get($map:$colors, $key: 'deta');
+    border: 1px solid map-get($map: $colors, $key: 'deta');
     border-radius: 100px;
     text-decoration: none;
-    background: linear-gradient(map-get($map:$colors, $key: 'deta'),map-get($map:$colors, $key: 'deta'));
+    background: linear-gradient(map-get($map: $colors, $key: 'deta'), map-get($map: $colors, $key: 'deta'));
     background-position: 0% 0%;
     background-size: 0% 100%;
     background-repeat: no-repeat;
     transition: ease 0.3s;
 }
-.link:hover{
+
+.link:hover {
     font-weight: 500;
-    color: map-get($map:$colors, $key: 'main');
+    color: map-get($map: $colors, $key: 'main');
     background-size: 100% 100%;
 }
-.person{
-    width: 100px;
-}
-.spinner{
-    height: 300px;
-    width: 300px;
-    display: grid;
-    display: grid;
-    justify-items: center;
-    align-items:center;
-    grid-template-rows: repeat(3, 33%);
-    grid-template-columns: repeat(3, 33%);
 
-}
-.spinnerContainer{
-    margin: 40px;
-}
-.secundaryMiniIcon{
-    width: 65px;
-}
-.firstImg{
-    height: 100%;
-}
-.imgContainer{
-    height: 320px;
-    width: 320px;
-    @include flex(row,flex-end, space-between, flex-end, nowrap);
-    background: linear-gradient(map-get($map:$colors, $key: 'deta'),map-get($map:$colors, $key: 'deta'));
-    background-position: 68% 100%;
-    background-size: 10% 70%;
-    background-repeat: no-repeat;
-    @media screen and (max-width: 1000px){
-        display: none;
+
+
+.borderImgs {
+    padding: 15px 15px;
+    width: fit-content;
+    background-color: map-get($map: $colors, $key: 'secuBlur');
+    position: relative;
+    & img {
+        width: 450px;
+        // border: 20px dashed  map-get($map: $colors, $key: 'deta');
+    }
+    & .tapeTop{
+        position: absolute;
+        rotate: -30deg;
+        width: 300px;
+        height: 100px;
+        // transform: translate(50px);
+        top: -10px;
+        left: -100px;
+    }
+    & .tapeBellow{
+        position: absolute;
+        rotate: -50deg;
+        width: 300px;
+        height: 100px;
+        // transform: translate(50px);
+        bottom: -10px;
+        right: -100px;
+    }
+    & p {
+        color: map-get($map: $colors, $key: 'main');   
+        margin-top: 10px;
+        font-size: 1.7rem;
+        font-weight: 500;
+    }
+
+    & h4 {
+        color: map-get($map: $colors, $key: 'main');
+        font-size: 2.3em;
+        // margin-top: 10px;
+        // text-transform: uppercase;
+        font-weight: 800;
     }
 }
-.MiniImg{
-    transform: translate(-50%);
-    height: 120px;
-}
+
+
+
+
+  
