@@ -53,7 +53,7 @@ const App = () => {
             <h4>Share quizies with your friends</h4>
           </div>
           <div>
-
+              <h2></h2>
           </div>
         </section>
 
