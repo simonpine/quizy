@@ -43,7 +43,8 @@ const App = () => {
              </div>
            </div>
          </section> */}
-        <section>
+        <section className='SectionSidebySide'>
+          <div>
           <div ref={parallax.ref} className='borderImgs'>
             <img className='tapeTop' src={tape} alt='Tape ilustration to show that the polaroid in stiked' />
             <img className='tapeBellow' src={tape2} alt='Tape ilustration to show that the polaroid in stiked' />
@@ -52,8 +53,10 @@ const App = () => {
             <p>20/15/23</p>
             <h4>Share quizies with your friends</h4>
           </div>
+          </div>
           <div>
-              <h2></h2>
+              <h2>Hola Todos</h2>
+              <p>Introducing Quizy, the AI-powered web app that transforms your content into engaging quizzes in just a few clicks. Quizy analyzes your material—whether it's educational content, corporate training modules, or fun trivia—and generates dynamic, tailored quizzes that enhance engagement and retention. Save time, improve learning outcomes, and make assessments interactive and fun. Perfect for educators, trainers, and content creators. Try Quizy and turn your information into knowledge that sticks!</p>
           </div>
         </section>
 
