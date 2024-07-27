@@ -1,6 +1,6 @@
 import { ParallaxBanner } from 'react-scroll-parallax';
 import bg from '../img/background.png'
-import claud2 from '../img/clauds2.png'
+import claud from '../img/clauds.png'
 import mont1 from '../img/1montain.png'
 import mont2 from '../img/2montain.png'
 import tree from '../img/trees.png'
@@ -31,12 +31,12 @@ export function MontainParallaxBanner() {
       };
     
       const clouds = {
-        translateX: [-5, 5],
+        translateX: [15, -10],
         translateY: [20, 50],
         shouldAlwaysCompleteAnimation: true,
         children: (
           
-          <img src={claud2} className='clouds' alt='Clouds for the parallax' />
+          <img src={claud} className='clouds' alt='Clouds for the parallax' />
         )
       };    
       const montains1 = {

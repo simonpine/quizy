@@ -50,128 +50,149 @@
     }
 }
 
-.creates {
-    position: relative;
+@keyframes TapeAnimation {
+    from {
+        opacity: 0;
+        transform: scale(130%);
+    }
 
-    @media screen and (max-width: 1000px) {
-        margin-top: 0px;
+    to {
+        opacity: 1;
+        transform: scale(100%);
     }
 }
 
-.pHome {
-    max-width: 470px;
-    font-weight: 300;
-    font-size: 1.7rem;
-    font-family: 'Montserrat';
-
-    @media screen and (max-width: 1000px) {
-        max-width: 100%;
-    }
-}
-
-.subtitleHome {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    border-left: solid 5px map-get($map: $colors, $key: 'deta');
-    padding-left: 10px;
-    border-radius: 5px;
-}
-
-.sectionHome {
-    max-width: 1200px;
-    margin: auto;
-    margin-top: 50px;
-    @include flex(row, center, space-between, center, wrap);
-
-    @media screen and (max-width: 1270px) {
-        margin-left: 2.5%;
-        margin-right: 2.5%;
+@keyframes TapeAnimationOut {
+    from {
+        opacity: 1;
+        // transform: scale(130%);
+        transform: translate(0%, 0%);
     }
 
-    @media screen and (max-width: 1000px) {
-        flex-direction: column;
-        margin-top: 40px;
+    to {
+        opacity: 0;
+        transform: translate(-20%, 0%);
     }
 }
-
-.textContentHome {
-    width: fit-content;
-
-}
-
-
-
-.link {
-    color: map-get($map: $colors, $key: 'secu');
-    font-weight: 500;
-    padding: 5px 20px;
-    border: 1px solid map-get($map: $colors, $key: 'deta');
-    border-radius: 100px;
-    text-decoration: none;
-    background: linear-gradient(map-get($map: $colors, $key: 'deta'), map-get($map: $colors, $key: 'deta'));
-    background-position: 0% 0%;
-    background-size: 0% 100%;
-    background-repeat: no-repeat;
-    transition: ease 0.3s;
-}
-
-.link:hover {
-    font-weight: 500;
-    color: map-get($map: $colors, $key: 'main');
-    background-size: 100% 100%;
-}
-
-
 
 .borderImgs {
-    padding: 15px 15px;
+    padding: 15px;
     width: fit-content;
     background-color: map-get($map: $colors, $key: 'secuBlur');
     position: relative;
-    & img {
-        width: 450px;
-        // border: 20px dashed  map-get($map: $colors, $key: 'deta');
-    }
-    & .tapeTop{
+
+    & .tapeTop {
+        z-index: 1;
         position: absolute;
         rotate: -30deg;
         width: 300px;
         height: 100px;
-        // transform: translate(50px);
         top: -10px;
         left: -100px;
+        transform: scale(130%);
+        opacity: 0;
     }
-    & .tapeBellow{
+
+    & .tapeBellow {
+        z-index: 1;
         position: absolute;
         rotate: -50deg;
         width: 300px;
         height: 100px;
-        // transform: translate(50px);
         bottom: -10px;
         right: -100px;
+        transform: scale(130%);
+        opacity: 0;
     }
+
     & p {
-        color: map-get($map: $colors, $key: 'main');   
+        color: map-get($map: $colors, $key: 'main');
         margin-top: 10px;
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         font-weight: 500;
     }
 
     & h4 {
         color: map-get($map: $colors, $key: 'main');
-        font-size: 2.3em;
+        font-size: 2.5em;
         font-weight: 800;
     }
 }
 
-.SectionSidebySide{
-    padding: 30px;
+.SectionSidebySide {
+    padding: 80px 30px;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr .2fr 1fr;
+    justify-items: center;
+    // align-items: center;
 
+    .TextContainerLanding {
+        max-width: 550px;
+
+        & h2 {
+            font-weight: 800;
+            font-size: 6em;
+        }
+
+        & p {
+            margin-top: 40px;
+            font-size: 1.7rem;
+        }
+    }
+
+    // @media screen and (max-width: 1000px) {
+    //     margin-top: 0px;
+    // }
 }
 
+.figoreToMoveImgEffect {
+    overflow: hidden;
+    height: 700px;
 
-  
+    & img {
+        height: 140%;
+    }
+}
+
+.tapeFull {
+    animation: TapeAnimation .2s ease-in;
+    animation-fill-mode: both
+}
+
+.tapeOut {
+    animation: TapeAnimationOut .2s ease-in;
+}
+
+.parallaxText {
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+
+    & .scroller {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 64px;
+        display: flex;
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+
+    }
+
+    & span {
+        color: map-get($map: $colors, $key: 'deta2');
+        opacity: 0.1;
+        font-size: 9rem;
+        font-weight: 900;
+        display: block;
+        margin-right: 30px;
+        margin: -40px 30px;
+
+    }
+}
+
+.TextContainerSection {
+    margin: 80px 0px;
+
+}

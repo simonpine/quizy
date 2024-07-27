@@ -49,7 +49,6 @@
 }
 
 .SubmitButton {
-    @extend .link;
     grid-area: SubmitButton;
     justify-self: left;
 }
@@ -91,7 +90,6 @@
     @include flex(row, center, space-between, center, wrap);
 }
 .x{
-    @extend .link;
     height: 30px;
     width: 30px;
     font-size: 14px;
@@ -100,7 +98,6 @@
     margin-bottom: 20px;
 }
 .addItem{
-    @extend .link;
     padding: 2px 15px;
     border: 2px solid map-get($map: $colors, $key: 'deta');
     border-radius: 0px;
