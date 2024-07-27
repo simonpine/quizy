@@ -2,7 +2,6 @@ import { useParams, Link } from "react-router-dom";
 import { doc, getFirestore, getDoc } from "firebase/firestore"
 import { useState, useEffect } from "react";
 import { ResolveQuestion } from "../components/resolveQuestion";
-import wrong from '../img/wrong.png'
 export function Resolve() {
     const [result, setResult] = useState(1)
     const [display, setDisplay] = useState({
@@ -106,7 +105,7 @@ export function Resolve() {
                 :
                 <div className='center center2'>
                     <div className='sectionerror'>
-                        <img src={wrong} alt="SimonPine logo" className='folerImg' />
+                        {/* <img src={wrong} alt="SimonPine logo" className='folerImg' /> */}
                         <div className='textContentHome2 textcont'>
                             <h1 className="subtitleHome2">The test you are looking for don't exist</h1>
                             <p className='pHome'>You can create it if you want, but remember that The quizzes you create cannot be modified, or resolve other one of the 'tests' section. </p>

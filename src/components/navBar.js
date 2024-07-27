@@ -3,7 +3,20 @@ import { useLocation } from 'react-router-dom';
 import logo from '../img/logo1.svg'
 import { useState, useEffect } from "react"
 
-export function Navbar() {
+function Navbar({setMenu, menu}) {
+    return (
+    <nav>
+        <NavLink className='navlinkGeneral' to='/'>
+            <img className="logoNav" src={logo} alt="SimonPine brand logo" />
+        </NavLink>
+        <button className="buttonMain" onClick={() => setMenu(!menu)}>
+            {!menu ? 'Menu' : 'Close'}
+        </button>
+    </nav>
+    )
+}
+
+export function Nav() {
     const [menu, setMenu] = useState(false)
     const location = useLocation();
 
@@ -13,14 +26,7 @@ export function Navbar() {
     return (
 
         <>
-            <nav>
-                <NavLink className='navlinkGeneral' to='/'>
-                    <img className="logoNav" src={logo} alt="SimonPine brand logo" />
-                </NavLink>
-                <button className="buttonMain" onClick={() => setMenu(!menu)}>
-                    {!menu ? 'Menu' : 'Close'}
-                </button>
-            </nav>
+            <Navbar menu={menu} setMenu={setMenu} />
             {menu &&
                 <aside className="fullnav">
                     <ul className="nav-ul">

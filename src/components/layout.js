@@ -1,9 +1,9 @@
-import { Navbar } from './navBar';
+import { Nav } from './navBar';
 import { Footer } from './footer';
 export function Layout({ selceted, children }) {
     return (
         <div className="App">
-            <Navbar selected={selceted} />
+            <Nav selected={selceted} />
             {children}
             <Footer />
         </div>
