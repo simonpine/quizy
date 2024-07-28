@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import { useLocation } from 'react-router-dom';
 import logo from '../img/logo1.svg'
 import { useState, useEffect } from "react"
-import { useKeyPress } from "@uidotdev/usehooks";
+// import { useKeyPress } from "@uidotdev/usehooks";
 
 function Navbar({setMenu, menu}) {
     return (
@@ -20,7 +20,7 @@ function Navbar({setMenu, menu}) {
 export function Nav() {
     const [menu, setMenu] = useState(false)
     const location = useLocation();
-    useKeyPress('Escape', ()=>{setMenu(false)})
+    // useKeyPress('Escape', ()=>{setMenu(false)})
     useEffect(() => {
         setMenu(false)
     }, [location]);
