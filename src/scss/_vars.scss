@@ -30,6 +30,9 @@ $colors: (
     padding: 0;
     color: map-get($map: $colors, $key: 'secu');
     font-family: "Alpino", sans-serif;
+    &:focus{
+        outline: none;
+    }
 }
 
 ;
