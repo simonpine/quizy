@@ -56,7 +56,7 @@ export function MontainParallaxBanner() {
         shouldAlwaysCompleteAnimation: true,
         children: (
           <div className='leftDown'>
-            <button onClick={() => window.scrollTo(0, 1000)} className="arrows"></button>
+            <div onClick={() => window.scrollTo(0, 1000)} name='ArrowButtonToScrollDown' className="arrows" />
           </div>
       ),
       };
