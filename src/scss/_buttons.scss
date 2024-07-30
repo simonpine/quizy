@@ -120,9 +120,15 @@
     animation-delay: 0.1s;
 }
 
+.middleDelay2 {
+    animation-delay: 0.15s;
+}
+
 .lastDelay {
     animation-delay: 0.2s;
 }
+
+
 
 .activelink {
     color: map-get($map: $colors, $key: 'deta');

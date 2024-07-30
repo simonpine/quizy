@@ -29,9 +29,6 @@ export function Nav() {
         const provider = new GoogleAuthProvider()
         auth.signInWithPopup(provider)
     }
-    useEffect(()=>{
-        console.log(user)
-    }, [user])
     useEffect(() => {
         setMenu(false)
     }, [location]);
@@ -97,7 +94,7 @@ export function Nav() {
                                 }}
                             </NavLink>
                         </li>
-                        <li className="nav-li lastDelay">
+                        <li className="nav-li middleDelay2">
                             <NavLink to='/tests'>
                                 {({ isActive }) => {
                                     return (
@@ -156,7 +153,7 @@ export function Nav() {
                             </li>
                             :
                             <li className="nav-li lastDelay">
-                                <NavLink to='/tests'>
+                                <NavLink to='/settings'>
                                     {({ isActive }) => {
                                         return (
                                             <div className="nav-a">

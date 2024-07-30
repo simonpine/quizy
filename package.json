@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@motionone/utils": "^10.18.0",
     "@react-spring/web": "^9.6.1",
     "@testing-library/jest-dom": "^5.16.5",
@@ -17,12 +18,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
     "react-scroll-parallax": "^3.3.2",
     "react-use": "^17.5.1",
     "sass": "^1.56.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

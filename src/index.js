@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import './index.scss';
-
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { BrowserRouter } from "react-router-dom"
 import { RoutesForTheApp } from './router';

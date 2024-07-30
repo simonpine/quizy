@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@400;500;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@400;500;700&display=swap');
 @import url("https://api.fontshare.com/v2/css?f[]=alpino@400,500,700,900&display=swap");
 $colors: (
     'main':#2F0C29,
@@ -17,12 +17,6 @@ $colors: (
     align-items: $al_i;
     justify-content: $ju_c;
     flex-wrap: $wr;
-}
-
-;
-
-.App {
-    min-height: 100vh;
 }
 
 * {
@@ -75,16 +69,20 @@ html::-webkit-scrollbar-thumb {
 }
 
 .content {
-    min-height: 80vh;
-    max-width: 1200px;
-    margin: auto;
-
-    @media screen and (max-width: 1270px) {
-        margin-left: 2.5%;
-        margin-right: 2.5%;
-    }
+    min-height: calc(100vh - 248px);
 }
-
-.colorDeta {
-    color: map-get($map: $colors, $key: 'deta');
+.Page404{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    & img{
+        width: 600px;
+    }
+    & h1{
+        font-weight: 700;
+        max-width: 350px;
+    }
 }

@@ -1,8 +1,9 @@
 nav {
     right: 0;
     left: 0;
+    top: 0;
     z-index: 10;
-    position: fixed;
+    position: sticky;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -44,6 +45,7 @@ nav {
     align-items: center;
     justify-content: center;
     z-index: 1;
+    top: 0px;
     position: fixed;
     width: 100vw;
     height: 100vh;

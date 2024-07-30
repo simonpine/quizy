@@ -54,11 +54,6 @@ export function MontainParallaxBanner() {
         image:tree,
         speed: -2,
         shouldAlwaysCompleteAnimation: true,
-        children: (
-          <div className='leftDown'>
-            <div onClick={() => window.scrollTo(0, 1000)} name='ArrowButtonToScrollDown' className="arrows" />
-          </div>
-      ),
       };
     return(
         <ParallaxBanner
