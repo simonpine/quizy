@@ -9,6 +9,13 @@
     font-family: 'Alpino', sans-serif;
     font-weight: 700;
     font-size: 5rem;
+    & button{
+        font-family: 'Alpino', sans-serif;
+        font-weight: 700;
+        font-size: 5rem;
+        align-items: center;
+        text-transform: uppercase;
+    }
 }
 
 .nav-li {
@@ -29,6 +36,9 @@
     display: inline-block;
     position: relative;
     transition: 0.4s linear color;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .nav-a-letters {
@@ -157,18 +167,6 @@
     position: relative;
     padding: 0px;
     transition: ease .2s;
-    // &::before{
-    //     transition: ease .3s;
-
-    //     position: absolute;
-    //     content: "";
-    //     height: 6px;
-    //     width: 15px;
-    //     top: 50%;
-    //     transform: translate(0%, -50%);
-    //     left: 0px;
-    //     background-color: map-get($map: $colors, $key: 'deta');
-    // }
     &:after {
         position: absolute;
         left: -10px;
@@ -206,7 +204,5 @@
             rotate: 90deg;
             scale: 2;
         }
-
-        // padding: 0px 15px;
     }
 }

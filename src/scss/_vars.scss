@@ -35,7 +35,15 @@ $colors: (
     }
 }
 
-;
+button{
+    background:none;
+    border: none;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
 
 html {
     background-size: 25px 25px;
