@@ -5,8 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
 const schema = yup.object({
-        firstName: yup.string().required(),
-        age: yup.number().positive().integer().required(),
+        title: yup.string().required(),
+        description: yup.string(),
+        category: yup.string().required
     }).required()
 
 export const QuizContext = createContext()
