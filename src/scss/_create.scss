@@ -1,172 +1,234 @@
-#imgUrl {
-    grid-area: imgUrl;
+// #imgUrl {
+//     grid-area: imgUrl;
+// }
+
+// #title {
+//     grid-area: title;
+// }
+
+// #theme {
+//     grid-area: theme;
+// }
+
+// #creator {
+//     grid-area: creator;
+// }
+
+// #des {
+//     grid-area: des;
+// }
+
+// .formCreateOne {
+//     position: relative;
+//     margin: auto;
+//     width: 90%;
+//     display: grid;
+//     justify-items: center;
+//     align-items: center;
+//     grid-template-rows: repeat(3, 160px) 80px;
+//     grid-template-columns: repeat(2, 45%);
+//     grid-template-areas:
+//         "creator imgUrl"
+//         "title des"
+//         "theme des"
+//         "SubmitButton a";
+//     column-gap: 10%;
+//     & div{
+//         display: flex;
+//         flex-direction: column;
+//         width: 100%;
+//         & input{
+//             background: none;
+//             border: 1px solid map-get($map: $colors, $key: deta);
+//             border-radius: 20px;
+//             width: 100%;
+//             height: 50px;
+//             padding: 20px;
+//         }
+//     }
+// }
+
+// .SubmitButton {
+//     grid-area: SubmitButton;
+//     justify-self: left;
+// }
+
+// #des textarea {
+//     grid-area: des;
+//     height: 210px;
+//     width: 100%;
+
+// }
+
+// .question {
+//     background-color: map-get($map: $colors, $key: 'mainBlur');
+//     margin: 10px 0px;
+//     border-radius: 20px;
+//     padding: 25px;
+//     width: 45%;
+//     border: 1px solid map-get($map: $colors, $key: 'deta');
+//     @media screen and (max-width: 1000px) {
+//         width: 100%;
+//     }
+// }
+
+// .questionsContiner {
+//     @include flex(row, center, space-between, center, wrap);
+// }
+
+// .questionTitel {
+//     background: none;
+//     border: none;
+//     border-bottom: 2px solid map-get($map: $colors, $key: 'deta');
+//     margin-bottom: 20px;
+//     font-size: 20px;
+//     @media screen and (max-width: 1000px) {
+//         width: 59%;
+//     }
+// }
+// .questionTop{
+//     @include flex(row, center, space-between, center, wrap);
+// }
+// .x{
+//     height: 30px;
+//     width: 30px;
+//     font-size: 14px;
+//     padding: 0px;
+//     border: 2px solid map-get($map: $colors, $key: 'deta');
+//     margin-bottom: 20px;
+// }
+// .addItem{
+//     padding: 2px 15px;
+//     border: 2px solid map-get($map: $colors, $key: 'deta');
+//     border-radius: 0px;
+//     &:hover{
+//         padding: 2px 15px;
+//         border: 2px solid map-get($map: $colors, $key: 'deta');
+//         border-radius: 0px;
+//     }
+// }
+// .firstContainer{
+//     width:370px;
+//     @media screen and (max-width: 1000px) {
+//         width: 100%;
+//     }
+// }
+
+// input[type='radio']:after {
+//     width: 15px;
+//     height: 15px;
+//     border-radius: 15px;
+//     top: -4px;
+//     left: -2px;
+//     position: relative;
+//     background-color: #0c0c0c;
+//     content: '';
+//     display: inline-block;
+//     visibility: visible;
+//     border: 2px solid map-get($map: $colors, $key: 'deta');
+//     @media screen and (max-width: 450px) {
+//         display: none;
+//     }
+//   }
+// input[type='radio']:hover{
+//     cursor: pointer;
+// }
+// input[type='radio']:checked:after {
+//     width: 15px;
+//     height: 15px;
+//     border-radius: 15px;
+//     top: -4px;
+//     left: -2px;
+//     position: relative;
+//     background-color: map-get($map: $colors, $key: 'deta');
+//     content: '';
+//     display: inline-block;
+//     visibility: visible;
+//     border: 2px solid map-get($map: $colors, $key: 'deta');
+//     @media screen and (max-width: 450px) {
+//         display: none;
+//     }
+// }
+// .answerInput{
+//     @extend .questionTitel;
+//     font-size: 17px;
+//     margin: 10px 0 10px 10px;
+//     border-bottom: 1px solid map-get($map: $colors, $key: 'deta');
+//     &:focus{
+//         outline: none;
+//     }
+// }
+// .x2{
+//     @extend .x;
+//     margin: 0px;
+//     border-radius: 0px;
+//     padding: 9.5px;
+//     border: 1px solid map-get($map: $colors, $key: 'deta');
+//     font-size: 10px;
+//     font-weight: 600;
+// }
+// .formAddQuestions{
+//     margin-top: 10px;
+// }
+@keyframes colorChange {
+    0% {
+        color: map-get($map: $colors, $key: 'deta');
+    }
+
+    50% {
+        color: map-get($map: $colors, $key:'deta3' );
+    }
+
+    100% {
+        color: map-get($map: $colors, $key: 'deta');
+    }
 }
 
-#title {
-    grid-area: title;
-}
-
-#theme {
-    grid-area: theme;
-}
-
-#creator {
-    grid-area: creator;
-}
-
-#des {
-    grid-area: des;
-}
-
-.formCreateOne {
-    position: relative;
-    margin: auto;
-    width: 90%;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-rows: repeat(3, 160px) 80px;
-    grid-template-columns: repeat(2, 45%);
-    grid-template-areas:
-        "creator imgUrl"
-        "title des"
-        "theme des"
-        "SubmitButton a";
-    column-gap: 10%;
+.formContFullInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    // display: grid;
+    // padding: 30px;
+    // grid-template-columns: repeat(2, 1fr);
     & div{
         display: flex;
         flex-direction: column;
+    }
+    & .buttonsCont{
         width: 100%;
-        & input{
-            background: none;
-            border: 1px solid map-get($map: $colors, $key: deta);
-            border-radius: 20px;
-            width: 100%;
-            height: 50px;
-            padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between
+    }
+
+}
+
+.PhotoToCreate {
+    // object-position: 100% !important;\
+    object-position: right 0 bottom -50px;
+    width: 400px !important;
+    height: 400px !important;
+    filter:invert(5%) grayscale(100%);
+}
+.PhotoToCreateWorking{
+    filter:invert(5%) grayscale(10%);
+}
+
+.AsideForm {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    
+    & h1 {
+        opacity: 1;
+        font-size: 4rem;
+        font-weight: 800;
+
+        & span {
+            opacity: 0.9;
+            animation: colorChange 6s cubic-bezier(0.03, 0.41, 1, 0.06) infinite;
         }
     }
-}
-
-.SubmitButton {
-    grid-area: SubmitButton;
-    justify-self: left;
-}
-
-#des textarea {
-    grid-area: des;
-    height: 210px;
-    width: 100%;
-
-}
-
-.question {
-    background-color: map-get($map: $colors, $key: 'mainBlur');
-    margin: 10px 0px;
-    border-radius: 20px;
-    padding: 25px;
-    width: 45%;
-    border: 1px solid map-get($map: $colors, $key: 'deta');
-    @media screen and (max-width: 1000px) {
-        width: 100%;
-    }
-}
-
-.questionsContiner {
-    @include flex(row, center, space-between, center, wrap);
-}
-
-.questionTitel {
-    background: none;
-    border: none;
-    border-bottom: 2px solid map-get($map: $colors, $key: 'deta');
-    margin-bottom: 20px;
-    font-size: 20px;
-    @media screen and (max-width: 1000px) {
-        width: 59%;
-    }
-}
-.questionTop{
-    @include flex(row, center, space-between, center, wrap);
-}
-.x{
-    height: 30px;
-    width: 30px;
-    font-size: 14px;
-    padding: 0px;
-    border: 2px solid map-get($map: $colors, $key: 'deta');
-    margin-bottom: 20px;
-}
-.addItem{
-    padding: 2px 15px;
-    border: 2px solid map-get($map: $colors, $key: 'deta');
-    border-radius: 0px;
-    &:hover{
-        padding: 2px 15px;
-        border: 2px solid map-get($map: $colors, $key: 'deta');
-        border-radius: 0px;
-    }
-}
-.firstContainer{
-    width:370px;
-    @media screen and (max-width: 1000px) {
-        width: 100%;
-    }
-}
-
-input[type='radio']:after {
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
-    top: -4px;
-    left: -2px;
-    position: relative;
-    background-color: #0c0c0c;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid map-get($map: $colors, $key: 'deta');
-    @media screen and (max-width: 450px) {
-        display: none;
-    }
-  }
-input[type='radio']:hover{
-    cursor: pointer;
-}
-input[type='radio']:checked:after {
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
-    top: -4px;
-    left: -2px;
-    position: relative;
-    background-color: map-get($map: $colors, $key: 'deta');
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid map-get($map: $colors, $key: 'deta');
-    @media screen and (max-width: 450px) {
-        display: none;
-    }
-}
-.answerInput{
-    @extend .questionTitel;
-    font-size: 17px;
-    margin: 10px 0 10px 10px;
-    border-bottom: 1px solid map-get($map: $colors, $key: 'deta');
-    &:focus{
-        outline: none;
-    }
-}
-.x2{
-    @extend .x;
-    margin: 0px;
-    border-radius: 0px;
-    padding: 9.5px;
-    border: 1px solid map-get($map: $colors, $key: 'deta');
-    font-size: 10px;
-    font-weight: 600;
-}
-.formAddQuestions{
-    margin-top: 10px;
 }

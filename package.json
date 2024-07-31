@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.40",
     "@hookform/resolvers": "^3.9.0",
     "@motionone/utils": "^10.18.0",
     "@react-spring/web": "^9.6.1",
@@ -18,14 +19,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
-    "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
     "react-scroll-parallax": "^3.3.2",
     "react-use": "^17.5.1",
     "sass": "^1.56.2",
-    "web-vitals": "^2.1.4",
-    "yup": "^1.4.0"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,7 +50,7 @@
       "last 1 safari version"
     ]
   },
-  "description": "Quiz app to create and resolve quizzes",
+  "description": "Quiz app to create and share quizes with AI help",
   "main": "index.js",
   "author": "",
   "license": "ISC"

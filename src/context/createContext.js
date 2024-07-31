@@ -1,27 +1,31 @@
 import React, { createContext, useState } from "react";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
-
-const schema = yup.object({
-        title: yup.string().required(),
-        description: yup.string(),
-        category: yup.string().required
-    }).required()
 
 export const QuizContext = createContext()
 
 export const QuizProvider = ({ children }) => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm({
-        resolver: yupResolver(schema),
-      })
-      
-    const onSubmit = (data) => console.log(data)
+    const [AILoading, setAILoading] = useState(false)
+    const [AIForm, setAIForm] = useState({
+        description: '',
+        numQuestions: 1,
+        dificulty: 1,
+        fileDirectori: ''
+    })
+    
+
+    function changeValueForm(name, value){
+        setAIForm(prev=>{
+            return{
+                ...prev,
+                [name]: value
+            }
+        })
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        console.log(AIForm)
+    }
 
     // const answer1 = {
     //     id: Math.floor(100000 + Math.random() * 900000),
@@ -165,13 +169,16 @@ export const QuizProvider = ({ children }) => {
     //         description: '',
     //         results: [],
     //         theme: '',
+    //         language: '',
+    //         public: true,
+    //         presentOnce: true,
     //         questions: questions,
 
     //     }
     //     return addDoc(quizzesColection, quizz).then((y) => { return (y.id) })
     // }
     return (
-        <QuizContext.Provider value={{register, onSubmit, errors, handleSubmit}} >
+        <QuizContext.Provider value={{ AIForm, changeValueForm, handleSubmit }} >
             {children}
         </QuizContext.Provider>
     )

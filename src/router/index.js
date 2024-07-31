@@ -18,7 +18,7 @@ export const RoutesForTheApp = () => {
                 <Route path="/" element={<App />} />
                 <Route path={"*"} element={<Error404 />} />
                 <Route path="/tests" element={<UserProvider><Tests /></UserProvider>} />
-                <Route path="/create" element={<QuizProvider><Create /></QuizProvider>} />
+                <Route path="/create" element={<UserProvider><QuizProvider><Create /></QuizProvider></UserProvider>} />
                 <Route path="/create/questions" element={<UserProvider><QuizProvider><CreateQuestions /></QuizProvider></UserProvider>} />
                 <Route path="/tests/:id" element={<UserProvider><Resolve /></UserProvider>} />
                 <Route path="/settings" element={!!user ? <UserProvider><Settings /></UserProvider> : <Navigate to='/' />} />
