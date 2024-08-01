@@ -9,7 +9,8 @@ export const QuizProvider = ({ children }) => {
         description: '',
         numQuestions: 1,
         dificulty: 1,
-        fileDirectori: ''
+        fileDirectori: undefined,
+        typeQuestion: 'MultipleChoice',
     })
     
 

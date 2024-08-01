@@ -1,182 +1,11 @@
-// #imgUrl {
-//     grid-area: imgUrl;
-// }
-
-// #title {
-//     grid-area: title;
-// }
-
-// #theme {
-//     grid-area: theme;
-// }
-
-// #creator {
-//     grid-area: creator;
-// }
-
-// #des {
-//     grid-area: des;
-// }
-
-// .formCreateOne {
-//     position: relative;
-//     margin: auto;
-//     width: 90%;
-//     display: grid;
-//     justify-items: center;
-//     align-items: center;
-//     grid-template-rows: repeat(3, 160px) 80px;
-//     grid-template-columns: repeat(2, 45%);
-//     grid-template-areas:
-//         "creator imgUrl"
-//         "title des"
-//         "theme des"
-//         "SubmitButton a";
-//     column-gap: 10%;
-//     & div{
-//         display: flex;
-//         flex-direction: column;
-//         width: 100%;
-//         & input{
-//             background: none;
-//             border: 1px solid map-get($map: $colors, $key: deta);
-//             border-radius: 20px;
-//             width: 100%;
-//             height: 50px;
-//             padding: 20px;
-//         }
-//     }
-// }
-
-// .SubmitButton {
-//     grid-area: SubmitButton;
-//     justify-self: left;
-// }
-
-// #des textarea {
-//     grid-area: des;
-//     height: 210px;
-//     width: 100%;
-
-// }
-
-// .question {
-//     background-color: map-get($map: $colors, $key: 'mainBlur');
-//     margin: 10px 0px;
-//     border-radius: 20px;
-//     padding: 25px;
-//     width: 45%;
-//     border: 1px solid map-get($map: $colors, $key: 'deta');
-//     @media screen and (max-width: 1000px) {
-//         width: 100%;
-//     }
-// }
-
-// .questionsContiner {
-//     @include flex(row, center, space-between, center, wrap);
-// }
-
-// .questionTitel {
-//     background: none;
-//     border: none;
-//     border-bottom: 2px solid map-get($map: $colors, $key: 'deta');
-//     margin-bottom: 20px;
-//     font-size: 20px;
-//     @media screen and (max-width: 1000px) {
-//         width: 59%;
-//     }
-// }
-// .questionTop{
-//     @include flex(row, center, space-between, center, wrap);
-// }
-// .x{
-//     height: 30px;
-//     width: 30px;
-//     font-size: 14px;
-//     padding: 0px;
-//     border: 2px solid map-get($map: $colors, $key: 'deta');
-//     margin-bottom: 20px;
-// }
-// .addItem{
-//     padding: 2px 15px;
-//     border: 2px solid map-get($map: $colors, $key: 'deta');
-//     border-radius: 0px;
-//     &:hover{
-//         padding: 2px 15px;
-//         border: 2px solid map-get($map: $colors, $key: 'deta');
-//         border-radius: 0px;
-//     }
-// }
-// .firstContainer{
-//     width:370px;
-//     @media screen and (max-width: 1000px) {
-//         width: 100%;
-//     }
-// }
-
-// input[type='radio']:after {
-//     width: 15px;
-//     height: 15px;
-//     border-radius: 15px;
-//     top: -4px;
-//     left: -2px;
-//     position: relative;
-//     background-color: #0c0c0c;
-//     content: '';
-//     display: inline-block;
-//     visibility: visible;
-//     border: 2px solid map-get($map: $colors, $key: 'deta');
-//     @media screen and (max-width: 450px) {
-//         display: none;
-//     }
-//   }
-// input[type='radio']:hover{
-//     cursor: pointer;
-// }
-// input[type='radio']:checked:after {
-//     width: 15px;
-//     height: 15px;
-//     border-radius: 15px;
-//     top: -4px;
-//     left: -2px;
-//     position: relative;
-//     background-color: map-get($map: $colors, $key: 'deta');
-//     content: '';
-//     display: inline-block;
-//     visibility: visible;
-//     border: 2px solid map-get($map: $colors, $key: 'deta');
-//     @media screen and (max-width: 450px) {
-//         display: none;
-//     }
-// }
-// .answerInput{
-//     @extend .questionTitel;
-//     font-size: 17px;
-//     margin: 10px 0 10px 10px;
-//     border-bottom: 1px solid map-get($map: $colors, $key: 'deta');
-//     &:focus{
-//         outline: none;
-//     }
-// }
-// .x2{
-//     @extend .x;
-//     margin: 0px;
-//     border-radius: 0px;
-//     padding: 9.5px;
-//     border: 1px solid map-get($map: $colors, $key: 'deta');
-//     font-size: 10px;
-//     font-weight: 600;
-// }
-// .formAddQuestions{
-//     margin-top: 10px;
-// }
 @keyframes colorChange {
     0% {
         color: map-get($map: $colors, $key: 'deta');
     }
 
     50% {
-        color: map-get($map: $colors, $key:'deta3' );
+        color: map-get($map: $colors, $key: 'deta3');
+        opacity: 1;
     }
 
     100% {
@@ -189,38 +18,132 @@
     flex-direction: column;
     gap: 20px;
     align-items: flex-start;
-    // display: grid;
-    // padding: 30px;
-    // grid-template-columns: repeat(2, 1fr);
-    & div{
+
+    & div {
         display: flex;
         flex-direction: column;
+        gap: 5px;
     }
-    & .buttonsCont{
+
+    .dificultLable {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        & h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0px;
+            color: #4FFFB0;
+
+            & img {
+                width: 15px;
+                margin-bottom: 2px;
+            }
+
+        }
+
+        & .angry {
+            color: #DB2E3C;
+        }
+    }
+
+    & .InputNumberAndRange {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        gap: 20px;
+        align-items: center;
+
+        &:first-child {
+            border-radius: 8px;
+        }
+
+        & input[type=number] {
+            border-radius: 8px;
+            border: none;
+            font-size: 1.5rem;
+            padding: 0px 0px 0px 10px;
+            font-weight: 900;
+            color: map-get($map: $colors, $key: 'main');
+            background-color: map-get($map: $colors, $key: 'secuBlur');
+            width: 100%;
+        }
+    }
+
+    & .twoColumnsFormSection {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        & select {
+            flex-grow: 1;
+            background-color: map-get($map: $colors, $key: 'secuBlur');
+            border: 3px solid map-get($map: $colors, $key: 'secu');
+            color: map-get($map: $colors, $key: 'main');
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 1px 10px;
+
+            &:focus {
+                border: 3px solid map-get($map: $colors, $key: 'deta');
+
+            }
+
+            & option {
+                color: map-get($map: $colors, $key: 'main');
+                font-weight: 500;
+            }
+        }
+
+        & div {
+            width: auto;
+        }
+    }
+
+    & .buttonsCont {
         width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: space-between
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
     }
 
 }
 
 .PhotoToCreate {
-    // object-position: 100% !important;\
     object-position: right 0 bottom -50px;
-    width: 400px !important;
+    width: 450px !important;
     height: 400px !important;
-    filter:invert(5%) grayscale(100%);
+    filter: invert(5%) grayscale(100%);
+
+    @media screen and (max-width: 1200px) {
+        width: 100% !important;
+        object-position: right 0 bottom 0px;
+
+    }
 }
-.PhotoToCreateWorking{
-    filter:invert(5%) grayscale(10%);
+
+.CreateImageCont {
+    display: flex;
+    justify-content: center;
+    // height: 100% o !important;
+    width: 100%;
+    // overflow: hidden;
+}
+
+.PhotoToCreateWorking {
+    filter: invert(5%) grayscale(10%);
 }
 
 .AsideForm {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    
+    gap: 20px;
+
     & h1 {
         opacity: 1;
         font-size: 4rem;
@@ -229,6 +152,194 @@
         & span {
             opacity: 0.9;
             animation: colorChange 6s cubic-bezier(0.03, 0.41, 1, 0.06) infinite;
+        }
+    }
+
+    & div {
+        width: 100%;
+    }
+
+    & textarea {
+        font-weight: 500;
+        font-size: 1.4rem;
+        background-color: map-get($map: $colors, $key: 'secuBlur');
+        width: 100%;
+        height: 160px;
+        border-radius: 8px;
+        resize: none;
+        color: map-get($map: $colors, $key: 'main');
+        padding: 10px;
+        border: 4px solid map-get($map: $colors, $key: 'secuBlur');
+
+        &:focus {
+            border: 4px solid map-get($map: $colors, $key: 'deta');
+
+        }
+    }
+
+    & label {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+}
+
+
+.slider {
+    appearance: none;
+    // width: 100%;
+    height: 10px;
+    border-radius: 20px;
+    background: map-get($map: $colors, $key: 'secuBlur');
+    // outline: none;
+    opacity: 0.8;
+    // -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    // -webkit-appearance: none;
+    appearance: none;
+    border-radius: 20px;
+    width: 28px;
+    height: 28px;
+    border: 5px solid map-get($map: $colors, $key: 'main');
+    background: map-get($map: $colors, $key: 'deta');
+    cursor: pointer;
+}
+
+.ApiKeyNeeded {
+    text-decoration: none;
+    color: map-get($map: $colors, $key: 'main');
+    font-size: 1.3rem;
+    font-weight: 800;
+
+    &:hover {
+        color: map-get($map: $colors, $key: 'mainBlur');
+
+        & img {
+            opacity: .5;
+
+        }
+
+    }
+
+    & img {
+        filter: invert(100%);
+
+    }
+}
+
+.fileCont {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+
+    & img {
+        margin: 10px;
+        width: 20px;
+        height: 20px;
+    }
+
+}
+
+.FileInput {
+    display: flex;
+    align-content: center;
+    gap: 10px;
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+    padding: 8px 13px 8px 8px;
+    border-radius: 8px;
+    background-color: map-get($map: $colors, $key: 'deta2Blur');
+
+    // text-overflow: ellipsis; 
+    & text {
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    max-width: 200px;
+    // overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+
+    // & button {
+    //     z-index: 100;
+    //     position: absolute;
+    //     background-color: map-get($map: $colors, $key: 'deta');
+    //     top: -15px;
+    //     right: -15px;
+    //     width: 25px;
+    //     height: 25px;
+    //     font-size: 1.2rem;
+    //     font-weight: 800;
+    //     // text-align: center;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     border-radius: 20px;
+    //     display: none;
+    //     // padding: 15px;
+    // }
+
+    // overflow: hidden;
+    & img {
+        margin: 0px;
+        height: 30px;
+        width: 30px;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: map-get($map: $colors, $key: 'deta');
+    }
+
+    &:hover {
+        cursor: pointer;
+        // & button {
+        //     display: block;
+        // }
+
+    }
+}
+
+textarea::-webkit-scrollbar {
+    width: 5px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background-color: map-get($map: $colors, $key: 'deta');
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: map-get($map: $colors, $key: 'main');
+}
+
+.divInFileCont{
+    position: relative;
+    .deleteButton {
+        z-index: 100;
+        position: absolute;
+        background-color: map-get($map: $colors, $key: 'deta');
+        top: -10px;
+        right: -10px;
+        width: 25px;
+        height: 25px;
+        font-size: 1.2rem;
+        font-weight: 800;
+        // text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        display: none;
+    }
+    &:hover{
+        .deleteButton{
+            display: block;
         }
     }
 }
