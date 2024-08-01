@@ -5,7 +5,7 @@ import { Resolve } from "../views/resolve.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../firebasecom.js'
 import App from '../App.js'
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Settings } from "../views/settings.js";
 import { Error404 } from "../views/Error404.js";
 import { QuizProvider } from "../context/createContext.js";
@@ -21,7 +21,7 @@ export const RoutesForTheApp = () => {
                 <Route path="/create" element={<UserProvider><QuizProvider><Create /></QuizProvider></UserProvider>} />
                 <Route path="/create/questions" element={<UserProvider><QuizProvider><CreateQuestions /></QuizProvider></UserProvider>} />
                 <Route path="/tests/:id" element={<UserProvider><Resolve /></UserProvider>} />
-                <Route path="/settings" element={!!user ? <UserProvider><Settings /></UserProvider> : <Navigate to='/' />} />
+                <Route path="/settings" element={<UserProvider><Settings /></UserProvider>} />
             </Routes>
         </main>
     )

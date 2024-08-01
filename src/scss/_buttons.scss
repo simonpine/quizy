@@ -156,12 +156,24 @@
     background-repeat: no-repeat;
     font-weight: 800;
     transition: ease 0.3s;
+    margin-left: 20px;
 
     &:hover {
         border-color: map-get($map: $colors, $key: 'main');
         color: map-get($map: $colors, $key: 'secu');
         background-position: 0% 50%;
     }
+}
+
+.buttonForest{
+    @extend .buttonMain;
+
+    text-decoration: none;
+    margin-left: 0px;
+    background-position: 0% -60%;
+    background-size: 150px;
+    background-image: url("../img/ForestButton.png");
+
 }
 
 

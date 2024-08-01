@@ -46,8 +46,8 @@ export function Create() {
                                     <div className="fileCont">
                                         {/* <input  type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, URL.createObjectURL(e.target.files[0]))} /> */}
                                         <div className="divInFileCont">
-                                            <input accept="application/pdf"  style={{ display: 'none' }} type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, e.target.files[0])} />
-                                            <label className="FileInput" htmlFor='fileDirectori'><img src={fileDirectori ? documentImg : clip} alt="Clip for the file selection" /> <text>{fileDirectori ? fileDirectori.name : 'Select a PDF'}</text></label>
+                                            <input accept="application/pdf" style={{ display: 'none' }} type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, e.target.files[0])} />
+                                            <label className="FileInput" htmlFor='fileDirectori'><img src={fileDirectori ? documentImg : clip} alt="Clip for the file selection" /> <span>{fileDirectori ? fileDirectori.name : 'Select a PDF'}</span></label>
                                             {fileDirectori && <button className="deleteButton" onClick={() => changeValueForm('fileDirectori', undefined)}>X</button>}
 
                                         </div>
@@ -93,7 +93,7 @@ export function Create() {
                             <div className="buttonsCont">
                                 <button
                                     id="Generate"
-                                    // disabled={!user?.apikey}
+                                    disabled={!user?.apikey}
                                     className="linkButton" type="submit">Generate Questions
                                 </button>
                                 <Link className="SecundaryButton" to='/create/questions'>Countinue without AI <img src={arrow} alt="Arrow to indicate the page change" /></Link>

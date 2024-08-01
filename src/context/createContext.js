@@ -159,22 +159,16 @@ export const QuizProvider = ({ children }) => {
     //     const db = getFirestore()
     //     const quizzesColection = collection(db, 'quizzes')
     //     const quizz = {
-    //         // title: otherThings.title,
-    //         // theme: otherThings.theme,
-    //         // creator: otherThings.creator,
-    //         // urlImg: otherThings.urlImg,
-    //         // description: otherThings.description,
     //         long: 0,
     //         creator: '',
     //         urlImg: '',
     //         description: '',
     //         results: [],
     //         theme: '',
-    //         language: '',
     //         public: true,
     //         presentOnce: true,
     //         questions: questions,
-
+    //         needApikey: false
     //     }
     //     return addDoc(quizzesColection, quizz).then((y) => { return (y.id) })
     // }

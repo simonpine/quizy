@@ -130,7 +130,7 @@
 
 .SectionSidebySide {
     overflow-x: clip;
-    padding: 30px 30px 50px;
+    padding: 30px 30px 90px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -164,6 +164,7 @@
 
 .SectionSidebySideSpe {
     @extend .SectionSidebySide;
+    // margin-bottom: 30px;
     align-items: flex-start;
 
 }
