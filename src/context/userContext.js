@@ -43,11 +43,19 @@ export const UserProvider = ({ children }) => {
     // console.log(userAuth)
   }, [userAuth])
 
+  async function apiSave(e){
+    e.preventDefault()
+    // alert('asdasd')
+    setApiLoading(true)
+
+    setApiLoading(false)
+  }
+
   function logout() {
     auth.signOut()
   }
   return (
-    <UserContext.Provider value={{ user, isthere, logout, apiLoading }}>
+    <UserContext.Provider value={{ user, isthere, logout, apiLoading, apiSave }}>
       {children}
     </UserContext.Provider>
   );

@@ -12,7 +12,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer } fro
 const data = [{ name: 'Quiz 1', uv: 400 }, { name: 'Super Quiz', uv: 200 }, { name: 'News Quiz', uv: 100 }, { name: 'Animals', uv: 10 }];
 
 export function Settings() {
-    const { logout, isthere, user, apiLoading } = useContext(UserContext);
+    const { logout, isthere, user, apiLoading, apiSave } = useContext(UserContext);
     const [show, setShow] = useState('password');
 
     const [verify, setVerify] = useState(false);
@@ -43,7 +43,7 @@ export function Settings() {
                                         <figure className="FileInput user" ><img src={user?.imageUrl} alt={user?.email + " user google icon"} /> <span>{user?.email}</span></figure>
 
                                     </div>
-                                    <form>
+                                    <form onSubmit={apiSave}>
                                         <label htmlFor="ApiKeyInput">API key: </label>
                                         <div className="ApiKeyEdit">
                                             <div>
