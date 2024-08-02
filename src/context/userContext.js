@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebasecom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, getDoc, setDoc  } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebasecom';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const UserContext = createContext();
 
@@ -11,6 +12,11 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const [apiLoading, setApiLoading] = useState(false);
+
+  function isValidOpenAIKeyFormat(apiKey) {
+    const apiKeyPattern = /^sk-[A-Za-z0-9]/;
+    return apiKeyPattern.test(apiKey);
+  }
 
   const isthere = !userAuth && !loading
   useEffect(() => {
@@ -28,7 +34,7 @@ export const UserProvider = ({ children }) => {
             setDoc(doc(db, "users", auth.currentUser.uid), example);
             setUser(example)
           }
-          else{
+          else {
             setUser(res.data())
           }
         })
@@ -43,10 +49,68 @@ export const UserProvider = ({ children }) => {
     // console.log(userAuth)
   }, [userAuth])
 
-  async function apiSave(e){
+
+  async function apiSave(e) {
     e.preventDefault()
-    // alert('asdasd')
     setApiLoading(true)
+    console.log(isValidOpenAIKeyFormat(e.target.ApiKeyInput.value))
+    if (!isValidOpenAIKeyFormat(e.target.ApiKeyInput.value)) {
+      toast.error('The API Key is not valid.', {
+        position: "bottom-center",
+        style: {
+          background: 'rgb(255, 255, 255, .9)',
+          color: '#2F0C29',
+          borderRadius: '8px',
+          fontSize: '1.3rem',
+          fontWeight: '600'
+        },
+        iconTheme: {
+          secondary: '#2F0C29',
+          primary: '#ff755d',
+        },
+      })
+      setApiLoading(false)
+      return 
+    }
+
+    const result = {
+      ...user,
+      apikey: e.target.ApiKeyInput.value
+    }
+    await setDoc(doc(db, "users", auth.currentUser.uid), result).then(()=>{
+      toast.success('API key saved.', {
+        position: "bottom-center",
+        style: {
+          background: 'rgb(255, 255, 255, .9)',
+          color: '#2F0C29',
+          borderRadius: '8px',
+          fontSize: '1.3rem',
+          fontWeight: '600'
+        },
+        iconTheme: {
+          secondary: '#2F0C29',
+          primary: '#ff755d',
+        },
+      })
+      setUser(result)
+
+    }).catch(()=>{
+      toast.error('Something went wrog, try again.', {
+        position: "bottom-center",
+        style: {
+          background: 'rgb(255, 255, 255, .9)',
+          color: '#2F0C29',
+          borderRadius: '8px',
+          fontSize: '1.3rem',
+          fontWeight: '600'
+        },
+        iconTheme: {
+          secondary: '#2F0C29',
+          primary: '#ff755d',
+        },
+      })
+      setUser(result)
+    })
 
     setApiLoading(false)
   }
@@ -57,6 +121,7 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider value={{ user, isthere, logout, apiLoading, apiSave }}>
       {children}
+      <Toaster />
     </UserContext.Provider>
   );
 };

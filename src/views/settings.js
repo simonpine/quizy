@@ -47,8 +47,8 @@ export function Settings() {
                                         <label htmlFor="ApiKeyInput">API key: </label>
                                         <div className="ApiKeyEdit">
                                             <div>
-                                                <button disabled={apiLoading || apiKey === '' || apiKey === user?.apikey} className="linkButton" type="submit">{!apiLoading ? 'Save' : <figure className="loader" />}</button>
-                                                <input disabled={apiLoading} id="ApiKeyInput" onChange={(e) => setApiKey(e.target.value)} value={apiKey} placeholder="ea31fc9a-5ab6-4549-ba31-4b8d8ff3de02" className="inputText" type={show} />
+                                                <button disabled={apiLoading || apiKey === user?.apikey} className="linkButton" type="submit">{!apiLoading ? 'Save' : <figure className="loader" />}</button>
+                                                <input disabled={apiLoading} id="ApiKeyInput" name="ApiKeyInput" onChange={(e) => setApiKey(e.target.value)} value={apiKey} placeholder="sk-ea31fc9a-5ab6-4549-ba31-4b8d8ff3de02" className="inputText" type={show} />
                                                 <button className="eye" onClick={() => show === 'text' ? setShow('password') : setShow('text')} type='button'><img alt="Eye to change visibility of the ApiKey" src={eye} /></button>
 
                                             </div>
