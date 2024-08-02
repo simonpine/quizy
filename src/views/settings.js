@@ -7,12 +7,15 @@ import { Tooltip } from "react-tooltip";
 import eye from '../img/eye.png'
 import arrow from '../img/arrow.png'
 import { Sure } from "../components/sure";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+
+const data = [{ name: 'Quiz 1', uv: 400 }, { name: 'Super Quiz', uv: 200 }, { name: 'News Quiz', uv: 100 }, { name: 'Animals', uv: 10 }];
 
 export function Settings() {
     const { logout, isthere, user, apiLoading } = useContext(UserContext);
     const [show, setShow] = useState('password');
 
-    const [verify, setVerify] = useState(true);
+    const [verify, setVerify] = useState(false);
     const [apiKey, setApiKey] = useState('');
 
     useEffect(() => {
@@ -21,9 +24,12 @@ export function Settings() {
 
     return (
         <>
-            <Sure state={verify} setState={setVerify} msg={'Are you sure you want to log out?'} func={logout}/>
+            <Sure state={verify} setState={setVerify} msg={'Are you sure you want to log out?'} func={logout} />
             <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10, fontSize: '1.5rem', color: '#2F0C29', fontWeight: '500' }} anchorSelect="#FileInfo" place="top">
                 This OpenAi API key will be use in the creation of <br /> quizzes, and to evaluate you in open questions.
+            </Tooltip>
+            <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10, fontSize: '1.5rem', color: '#2F0C29', fontWeight: '500' }} anchorSelect="#ChartInfo" place="top">
+                The following chart show the answered <br />quizzes with your percentage of success.
             </Tooltip>
             {
                 !isthere ?
@@ -51,8 +57,21 @@ export function Settings() {
                                     </form>
                                     <button className="SecundaryButton" onClick={() => setVerify(true)}>Log out  <img alt="Arrow to indicate the page change" src={arrow} /></button>
                                 </section>
-                                <section>
-                                    <h2>Your stats</h2 >
+                                <section className="ChartFullCont">
+                                    <h2>Response statistics
+                                        <img id="ChartInfo" className="info" src={moreInfo} alt="More informtation icon" />
+                                    </h2>
+
+                                    <div className="chartCont">
+                                        <ResponsiveContainer width={'100%'} height="100%">
+                                            <LineChart data={data}>
+                                                <Line type="monotone" dataKey="uv" stroke="#ff755d" />
+                                                <CartesianGrid stroke="#B95CA7" strokeWidth={'1px'} strokeDasharray="5 5" />
+                                                <XAxis dataKey="name" />
+                                                <YAxis />
+                                            </LineChart>
+                                        </ResponsiveContainer>
+                                    </div>
                                 </section>
                             </aside>
                             <figure className="separation" />

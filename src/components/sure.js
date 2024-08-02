@@ -1,10 +1,22 @@
-export function Sure({msg, func, setState, state}){
-    console.log(state)
+import { useClickAway } from "@uidotdev/usehooks";
+
+export function Sure({ msg, func, setState, state }) {
+    const ref = useClickAway(() => {
+        setState(false);
+    });
     return (
         state === true &&
-        
-            <div onClick={()=>setState(false)} className="sureContainer"><div>Hola</div></div>
-        
+
+        <div className="sureContainer">
+            <div ref={ref} className="flyBox">
+                <p>{msg}</p>
+                <div>
+                    <button onClick={func} className="linkButton">Yes</button>
+                    <button className="SecundaryButton" onClick={() => setState(false)}>Cancel</button>
+                </div>
+            </div>
+        </div>
+
         // :
         // <></>
     )
