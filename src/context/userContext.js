@@ -9,6 +9,9 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [userAuth, loading] = useAuthState(auth);
   const [user, setUser] = useState(null);
+
+  const [apiLoading, setApiLoading] = useState(false);
+
   const isthere = !userAuth && !loading
   useEffect(() => {
     if (!!userAuth) {
@@ -18,6 +21,7 @@ export const UserProvider = ({ children }) => {
           if (!res.exists()) {
             const example = {
               name: auth.currentUser.displayName,
+              email: auth.currentUser.email,
               apikey: "",
               imageUrl: auth.currentUser.photoURL
             }
@@ -43,7 +47,7 @@ export const UserProvider = ({ children }) => {
     auth.signOut()
   }
   return (
-    <UserContext.Provider value={{ user, isthere, logout }}>
+    <UserContext.Provider value={{ user, isthere, logout, apiLoading }}>
       {children}
     </UserContext.Provider>
   );

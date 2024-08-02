@@ -268,27 +268,6 @@
     // overflow: hidden;
     white-space: nowrap;
     position: relative;
-
-    // & button {
-    //     z-index: 100;
-    //     position: absolute;
-    //     background-color: map-get($map: $colors, $key: 'deta');
-    //     top: -15px;
-    //     right: -15px;
-    //     width: 25px;
-    //     height: 25px;
-    //     font-size: 1.2rem;
-    //     font-weight: 800;
-    //     // text-align: center;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     border-radius: 20px;
-    //     display: none;
-    //     // padding: 15px;
-    // }
-
-    // overflow: hidden;
     & img {
         margin: 0px;
         height: 30px;
@@ -300,10 +279,6 @@
 
     &:hover {
         cursor: pointer;
-        // & button {
-        //     display: block;
-        // }
-
     }
 }
 

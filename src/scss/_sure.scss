@@ -1,0 +1,10 @@
+.sureContainer{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: map-get($map: $colors, $key: 'mainBlur');
+    top: 0px;
+    left: 0px;
+    backdrop-filter: blur(3px);
+    z-index: 10;
+}

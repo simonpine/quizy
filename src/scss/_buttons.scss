@@ -173,6 +173,22 @@
     background-position: 0% -60%;
     background-size: 150px;
     background-image: url("../img/ForestButton.png");
+    align-items: center;
+    &:hover{
+        & img{
+            filter:sepia(10000%) invert(0%) grayscale(100%);
+        }
+    }
+    & img{
+        // position: absolute;
+        align-self: center;
+        margin: 0px 10px 5px;
+        top: 0px;
+        bottom: 0px;
+        // margin: auto;
+        width: 16px;
+    }
+
 
 }
 
@@ -190,10 +206,13 @@
     position: relative;
     // padding: 0px;
     transition: ease .2s;
-
+    display: flex;
+    align-items: center;
+    width: fit-content;
     &:after {
         position: absolute;
         left: -5px;
+        top: 0px;
         scale: 0;
         content: '';
         scale: 0;
@@ -251,21 +270,23 @@
 
 .SecundaryButton {
     text-decoration: none;
+    width:fit-content;
     color: map-get($map: $colors, $key: "secuBlur");
     // color: map-get($map: $colors, $key: "deta2");
     font-size: 1.5rem;
     font-weight: 500;
-    border-bottom: 3px map-get($map: $colors, $key: "secuBlur") dashed;
+    border: 3px map-get($map: $colors, $key: "secuBlur") dashed;
     // background-color: map-get($map: $colors, $key: "mainBlur");
     // border-radius: 10px;
 
-    padding: 0px 20px;
+    padding: 2px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     transition: 0.3s ease;
     opacity: 0.5;
+    border-radius: 8px;
     & img {
         transition: 0.3s ease;
         transform: translate(-1px);
@@ -275,6 +296,7 @@
 
     &:hover {
         border-bottom: 3px map-get($map: $colors, $key: "deta") dashed;
+        border-left: 3px map-get($map: $colors, $key: "deta") dashed;
         opacity: 1;
         color: map-get($map: $colors, $key: "secuBlur");
 

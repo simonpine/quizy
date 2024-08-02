@@ -5,6 +5,8 @@ import { useKey } from "react-use";
 import { auth } from '../firebasecom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { GoogleAuthProvider } from "firebase/auth";
+import googleImg from '../img/google.png'
+
 function Navbar({ setMenu, menu }) {
     const [user] = useAuthState(auth)
     const navigate = useNavigate();
@@ -31,6 +33,7 @@ function Navbar({ setMenu, menu }) {
             </NavLink>
             <aside>
                 <button className="buttonForest" onClick={hundleClick}>
+                    {!user && <img alt="Google logo" src={googleImg} />}
                     {!user ? 'Sign in' : location.pathname !== '/settings' ? 'Settings' : 'Return'}
                 </button>
                 <button className="buttonMain" onClick={() => setMenu(!menu)}>
