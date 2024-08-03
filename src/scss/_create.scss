@@ -177,11 +177,6 @@
 
         }
     }
-
-    & label {
-        font-weight: 600;
-        font-size: 1.5rem;
-    }
 }
 
 
@@ -259,6 +254,7 @@
 
     // text-overflow: ellipsis; 
     & span {
+        color: map-get($map: $colors, $key:'secu' );
         width: 100%;
         text-overflow: ellipsis;
         overflow: hidden;

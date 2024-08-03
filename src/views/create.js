@@ -30,15 +30,18 @@ export function Create() {
                         <Link className="ApiKeyNeeded" to='/settings'>Add an API key <img alt="Arrow to indicate the page change" src={arrow} /></Link>
                     </Tooltip>
                 }
-                <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10, fontSize: '1.5rem', color: '#2F0C29', fontWeight: '500' }} clickable anchorSelect="#FileInfo" place="top">
+                {/* <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10, fontSize: '1.5rem', color: '#2F0C29', fontWeight: '500' }} clickable anchorSelect="#FileInfo" place="top">
                     The information of the PDF will be a guide <br /> for the creation of the quiestions
+                </Tooltip> */}
+                <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10, fontSize: '1.5rem', color: '#2F0C29', fontWeight: '500' }} clickable anchorSelect="#FileInfo" place="top">
+                    This feature is currently not available.
                 </Tooltip>
                 <div className="SectionSidebySide">
                     <aside className="AsideForm">
                         <h1>
                             Create quizes with <span>AI</span>
                         </h1>
-                        <form onSubmit={handleSubmit} className="formContFullInfo" >
+                        <form onSubmit={e => handleSubmit(e, user.apikey)} className="formContFullInfo" >
 
                             <div className="twoColumnsFormSection">
                                 <div>
@@ -46,8 +49,8 @@ export function Create() {
                                     <div className="fileCont">
                                         {/* <input  type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, URL.createObjectURL(e.target.files[0]))} /> */}
                                         <div className="divInFileCont">
-                                            <input accept="application/pdf" style={{ display: 'none' }} type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, e.target.files[0])} />
-                                            <label className="FileInput" htmlFor='fileDirectori'><img src={fileDirectori ? documentImg : clip} alt="Clip for the file selection" /> <span>{fileDirectori ? fileDirectori.name : 'Select a PDF'}</span></label>
+                                            <input disabled accept="application/pdf" style={{ display: 'none' }} type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, e.target.files[0])} />
+                                            <label style={{opacity:.7, cursor:'auto'}} className="FileInput" htmlFor='fileDirectori'><img src={fileDirectori ? documentImg : clip} alt="Clip for the file selection" /> <span>{fileDirectori ? fileDirectori.name : 'Select a PDF'}</span></label>
                                             {fileDirectori && <button className="deleteButton" onClick={() => changeValueForm('fileDirectori', undefined)}>X</button>}
 
                                         </div>
@@ -55,7 +58,7 @@ export function Create() {
                                     </div>
                                 </div>
                                 <div>
-                                    <label htmlFor="typeQuestion">* Type of questions: </label>
+                                    <label htmlFor="typeQuestion"><span>*</span> Type of questions: </label>
                                     <select onChange={(e) => changeValueForm(e.target.name, e.target.value)} value={typeQuestion} id="typeQuestion" name="typeQuestion">
                                         <option value="MultipleChoice">Multiple choice</option>
                                         <option value="Open">Open</option>
@@ -68,7 +71,7 @@ export function Create() {
                                 <textarea id="descriptionAI" value={description} name="description" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
                             </div>
                             <div>
-                                <label htmlFor="NumQuestions" >* Number (#) of questions:</label>
+                                <label htmlFor="NumQuestions" ><span>*</span> Number (#) of questions:</label>
                                 <div className="InputNumberAndRange">
 
                                     <input id="NumQuestions" value={numQuestions} min={1} max={15} type='number' name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
@@ -78,7 +81,7 @@ export function Create() {
                             </div>
 
                             <div>
-                                <label htmlFor="Dificulty" >* Dificulty of the questions (1 - 5):</label>
+                                <label htmlFor="Dificulty" ><span>*</span> Dificulty of the questions (1 - 5):</label>
                                 <div className="InputNumberAndRange">
                                     <input id="Dificulty" value={dificulty} min={1} max={5} type='number' name="dificulty" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
                                     <div>

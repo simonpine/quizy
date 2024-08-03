@@ -43,18 +43,13 @@ export const UserProvider = ({ children }) => {
     else {
       setUser(null)
     }
-    // const docRef = doc(db, "users", auth.currentUser.uid);
-    // const docSnap = await getDoc(docRef);
-    // setUser(auth.currentUser)
-    // console.log(userAuth)
   }, [userAuth])
 
 
   async function apiSave(e) {
     e.preventDefault()
     setApiLoading(true)
-    console.log(isValidOpenAIKeyFormat(e.target.ApiKeyInput.value))
-    if (!isValidOpenAIKeyFormat(e.target.ApiKeyInput.value)) {
+    if (!isValidOpenAIKeyFormat(e.target.ApiKeyInput.value) & e.target.ApiKeyInput.value !== '') {
       toast.error('The API Key is not valid.', {
         position: "bottom-center",
         style: {

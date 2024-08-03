@@ -175,6 +175,9 @@
 
     & img {
         height: 140%;
+        max-width: 660px;
+        object-fit: cover;
+        filter: contrast(1.15);
     }
 
     @media screen and (max-width: 1200px) {

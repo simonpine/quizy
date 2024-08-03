@@ -3,7 +3,7 @@ import { Parallax, useParallax } from 'react-scroll-parallax';
 import './App.scss';
 import { Link } from 'react-router-dom';
 import one from './img/1.jpg'
-import two from './img/2.jpg'
+import two from './img/5.jpg'
 import three from './img/3.jpg'
 import tape from './img/tape1.png'
 import tape2 from './img/tape2.png'

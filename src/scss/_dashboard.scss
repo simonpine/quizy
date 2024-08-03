@@ -1,5 +1,5 @@
 .dashboarSecction {
-    aside {
+    & .aside {
         display: flex;
         flex-direction: column;
         gap: 40px;
@@ -8,15 +8,10 @@
     grid-template-columns: 1fr 2px 1fr;
     align-items: normal;
 
-    & h2 {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 600;
-        // align-items:end;
-        margin: 0px 0px 10px;
-        color: map-get($map: $colors, $key: 'deta2');
-        font-size: 3rem;
+    & label {
+        & img{
+            margin-left: 0px;
+        }
     }
 
     // & div {
@@ -149,11 +144,6 @@
             background-color: map-get($map: $colors, $key: 'secu');
         }
     }
-}
-
-label {
-    font-weight: 600;
-    font-size: 1.5rem;
 }
 
 /* HTML: <div class="loader"></div> */

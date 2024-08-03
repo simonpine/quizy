@@ -33,10 +33,10 @@ export function Settings() {
             </Tooltip>
             {
                 !isthere ?
-                    <div>
-                        <h1 className="pageInto"><span>{user?.name ? user.name : 'Loading'}'s</span> Dashboard</h1 >
+                    <section>
+                        <h1 className="pageInto">Welcome <span>{user?.name ? user.name : 'Loading'}</span></h1 >
                         <div className="SectionSidebySide dashboarSecction" >
-                            <aside>
+                            <div className="aside">
                                 <section className="userSettingCont">
                                     <div>
                                         <label>User info:</label>
@@ -58,9 +58,11 @@ export function Settings() {
                                     <button className="SecundaryButton" onClick={() => setVerify(true)}>Log out  <img alt="Arrow to indicate the page change" src={arrow} /></button>
                                 </section>
                                 <section className="ChartFullCont">
-                                    <h2>Response statistics
+                                    <label>
                                         <img id="ChartInfo" className="info" src={moreInfo} alt="More informtation icon" />
-                                    </h2>
+
+                                        Response statistics:
+                                    </label>
 
                                     <div className="chartCont">
                                         <ResponsiveContainer width={'100%'} height="100%">
@@ -73,10 +75,10 @@ export function Settings() {
                                         </ResponsiveContainer>
                                     </div>
                                 </section>
-                            </aside>
+                            </div>
                             <figure className="separation" />
                             <section>
-                                <h2>Your quizzes</h2>
+                                <label>Your quizzes:</label>
                                 {
                                     <div className="Empty">
                                         <img src={emptyImg} alt="Person looking empty boxes" />
@@ -86,7 +88,7 @@ export function Settings() {
                                 }
                             </section>
                         </div>
-                    </div>
+                    </section>
                     :
                     <Navigate to='/' />
             }

@@ -11,8 +11,8 @@ export function Sure({ msg, func, setState, state }) {
             <div ref={ref} className="flyBox">
                 <p>{msg}</p>
                 <div>
-                    <button onClick={func} className="linkButton">Yes</button>
-                    <button className="SecundaryButton" onClick={() => setState(false)}>Cancel</button>
+                    <button onClick={func} className="linkButton">Yes, continue</button>
+                    <button className="SecundaryButton" onClick={() => setState(false)}>No, cancel</button>
                 </div>
             </div>
         </div>

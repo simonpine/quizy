@@ -1,10 +1,19 @@
 import React, { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
+
+import { createOpenAI } from '@ai-sdk/openai';
+import { streamObject } from 'ai';
+import { z } from 'zod';
 
 export const QuizContext = createContext()
 
 export const QuizProvider = ({ children }) => {
+
+
+    const navigate = useNavigate()
     const [AILoading, setAILoading] = useState(false)
+
     const [AIForm, setAIForm] = useState({
         description: '',
         numQuestions: 1,
@@ -12,20 +21,55 @@ export const QuizProvider = ({ children }) => {
         fileDirectori: undefined,
         typeQuestion: 'MultipleChoice',
     })
-    
 
-    function changeValueForm(name, value){
-        setAIForm(prev=>{
-            return{
+
+    function changeValueForm(name, value) {
+        setAIForm(prev => {
+            return {
                 ...prev,
                 [name]: value
             }
         })
     }
 
-    function handleSubmit(e){
+
+    async function handleSubmit(e, apiKey) {
         e.preventDefault()
-        console.log(AIForm)
+
+        if (AIForm.fileDirectori !== undefined) {
+            // const file = AIForm.fileDirectori
+            // await readPdf(AIForm.fileDirectori)
+            // console.log(text)
+        }
+
+
+        else {
+            const openai = createOpenAI({
+                apiKey // should ideally be loaded from external place such as env variable
+            });
+            const { partialObjectStream } = await streamObject({
+
+                model: openai('gpt-4-turbo'),
+                schema: z.object({
+                    plates: z.array(z.object({
+                        name: z.string(),
+                        ingredients: z.array(z.string()),
+                        steps: z.array(z.string()),
+                    })),
+                }),
+
+                prompt: 'Generate 3 recipes for 3 diferent plates of sea food.',
+            }).catch(() => console.log("upp"));
+
+            for await (const partialObject of partialObjectStream) {
+                // console.clear();
+                console.log(partialObject);
+            }
+        }
+
+        // console.log(AIForm)
+        // navigate('/create/questions')
+        // console.log(quiz);
     }
 
     // const answer1 = {
