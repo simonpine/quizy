@@ -204,7 +204,7 @@
     padding: 2px 20px;
     border-radius: 10px;
     text-decoration: none;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: map-get($map: $colors, $key: 'deta');
     font-weight: 700;
     position: relative;
@@ -212,6 +212,7 @@
     transition: ease .2s;
     display: flex;
     align-items: center;
+    background-color: map-get($map: $colors, $key: "main");
     width: fit-content;
 
     &:after {
@@ -274,26 +275,26 @@
 }
 
 .SecundaryButton {
+    background-color: map-get($map: $colors, $key: "main");
     text-decoration: none;
     width: fit-content;
-    color: map-get($map: $colors, $key: "secuBlur");
-    // color: map-get($map: $colors, $key: "deta2");
+    color: map-get($map: $colors, $key: "secuBlur2");
     font-size: 1.5rem;
-    font-weight: 600;
-    border: 3px map-get($map: $colors, $key: "secuBlur") dashed;
-    // background-color: map-get($map: $colors, $key: "mainBlur");
-    // border-radius: 10px;
-
+    border: 3px map-get($map: $colors, $key: "secuBlur2") dashed;
     padding: 2px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     transition: 0.3s ease;
-    opacity: 0.5;
+    opacity: 1;
     border-radius: 8px;
 
+    font-weight: 700;
+
+
     & img {
+        opacity: .5;
         transition: 0.3s ease;
         transform: translate(-1px);
         height: 20px;
@@ -308,40 +309,120 @@
         font-weight: 600;
 
         & img {
+            opacity: 1;
             transform: translate(1px);
+        }
+    }
+
+    &:disabled{
+        &:hover {
+            border: 3px map-get($map: $colors, $key: "secuBlur2") dashed;
+            color: map-get($map: $colors, $key: "secuBlur2");    
+            cursor: auto;
+            & img {
+                opacity: .5;
+                transform: translate(-1px);
+            }
+        }
+    }
+}
+.IconButtonDelete {
+    padding: 7px;
+    background-color: map-get($map: $colors, $key: 'deta2Blur');
+    border-radius: 4px;
+    transition: .3s ease;
+
+    & img {
+        transition: .3s cubic-bezier(0.46, -1.39, 0, 2.14);
+        height: 20px;
+        width: 20px;
+    }
+
+    &:hover {
+
+        background-color: map-get($map: $colors, $key: 'deta3');
+
+        & img {
+            transform: rotate(20deg);
+        }
+    }
+
+    &:disabled {
+        &:hover {
+            background-color: map-get($map: $colors, $key: 'deta2Blur');
+            cursor: auto;
+
+            & img {
+                transform: rotate(0deg);
+            }
+
+            // cursor: grab;
+        }
+    }
+}
+.IconButtonDeleteSmall{
+    @extend .IconButtonDelete;
+    & img{
+        width: 16px;
+        height: 16px;
+    }
+}
+.IconButton {
+    padding: 7px;
+    background-color: map-get($map: $colors, $key: 'deta2Blur');
+    border-radius: 4px;
+    transition: .3s ease;
+
+    & img {
+        height: 18px;
+        width: 18px;
+    }
+
+    &:hover {
+        background-color: map-get($map: $colors, $key: 'deta2');
+        // cursor: grab;
+    }
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-weight:500;
+    align-items: center;
+    font-size: 1.08rem;
+
+    &:disabled {
+        &:hover {
+            background-color: map-get($map: $colors, $key: 'deta2Blur');
+            cursor: auto; // cursor: grab;
         }
     }
 }
 
-// .tooltipMainButton{
 
-//     & span{
-//         color: map-get($map: $colors, $key: 'main');
-//         // z-index: 2;
-//         opacity: 1;
-//         width: 100%;
-//         font-size: 1.4rem;
-//         font-weight: 600;
-//         position: absolute;
-//         background-color: map-get($map: $colors, $key: 'deta');
-//         padding: 5px 10px;
-//         border-radius: 0px;
-//         left: 0px;
-//         bottom: 100%;
-//         transition: .1s ease;
-//         // opacity: 0;
-//         display: none;
-//     }
-//     &:disabled{
-//         & span{
-//             display: block;
-//         }
-//         overflow: hidden;
-//         &:hover{
-//             & span{
-//                 bottom: 0px;
-//                 // opacity: 1;
-//             }
-//         }
-//     }
-// }
+.AddAnswer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+
+    & img {
+        background-color: map-get($map: $colors, $key: 'deta2');
+        padding: 2px;
+        border-radius: 100%;
+        width: 20px;
+        // height: 10px;
+        // width: 15px;
+
+    }
+    &:hover{
+        color: map-get($map: $colors, $key: 'deta2');
+    }
+}
+
+input[type='radio'] {
+    width: 20px;
+    accent-color: map-get($map: $colors, $key: 'deta');
+}

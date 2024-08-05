@@ -1,10 +1,29 @@
 import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
+import toast from 'react-hot-toast';
+import { arrayMove } from "@dnd-kit/sortable";
+
+// import { collection, addDoc, getFirestore } from "firebase/firestore";
 
 import { createOpenAI } from '@ai-sdk/openai';
-import { streamObject } from 'ai';
+import { generateObject, streamObject } from 'ai';
 import { z } from 'zod';
+
+
+const ToastStyle = {
+    position: "bottom-center",
+    style: {
+        background: 'rgb(255, 255, 255, .9)',
+        color: '#2F0C29',
+        borderRadius: '8px',
+        fontSize: '1.3rem',
+        fontWeight: '600'
+    },
+    iconTheme: {
+        secondary: '#2F0C29',
+    },
+}
+
 
 export const QuizContext = createContext()
 
@@ -14,12 +33,21 @@ export const QuizProvider = ({ children }) => {
     const navigate = useNavigate()
     const [AILoading, setAILoading] = useState(false)
 
+    const [questions, setQuestions] = useState([])
+
     const [AIForm, setAIForm] = useState({
         description: '',
         numQuestions: 1,
         dificulty: 1,
         fileDirectori: undefined,
         typeQuestion: 'MultipleChoice',
+    })
+
+
+    const [formQuizSave, setFormQuizSave] = useState({
+        description: '',
+
+        banner: undefined,
     })
 
 
@@ -32,173 +60,260 @@ export const QuizProvider = ({ children }) => {
         })
     }
 
-
-    async function handleSubmit(e, apiKey) {
-        e.preventDefault()
-
-        if (AIForm.fileDirectori !== undefined) {
-            // const file = AIForm.fileDirectori
-            // await readPdf(AIForm.fileDirectori)
-            // console.log(text)
-        }
-
-
-        else {
-            const openai = createOpenAI({
-                apiKey // should ideally be loaded from external place such as env variable
-            });
-            const { partialObjectStream } = await streamObject({
-
-                model: openai('gpt-4-turbo'),
-                schema: z.object({
-                    plates: z.array(z.object({
-                        name: z.string(),
-                        ingredients: z.array(z.string()),
-                        steps: z.array(z.string()),
-                    })),
-                }),
-
-                prompt: 'Generate 3 recipes for 3 diferent plates of sea food.',
-            }).catch(() => console.log("upp"));
-
-            for await (const partialObject of partialObjectStream) {
-                // console.clear();
-                console.log(partialObject);
+    function changeValueFormQuizSave(name, value) {
+        setFormQuizSave(prev => {
+            return {
+                ...prev,
+                [name]: value
             }
-        }
-
-        // console.log(AIForm)
-        // navigate('/create/questions')
-        // console.log(quiz);
+        })
     }
 
-    // const answer1 = {
-    //     id: Math.floor(100000 + Math.random() * 900000),
-    //     answer: '',
-    // }
-    // const answer2 = {
-    //     id: Math.floor(100000 + Math.random() * 900000),
-    //     answer: '',
-    // }
-    // const [questions, setQuestions] = useState([
-    //     {
-    //         id: Math.floor(100000 + Math.random() * 900000),
-    //         question: '',
-    //         answers: [answer1, answer2],
-    //         answer: '',
-    //     }
-    // ])
-    // const [refresh, setRefresh] = useState(Math.floor(100000 + Math.random() * 900000))
-    // function newQuizzOne(title, theme, creator, urlImg, description) {
-    //     const theQuizStats = {
-    //         title,
-    //         theme,
-    //         creator,
-    //         urlImg,
-    //         description
-    //     }
-    //     localStorage.setItem('theQuizStats', JSON.stringify(theQuizStats))
-    // }
-    // function newQuestion() {
-    //     const answer1 = {
-    //         id: Math.floor(100000 + Math.random() * 900000),
-    //         answer: '',
-    //     }
-    //     const answer2 = {
-    //         id: Math.floor(100000 + Math.random() * 900000),
-    //         answer: '',
-    //     }
-    //     const que = {
-    //         id: Math.floor(100000 + Math.random() * 900000),
-    //         question: '',
-    //         answers: [answer1, answer2],
-    //         answer: '',
-    //     }
-    //     setQuestions([...questions, que])
-    // }
-    // function addAnswer(id) {
-    //     questions.forEach(element => {
-    //         if (element.id === id) {
-    //             const answer = {
-    //                 id: Math.floor(100000 + Math.random() * 900000),
-    //                 answer: '',
-    //             }
-    //             setRefresh(Math.floor(100000 + Math.random() * 900000))
-    //             element.answers.push(answer)
-    //         }
-    //     });
-    // }
-    // Array.prototype.remove = function (from, to) {
-    //     var rest = this.slice((to || from) + 1 || this.length);
-    //     this.length = from < 0 ? this.length + from : from;
-    //     return this.push.apply(this, rest);
-    // }
-    // function deleteQuestion(idQuestion) {
-    //     if (questions.length > 1) {
-    //         for (var i = 0; i < questions.length; i++) {
-    //             if (questions[i].id === idQuestion) {
-    //                 questions.remove(i);
+    function hundleDrag(evt) {
+        const { active, over } = evt
+        setQuestions(previus => {
+            const oldIndex = questions.findIndex(item => item.id === active.id)
+            const newIndex = previus.findIndex(item => item.id === over.id)
+            return arrayMove(previus, oldIndex, newIndex)
+        })
+    }
 
-    //                 setRefresh(Math.floor(100000 + Math.random() * 900000))
-    //             }
 
-    //         }
-    //     }
+    function deleteQuestion(id) {
+        setQuestions(previus => {
+            return previus.filter((item) => item.id !== id)
+        })
+    }
 
-    // }
-    // function deleteAnswer(idQuestion, idAnswer) {
-    //     for (var i = 0; i < questions.length; i++) {
-    //         if (questions[i].id === idQuestion) {
-    //             for (var x = 0; x < questions[i].answers.length; x++) {
-    //                 if (questions[i].answers[x].id === idAnswer) {
-    //                     if (questions[i].answers.length > 2) {
-    //                         questions[i].answers.remove(x);
-    //                         setRefresh(Math.floor(100000 + Math.random() * 900000))
-    //                     }
-    //                 }
-    //             }
-    //         }
 
-    //     }
-    // }
-    // function setAns(idQuestion, idAnswer, newValue) {
-    //     for (var i = 0; i < questions.length; i++) {
-    //         if (questions[i].id === idQuestion) {
-    //             for (var x = 0; x < questions[i].answers.length; x++) {
-    //                 if (questions[i].answers[x].id === idAnswer) {
-    //                     if (questions[i].answer === questions[i].answers[x].answer) {
-    //                         questions[i].answer = newValue
-    //                         questions[i].answers[x].answer = newValue
-    //                         setRefresh(Math.floor(100000 + Math.random() * 900000))
-    //                     }
-    //                     else {
-    //                         questions[i].answers[x].answer = newValue
-    //                         setRefresh(Math.floor(100000 + Math.random() * 900000))
-    //                     }
-    //                 }
-    //             }
-    //         }
+    async function handleSubmit(apiKey) {
 
-    //     }
-    // }
-    // function setQuestion(idQuestion, newValue) {
-    //     for (var i = 0; i < questions.length; i++) {
-    //         if (questions[i].id === idQuestion) {
-    //             questions[i].question = newValue
-    //             setRefresh(Math.floor(100000 + Math.random() * 900000))
-    //         }
+        if (AIForm.description.split(' ').length < 15) {
+            toast.error('The topic description must have at least 15 words.', ToastStyle)
+        }
+        else {
 
-    //     }
-    // }
-    // function setAnsFinal(idQuestion, newValue) {
-    //     for (var i = 0; i < questions.length; i++) {
-    //         if (questions[i].id === idQuestion) {
-    //             questions[i].answer = newValue
-    //             setRefresh(Math.floor(100000 + Math.random() * 900000))
-    //         }
-    //     }
+            if (AIForm.typeQuestion === 'MultipleChoice') {
 
-    // }
+                setAILoading(true)
+                const openai = createOpenAI({
+                    apiKey // should ideally be loaded from external place such as env variable
+                });
+                const { partialObjectStream } = await streamObject({
+
+                    model: openai('gpt-4o-mini'),
+                    temperature: .5,
+                    presencePenalty: 2,
+                    frequency_penalty: -2,
+                    // max_tokens: 1000,
+                    schema: z.object({
+                        quizTitle: z.string(),
+                        quizDescription: z.string(),
+                        promptForBanner: z.string(),
+                        multipleChoiseQuestions: z.array(
+                            z.object({
+                                id: z.number(),
+                                idOfTheCorrectAnswer: z.number(),
+                                question: z.string(),
+                                answers: z.array(
+                                    z.object({
+                                        id: z.number(),
+                                        answer: z.string(),
+                                    })
+                                )
+                            })
+                        )
+                    }),
+                    messages: [
+                        {
+                            role: 'system',
+                            content:
+                                `
+                            You are a quiz maker. Your task is to follow the next steps to create a quiz.
+
+                            Step 1: First use the description of the topic to create the title of the quiz, the description of the quiz, and a prompt that will be used to create a banner for the quiz.
+                            The description of the topic will be delimited by triple hashtags (###).
+
+                            Step 2: Create 100 multiple choice questions that are linked to the description of the topic.
+
+                            Step 3: Sort the group of question by the difficulty of each one, the difficulty of the questions is from 1 (the most easy ones) to 5 (The hardest ones).
+
+                            Step 4: From the sorted group of questions, just keep the one that have a level ${AIForm.dificulty} of difficulty.
+
+                            Step 5: From the previous group of questions, select ${AIForm.numQuestions}.
+
+                            Step 6: For each question, create a correct answer.
+
+                            Step 7: Then, for each question, create 3 more answers that will be not correct.
+
+                            Step 8: Finally return to the user an object with the quizTitle, quizDescription, promptForBanner and an array of multipleChoiseQuestions, that content ${AIForm.numQuestions} objects with each question, the indexOfTheCorrectAnswer and an array with the answers.
+                            
+                            Note: The return must have the array of questions.
+                            `
+                        },
+                        {
+                            role: 'user',
+                            content: `Create a quiz based on the following topic description ###${AIForm.description}###`
+                        }
+                    ]
+
+                }).catch(() => {
+                    toast.error('Your API key is not working.', ToastStyle)
+                    setAILoading(false)
+                })
+
+                await navigate('/create/questions')
+
+                let result = []
+
+                for await (const partialObject of partialObjectStream) {
+                    if (partialObject?.multipleChoiseQuestions) {
+                        setQuestions(partialObject.multipleChoiseQuestions)
+                        result = partialObject.multipleChoiseQuestions
+                    }
+                }
+
+                if (result?.length === 0 || !result?.length) {
+                    toast.error('AI did not made any question. Try again.', ToastStyle)
+                    setAILoading(false)
+                    navigate('/create')
+                }
+                else {
+                    await toast.success('The questions were created.', ToastStyle)
+
+                    await setQuestions(result.map((item) => {
+                        item.type = 'MultipleChoice'
+                        item.banner = undefined
+                        return item
+                    }))
+                    setAILoading(false)
+                }
+
+
+            }
+
+        }
+
+    }
+
+    function saveChanges(id, newQuestion) {
+        setQuestions(previus => {
+            return previus.map((item) => {
+                if (item.id === id) {
+                    return newQuestion
+                }
+                return item
+            })
+        })
+        toast.success('The changes were saved', ToastStyle)
+    }
+
+
+    function addQuestion() {
+        setQuestions(previus => {
+            return [...previus, {
+                id: Math.floor(Math.random() * 100000),
+                idOfTheCorrectAnswer: 1,
+                banner: undefined,
+                type: 'MultipleChoice',
+                question: 'This is a new question',
+                answers: [
+                    {
+                        id: 1,
+                        answer: 'Answer #1'
+                    },
+                    {
+                        id: 2,
+                        answer: 'Answer #2'
+                    }
+                ]
+            }]
+        })
+        toast.success('The quiestion was added.', ToastStyle)
+        // setState(true)
+    }
+
+    async function addAIQuestion(apiKey) {
+        setAILoading(true)
+        const openai = createOpenAI({
+            apiKey // should ideally be loaded from external place such as env variable
+        });
+        const { object } = await generateObject({
+
+            model: openai('gpt-4o-mini'),
+            temperature: .5,
+            presencePenalty: 2,
+            frequency_penalty: -2,
+            // max_tokens: 1000,
+            schema: z.object({
+                id: z.number(),
+                idOfTheCorrectAnswer: z.number(),
+                question: z.string(),
+                answers: z.array(
+                    z.object({
+                        id: z.number(),
+                        answer: z.string(),
+                    })
+                )
+            }),
+            messages: [
+                {
+                    role: 'system',
+                    content:
+                        `
+                    You are a quiz maker. Your task is to follow the next steps to create a quiz.
+
+                    Step 1: First use the description of the topic to create the title of the quiz, the description of the quiz, and a prompt that will be used to create a banner for the quiz.
+                    The description of the topic will be delimited by triple hashtags (###).
+
+                    Step 2: Create 100 multiple choice questions that are linked to the description of the topic.
+
+                    Step 3: Sort the group of question by the difficulty of each one, the difficulty of the questions is from 1 (the most easy ones) to 5 (The hardest ones).
+
+                    Step 4: From the sorted group of questions, just keep the one that have a level ${AIForm.dificulty} of difficulty.
+
+                    Step 5: From the previous group of questions, select ${AIForm.numQuestions}.
+
+                    Step 6: For each question, create a correct answer.
+
+                    Step 7: Then, for each question, create 3 more answers that will be not correct.
+
+                    Step 8: Finally return to the user an object with the quizTitle, quizDescription, promptForBanner and an array of multipleChoiseQuestions, that content ${AIForm.numQuestions} objects with each question, the indexOfTheCorrectAnswer and an array with the answers.
+                    
+                    Note: The return must have the array of questions.
+                    `
+                },
+                {
+                    role: 'user',
+                    content: `Create a quiz based on the following topic description ###${AIForm.description}###`
+                },
+                {
+                    role: "assistant",
+                    content: JSON.stringify(questions)
+                },
+                {
+                    role: "user",
+                    content: 'Generate another question based on the given information.'
+                }
+            ]
+
+        }).catch(() => {
+            toast.error('Your API key is not working', ToastStyle)
+            setAILoading(false)
+        })
+        object.id = Math.floor(Math.random() * 10000)
+        object.type = 'MultipleChoice'
+        object.banner = undefined
+        setQuestions(previus => {
+            return [
+                ...previus,
+                object
+            ]
+        })
+        toast.success('The new AI question was added', ToastStyle)
+        setAILoading(false)
+    }
+
     // function uploadQuizz() {
     //     const db = getFirestore()
     //     const quizzesColection = collection(db, 'quizzes')
@@ -217,7 +332,18 @@ export const QuizProvider = ({ children }) => {
     //     return addDoc(quizzesColection, quizz).then((y) => { return (y.id) })
     // }
     return (
-        <QuizContext.Provider value={{ AIForm, changeValueForm, handleSubmit }} >
+        <QuizContext.Provider value={{
+            AIForm,
+            changeValueForm,
+            handleSubmit, questions,
+            AILoading,
+            hundleDrag,
+            deleteQuestion,
+            saveChanges,
+            addQuestion,
+            addAIQuestion,
+            changeValueFormQuizSave
+        }} >
             {children}
         </QuizContext.Provider>
     )

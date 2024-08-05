@@ -61,7 +61,7 @@ export function Settings() {
                                     <label>
                                         <img id="ChartInfo" className="info" src={moreInfo} alt="More informtation icon" />
 
-                                        Response statistics:
+                                        Response stadistics:
                                     </label>
 
                                     <div className="chartCont">

@@ -254,7 +254,7 @@
 
     // text-overflow: ellipsis; 
     & span {
-        color: map-get($map: $colors, $key:'secu' );
+        color: map-get($map: $colors, $key: 'secu');
         width: 100%;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -264,6 +264,7 @@
     // overflow: hidden;
     white-space: nowrap;
     position: relative;
+
     & img {
         margin: 0px;
         height: 30px;
@@ -290,8 +291,9 @@ textarea::-webkit-scrollbar-thumb {
     background-color: map-get($map: $colors, $key: 'main');
 }
 
-.divInFileCont{
+.divInFileCont {
     position: relative;
+
     .deleteButton {
         z-index: 100;
         position: absolute;
@@ -309,9 +311,219 @@ textarea::-webkit-scrollbar-thumb {
         border-radius: 20px;
         display: none;
     }
-    &:hover{
-        .deleteButton{
+
+    &:hover {
+        .deleteButton {
             display: block;
         }
+    }
+}
+
+//==================================================== Questions design =============================
+
+.quiestionAndAsideCont {
+    align-self: center;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0px 30px 40px;
+
+    & .quizesCont {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        & .FunctionsQuiestions {
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            top: 0;
+            background-color: map-get($map: $colors, $key: 'main');
+            margin-top: -115px;
+            padding: 115px 0px 20px;
+            // position: sticky;
+            display: flex;
+            justify-content: space-between;
+
+            & div {
+                flex-wrap: wrap;
+
+                display: flex;
+                gap: 20px;
+            }
+        }
+
+        & .QuestionsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            & .buttonEnd {
+                flex-wrap: wrap;
+
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        width: calc(100% - 60px);
+    }
+}
+
+.Question {
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: map-get($map: $colors, $key: 'mainBlur');
+
+    & h3 {
+        margin: 0px;
+        font-weight: 500;
+        font-size: 2rem;
+    }
+
+    & h4 {
+        margin: 0px;
+        font-weight: 400;
+        font-size: 1.5rem;
+    }
+
+    & .listAnswers {
+        margin: 0px;
+        display: grid;
+        column-gap: 20px;
+        row-gap: 5px;
+        grid-template-columns: 1fr 1fr;
+
+
+        & li {
+            font-weight: 500;
+
+            list-style: none;
+            font-size: 1.5em;
+        }
+    }
+}
+
+.FunctionsQuestionCont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & div {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        & h4 {
+            align-self: center;
+            margin: 0px;
+        }
+    }
+}
+
+.HorizontalSection {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    & div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    & .ImageInputCont {
+        & input {
+            display: none;
+        }
+
+        width: 150px;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+
+
+}
+
+.inputAnswer{
+    background: none;
+    border: none;
+    // width: 100%;
+    flex-grow: 1;
+    // flex-shrink: 1;
+    // width: 100%;
+    font-size: 1.4rem;
+    color: map-get($map: $colors, $key: 'secuBlur2');
+
+    border-bottom: 2px solid map-get($map: $colors, $key: 'secuBlur2');
+    &:focus{
+        color: map-get($map: $colors, $key: 'secu');
+        border-bottom: 2px solid map-get($map: $colors, $key: 'deta');
+
+    }
+}
+
+.AnswerCont{
+    // width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.AnswersConts{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    max-height: 145px;
+}
+
+
+.AnswersConts::-webkit-scrollbar {
+    width: 5px;
+}
+
+.AnswersConts::-webkit-scrollbar-track {
+    background-color: map-get($map: $colors, $key: 'main');
+}
+
+.AnswersConts::-webkit-scrollbar-thumb {
+    background-color: map-get($map: $colors, $key: 'deta');
+}
+
+
+
+.NoQuizzesSection{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    & .ImageAsBanner{
+        height: 430px;
+        @media screen and (max-width: 800px) {
+            width: 100%;
+            height: auto;
+        }
+    }
+    & div{
+        & p{
+            font-size: 2.4rem;
+        }
+        // background-color: #4FFFB0;
+        // display: flex;
+        // flex-direction: column;
+        // gap: 10px;
     }
 }

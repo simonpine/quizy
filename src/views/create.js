@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { QuizContext } from "../context/createContext"
 import { UserContext } from "../context/userContext";
 import { Navigate } from "react-router-dom";
@@ -13,11 +13,13 @@ import { Tooltip } from 'react-tooltip'
 import clip from '../img/clip.png'
 import moreInfo from '../img/interrogation.png'
 import documentImg from '../img/document.png'
+import { Sure } from "../components/sure";
 
 export function Create() {
-    const { AIForm, changeValueForm, handleSubmit } = useContext(QuizContext);
+    const { AIForm, changeValueForm, handleSubmit, questions, AILoading } = useContext(QuizContext);
     const { isthere, user } = useContext(UserContext);
     const { description, numQuestions, dificulty, fileDirectori, typeQuestion } = AIForm
+    const [ deleteCurrent, setDeleteCurrent ] = useState(false)
 
     return isthere ? (
         <Navigate to='/create/questions' />
@@ -25,6 +27,7 @@ export function Create() {
         :
         (
             <>
+                <Sure msg={'If you generate new questions, the old ones will be delete.'} func={handleSubmit} setState={setDeleteCurrent} state={deleteCurrent} extraInfo={[user?.apikey]} />
                 {!user?.apikey &&
                     <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10 }} clickable anchorSelect="#Generate" place="top">
                         <Link className="ApiKeyNeeded" to='/settings'>Add an API key <img alt="Arrow to indicate the page change" src={arrow} /></Link>
@@ -39,9 +42,13 @@ export function Create() {
                 <div className="SectionSidebySide">
                     <aside className="AsideForm">
                         <h1>
-                            Create quizes with <span>AI</span>
+                            Create quizzes with <span>AI</span>
                         </h1>
-                        <form onSubmit={e => handleSubmit(e, user.apikey)} className="formContFullInfo" >
+                        <form onSubmit={e => {
+                            e.preventDefault()
+                            if (questions.length === 0) return handleSubmit(user.apikey)
+                            else return setDeleteCurrent(true)
+                        }} className="formContFullInfo" >
 
                             <div className="twoColumnsFormSection">
                                 <div>
@@ -50,7 +57,7 @@ export function Create() {
                                         {/* <input  type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, URL.createObjectURL(e.target.files[0]))} /> */}
                                         <div className="divInFileCont">
                                             <input disabled accept="application/pdf" style={{ display: 'none' }} type="file" id="fileDirectori" name="fileDirectori" onChange={(e) => changeValueForm(e.target.name, e.target.files[0])} />
-                                            <label style={{opacity:.7, cursor:'auto'}} className="FileInput" htmlFor='fileDirectori'><img src={fileDirectori ? documentImg : clip} alt="Clip for the file selection" /> <span>{fileDirectori ? fileDirectori.name : 'Select a PDF'}</span></label>
+                                            <label style={{ opacity: .7, cursor: 'auto' }} className="FileInput" htmlFor='fileDirectori'><img src={fileDirectori ? documentImg : clip} alt="Clip for the file selection" /> <span>{fileDirectori ? fileDirectori.name : 'Select a PDF'}</span></label>
                                             {fileDirectori && <button className="deleteButton" onClick={() => changeValueForm('fileDirectori', undefined)}>X</button>}
 
                                         </div>
@@ -61,27 +68,27 @@ export function Create() {
                                     <label htmlFor="typeQuestion"><span>*</span> Type of questions: </label>
                                     <select onChange={(e) => changeValueForm(e.target.name, e.target.value)} value={typeQuestion} id="typeQuestion" name="typeQuestion">
                                         <option value="MultipleChoice">Multiple choice</option>
-                                        <option value="Open">Open</option>
-                                        <option value="Both">Both</option>
+                                        <option disabled value="Open">Open</option>
+                                        <option disabled value="Both">Both</option>
                                     </select>
                                 </div>
                             </div>
                             <div>
                                 <label htmlFor="descriptionAI">Describe the topic:</label>
-                                <textarea id="descriptionAI" value={description} name="description" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
+                                <textarea placeholder="This quiz focuses on our Solar System, including planets, moons, and other celestial bodies. It also explores the broader universe, covering stars, galaxies, black holes, and the latest discoveries in astronomy." id="descriptionAI" value={description} name="description" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
                             </div>
                             <div>
                                 <label htmlFor="NumQuestions" ><span>*</span> Number (#) of questions:</label>
                                 <div className="InputNumberAndRange">
 
-                                    <input id="NumQuestions" value={numQuestions} min={1} max={15} type='number' name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
-                                    <input className="slider" id="NumQuestions2" value={numQuestions} min={1} max={15} type="range" name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
+                                    <input id="NumQuestions" value={numQuestions} min={1} max={10} type='number' name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
+                                    <input className="slider" id="NumQuestions2" value={numQuestions} min={1} max={10} type="range" name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
 
                                 </div>
                             </div>
 
                             <div>
-                                <label htmlFor="Dificulty" ><span>*</span> Dificulty of the questions (1 - 5):</label>
+                                <label htmlFor="Dificulty" ><span>*</span> Difficulty of the questions (1 - 5):</label>
                                 <div className="InputNumberAndRange">
                                     <input id="Dificulty" value={dificulty} min={1} max={5} type='number' name="dificulty" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
                                     <div>
@@ -96,10 +103,10 @@ export function Create() {
                             <div className="buttonsCont">
                                 <button
                                     id="Generate"
-                                    disabled={!user?.apikey}
+                                    disabled={!user?.apikey || AILoading}
                                     className="linkButton" type="submit">Generate Questions
                                 </button>
-                                <Link className="SecundaryButton" to='/create/questions'>Countinue without AI <img src={arrow} alt="Arrow to indicate the page change" /></Link>
+                                <Link className="SecundaryButton" to='/create/questions'>Continue without AI <img src={arrow} alt="Arrow to indicate the page change" /></Link>
                             </div>
                         </form>
                     </aside>

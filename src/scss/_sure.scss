@@ -1,15 +1,16 @@
-@keyframes fadein{
-    from{
+@keyframes fadein {
+    from {
         margin-left: -20px;
         opacity: 0;
     }
-    to{
+
+    to {
         margin-left: 0px;
         opacity: 1;
     }
 }
 
-.sureContainer{
+.sureContainer {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -18,28 +19,128 @@
     left: 0px;
     backdrop-filter: blur(3px);
     z-index: 10;
-    & .flyBox{
+
+    & .flyBox {
         animation: fadein .3s;
         position: absolute;
         left: 50%;
 
-        width:auto;
+        width: auto;
+        max-width: 550px;
         top: 50%;
         transform: translate(-50%, -50%);
         background-color: map-get($map: $colors, $key: 'main');
         padding: 20px;
-        border-radius: 8px;
+        border-radius: 12px;
         margin: 0px 30px 0px 0px;
-        & p{
+
+        & p {
             max-width: 1000px;
             font-size: 2rem;
             font-weight: 500;
             margin-bottom: 20px;
         }
-        & div{
+
+        & div {
             gap: 20px;
             display: flex;
             justify-content: space-between;
+        }
+    }
+
+    & .flyBoxEdit {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        animation: fadein .3s;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        max-width: 700px;
+        transform: translate(-50%, -50%);
+        background-color: map-get($map: $colors, $key: 'main');
+        padding: 20px;
+        border-radius: 12px;
+        & h2{
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: map-get($map: $colors, $key: 'deta2');
+        }
+        @media screen and (max-width: 1000px) {
+            // margin: 0px 30px;
+
+            max-height: 90%;
+            overflow: auto;
+            width: calc(100% - 60px);
+
+            & .FormForEdit .formFields div{
+                width: 100%;
+                & .imageChanger{
+                    width: 100%;
+                }
+            }
+    
+        }
+        // margin: 0px 30px 0px 0px;
+
+        .FormForEdit {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            & .formFields {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+
+                & .InputWriteFields{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+
+            & .buttonEnd {
+                gap: 20px;
+                display: flex;
+                justify-content: space-between;
+
+                
+            }
+
+            & .imageChanger {
+                width: 300px;
+                height: 300px;
+                border: 3px dashed map-get($map: $colors, $key: 'secuBlur2');
+                transition: .3s ease;
+                border-radius: 8px;
+                padding: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: .3s ease;
+                    border-radius: 5px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    border: 3px dashed map-get($map: $colors, $key: 'deta');
+                
+                    & img {
+                        filter:invert(.1);
+
+                    }
+
+                }
+            }
         }
     }
 }

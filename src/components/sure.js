@@ -1,6 +1,9 @@
 import { useClickAway } from "@uidotdev/usehooks";
+import { useKey } from "react-use";
 
-export function Sure({ msg, func, setState, state }) {
+export function Sure({ msg, func, setState, state, extraInfo = [] }) {
+    useKey('Escape', () => { setState(false); });
+
     const ref = useClickAway(() => {
         setState(false);
     });
@@ -11,7 +14,7 @@ export function Sure({ msg, func, setState, state }) {
             <div ref={ref} className="flyBox">
                 <p>{msg}</p>
                 <div>
-                    <button onClick={func} className="linkButton">Yes, continue</button>
+                    <button onClick={() => func(...extraInfo)} className="linkButton">Yes, continue</button>
                     <button className="SecundaryButton" onClick={() => setState(false)}>No, cancel</button>
                 </div>
             </div>

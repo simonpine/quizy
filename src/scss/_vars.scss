@@ -4,6 +4,7 @@ $colors: (
     'main':#2F0C29,
     'secu': #ffff,
     'secuBlur':rgb(255, 255, 255, .9),
+    'secuBlur2':rgb(255, 255, 255, .5),
     'deta': #ff755d,
     'deta2': #B95CA7,
     'deta2Blur': #b95ca638,
@@ -28,6 +29,9 @@ $colors: (
     &:focus{
         outline: none;
     }
+}
+figure{
+    margin: 0px;
 }
 
 button{
@@ -57,6 +61,11 @@ body {
     @include flex(row-reverse, center, center, center, wrap);
 }
 .content {
+    overflow-x:clip;
+    overflow-y: visible;
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
     min-height: calc(100vh - 248px);
 }
 .Page404{
@@ -81,4 +90,12 @@ label {
     & span{
         color: map-get($map: $colors, $key: 'deta');
     }
+}
+
+h1{
+    z-index: 1;
+}
+.AddGap{
+    display: flex;
+    gap: 10px;
 }

@@ -3,9 +3,24 @@ import { auth } from '../firebasecom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebasecom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export const UserContext = createContext();
+
+const ToastStyle = {
+  position: "bottom-center",
+  style: {
+      background: 'rgb(255, 255, 255, .9)',
+      color: '#2F0C29',
+      borderRadius: '8px',
+      fontSize: '1.3rem',
+      fontWeight: '600'
+  },
+  iconTheme: {
+      secondary: '#2F0C29',
+      // primary: '#ff755d',
+  },
+}
 
 export const UserProvider = ({ children }) => {
   const [userAuth, loading] = useAuthState(auth);
@@ -50,20 +65,7 @@ export const UserProvider = ({ children }) => {
     e.preventDefault()
     setApiLoading(true)
     if (!isValidOpenAIKeyFormat(e.target.ApiKeyInput.value) & e.target.ApiKeyInput.value !== '') {
-      toast.error('The API Key is not valid.', {
-        position: "bottom-center",
-        style: {
-          background: 'rgb(255, 255, 255, .9)',
-          color: '#2F0C29',
-          borderRadius: '8px',
-          fontSize: '1.3rem',
-          fontWeight: '600'
-        },
-        iconTheme: {
-          secondary: '#2F0C29',
-          primary: '#ff755d',
-        },
-      })
+      toast.error('The API Key is not valid.', ToastStyle)
       setApiLoading(false)
       return 
     }
@@ -73,37 +75,11 @@ export const UserProvider = ({ children }) => {
       apikey: e.target.ApiKeyInput.value
     }
     await setDoc(doc(db, "users", auth.currentUser.uid), result).then(()=>{
-      toast.success('API key saved.', {
-        position: "bottom-center",
-        style: {
-          background: 'rgb(255, 255, 255, .9)',
-          color: '#2F0C29',
-          borderRadius: '8px',
-          fontSize: '1.3rem',
-          fontWeight: '600'
-        },
-        iconTheme: {
-          secondary: '#2F0C29',
-          primary: '#ff755d',
-        },
-      })
+      toast.success('API key saved.', ToastStyle)
       setUser(result)
 
     }).catch(()=>{
-      toast.error('Something went wrog, try again.', {
-        position: "bottom-center",
-        style: {
-          background: 'rgb(255, 255, 255, .9)',
-          color: '#2F0C29',
-          borderRadius: '8px',
-          fontSize: '1.3rem',
-          fontWeight: '600'
-        },
-        iconTheme: {
-          secondary: '#2F0C29',
-          primary: '#ff755d',
-        },
-      })
+      toast.error('Something went wrog, try again.', ToastStyle)
       setUser(result)
     })
 
@@ -116,7 +92,6 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider value={{ user, isthere, logout, apiLoading, apiSave }}>
       {children}
-      <Toaster />
     </UserContext.Provider>
   );
 };

@@ -8,6 +8,8 @@ import { RoutesForTheApp } from './router';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { Layout } from './components/layout';
+import { Toaster } from 'react-hot-toast';
+
 const firebaseConfig = {
   apiKey: "AIzaSyC6AtVb7hPaEwpTfs0Grf65Ef4Tg2w4ELc",
   authDomain: "quizy-b1cbf.firebaseapp.com",
@@ -27,6 +29,7 @@ root.render(
     <BrowserRouter>
       <Layout>
         <RoutesForTheApp />
+        <Toaster />
       </Layout>
     </BrowserRouter>
   </ParallaxProvider>
