@@ -544,3 +544,32 @@ select {
     // font-weight: 800;
     animation: colorChange 5s ease infinite;
 }
+
+.uploadingBanner{
+    & img{
+        width: 400px;
+    }
+    width: fit-content;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    & h2{
+        text-align: center;
+        margin: 0px;
+    }
+}
+
+.loader2 {
+    height: 4px;
+    width: 100%;
+    --c:no-repeat linear-gradient(#ff755d 0 0);
+    background: var(--c),var(--c),#13051091;
+    background-size: 60% 100%;
+    animation: l16 5s infinite;
+  }
+  @keyframes l16 {
+    0%   {background-position:-150% 0,-150% 0}
+    66%  {background-position: 250% 0,-150% 0}
+    100% {background-position: 250% 0, 250% 0}
+  }

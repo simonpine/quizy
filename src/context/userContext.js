@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
               apikey: "",
               imageUrl: auth.currentUser.photoURL
             }
-            setDoc(doc(db, "users", auth.currentUser.uid), example);
+            setDoc(docRef, example);
             setUser(example)
           }
           else {

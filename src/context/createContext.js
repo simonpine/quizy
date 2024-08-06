@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import { arrayMove } from "@dnd-kit/sortable";
 
-// import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
+import { db, storage } from "../firebasecom";
+import { doc, setDoc } from 'firebase/firestore';
 
 import { createOpenAI } from '@ai-sdk/openai';
 import { generateObject, streamObject } from 'ai';
@@ -50,6 +52,9 @@ export const QuizProvider = ({ children }) => {
         subject: 'mathematics',
         banner: undefined,
     })
+
+
+    const [quizUploading, setQuizUploading] = useState(false)
 
 
     function changeValueForm(name, value) {
@@ -110,7 +115,6 @@ export const QuizProvider = ({ children }) => {
                     schema: z.object({
                         quizTitle: z.string(),
                         quizDescription: z.string(),
-                        promptForBanner: z.string(),
                         multipleChoiseQuestions: z.array(
                             z.object({
                                 id: z.number(),
@@ -132,7 +136,8 @@ export const QuizProvider = ({ children }) => {
                                 `
                             You are a quiz maker. Your task is to follow the next steps to create a quiz.
 
-                            Step 1: First use the description of the topic to create the title of the quiz, the description of the quiz, and a prompt that will be used to create a banner for the quiz.
+
+                            Step 1: First use the description of the topic to create the title of the quiz and the description of the quiz.
                             The description of the topic will be delimited by triple hashtags (###).
 
                             Step 2: Create 100 multiple choice questions that are linked to the description of the topic.
@@ -149,7 +154,7 @@ export const QuizProvider = ({ children }) => {
 
                             Step 7: Then, for each question, create 3 more answers that will be not correct.
 
-                            Step 8: Finally return to the user an object with the quizTitle, quizDescription, promptForBanner and an array of multipleChoiseQuestions, that content ${AIForm.numQuestions} objects with each question, the indexOfTheCorrectAnswer and an array with the answers.
+                            Step 8: Finally return to the user an object with the quizTitle, quizDescription and an array of multipleChoiseQuestions, that content ${AIForm.numQuestions} objects with each question, the indexOfTheCorrectAnswer and an array with the answers.
                             
                             Note: The return must have the array of questions.
                             `
@@ -182,7 +187,6 @@ export const QuizProvider = ({ children }) => {
                         setFormQuizSave({
                             title: partialObject.quizTitle,
                             description: partialObject.quizDescription,
-                            promptForBanner: undefined,
                             subject: 'mathematics',
                         })
                         setQuestions(partialObject.multipleChoiseQuestions)
@@ -277,10 +281,10 @@ export const QuizProvider = ({ children }) => {
                 {
                     role: 'system',
                     content:
-                    `
+                        `
                     You are a quiz maker. Your task is to follow the next steps to create a quiz.
 
-                    Step 1: First use the description of the topic to create the title of the quiz, the description of the quiz, and a prompt that will be used to create a banner for the quiz.
+                    Step 1: First use the description of the topic to create the title of the quiz and the description of the quiz.
                     The description of the topic will be delimited by triple hashtags (###).
 
                     Step 2: Create 100 multiple choice questions that are linked to the description of the topic.
@@ -297,7 +301,7 @@ export const QuizProvider = ({ children }) => {
 
                     Step 7: Then, for each question, create 3 more answers that will be not correct.
 
-                    Step 8: Finally return to the user an object with the quizTitle, quizDescription, promptForBanner and an array of multipleChoiseQuestions, that content ${AIForm.numQuestions} objects with each question, the indexOfTheCorrectAnswer and an array with the answers.
+                    Step 8: Finally return to the user an object with the quizTitle, quizDescription and an array of multipleChoiseQuestions, that content ${AIForm.numQuestions} objects with each question, the indexOfTheCorrectAnswer and an array with the answers.
                     
                     Note: The return must have the array of questions.
                     `
@@ -333,23 +337,49 @@ export const QuizProvider = ({ children }) => {
         setAILoading(false)
     }
 
-    // function uploadQuizz() {
-    //     const db = getFirestore()
-    //     const quizzesColection = collection(db, 'quizzes')
-    //     const quizz = {
-    //         long: 0,
-    //         creator: '',
-    //         urlImg: '',
-    //         description: '',
-    //         results: [],
-    //         theme: '',
-    //         public: true,
-    //         presentOnce: true,
-    //         questions: questions,
-    //         needApikey: false
-    //     }
-    //     return addDoc(quizzesColection, quizz).then((y) => { return (y.id) })
-    // }
+    async function uploadQuiz(userName) {
+        setQuizUploading(true)
+        const questionsToUpload = await Promise.all(
+            questions.map(async (question) => {
+                if (question.banner === undefined) return { ...question, banner: '' }
+
+                const imageRef = ref(storage, `img/${btoa(((Math.random(0, (new Date()).getTime())).toString()).slice(0, -10))}`);
+                const snapshot = await uploadBytes(imageRef, question.banner)
+                const url = await getDownloadURL(snapshot.ref)
+                return { ...question, banner: url }
+            })
+        ).catch(() => {
+            toast.error('Cannot upload the images of the questions', ToastStyle)
+            return questions
+        })
+
+        toast.success('The question were saved', ToastStyle)
+
+        const imageRef = ref(storage, `img/${btoa(((Math.random(0, (new Date()).getTime())).toString()).slice(0, -10))}`);
+        const snapshot = await uploadBytes(imageRef, formQuizSave.banner)
+        const url = await getDownloadURL(snapshot.ref)
+
+        const quizId = btoa(((Math.random(0, (new Date()).getTime())).toString()).slice(0, -10))
+
+        const QuizToUpload = {
+            ...formQuizSave,
+            id: quizId,
+            banner: url,
+            creator: userName,
+            questions: questionsToUpload
+        }
+
+        // console.log(QuizToUpload)
+
+        await setDoc(doc(db, "quizzes", quizId), QuizToUpload);
+        navigate(`/tests/${quizId}`)
+
+
+        toast.success('The quiz was uploaded', ToastStyle)
+        setQuizUploading(false)
+
+
+    }
     return (
         <QuizContext.Provider value={{
             AIForm,
@@ -362,7 +392,9 @@ export const QuizProvider = ({ children }) => {
             addQuestion,
             addAIQuestion,
             changeValueFormQuizSave,
-            formQuizSave
+            formQuizSave,
+            quizUploading,
+            uploadQuiz
         }} >
             {children}
         </QuizContext.Provider>
