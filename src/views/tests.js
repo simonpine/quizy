@@ -1,56 +1,117 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from 'react-router-dom'
-import folder from '../img/folder.png'
-import { collection, getDocs, getFirestore } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore"
 import { Card } from "../components/card"
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+import { useDebounce } from "@uidotdev/usehooks";
+import { db } from "../firebasecom";
+import { query, where } from "firebase/firestore";
+
 export function Tests() {
-    const navigate = useNavigate();
-    const [code, setCode] = useState('')
-    const newCode = (evt) => {
-        setCode(evt.target.value)
-        setCode(evt.target.value.replace(' ', ''))
+    const [searchFilters, setSearchFilters] = useState({
+        name: '',
+        subject: 'all',
+    })
+    const debouncedFilters = useDebounce(searchFilters, 200);
+
+
+
+    const newFilter = (name, value) => {
+        setSearchFilters(previous => {
+            return { ...previous, [name]: value }
+        })
     }
     const handleSubmit = (evt) => {
         evt.preventDefault()
-        if (code !== '') {
-            navigate(`/tests/${code}`)
-        }
     }
 
     const [qizzes, setQuizzes] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        const db = getFirestore()
-        const itemsColection = collection(db, 'quizzes')
-        getDocs(itemsColection).then((snap) => {
-            const prov = []
-            snap.docs.forEach((c) => {
-                let a = { ...c.data(), id: c.id, }
-                prov.push(a)
+        (async () => {
+            setLoading(true)
+            const itemsColection = await collection(db, 'quizzes')
+
+            const q = await debouncedFilters.subject === 'all' ? query(itemsColection, where('title', '>=', debouncedFilters.name), where('title', '<=', debouncedFilters.name + '\uf8ff')) : query(itemsColection, where('subject', '==', debouncedFilters.subject))
+
+            await getDocs(q).then((snap) => {
+                const prov = snap.docs.map((c) => {
+                    return { ...c.data() }
+                })
+                setQuizzes(prov)
             })
-            setQuizzes(prov)
-        }).then((data) => setLoading(!!data))
-    }, [])
+            setLoading(false)
+        })()
+    }, [debouncedFilters])
 
     return (
         <>
-            <form className="codeForm" onSubmit={handleSubmit}>
-                <div>
-                    <h2 className="subtitleHome">Find a specific quiz</h2>
-                    <p className="pHome">Enter the code to find and resolve a specific quiz, the result will be private</p>
-                    <input className="inputCode" placeholder="n851PMAfkaBVfVNSx8Zg" type='text' value={code} onChange={newCode} />
-                    <button className="link" type="submit">Find the test</button>
+            <div className="quiestionAndAsideCont">
+                <h1 className="pageInto">🔥 Find some <span>Tests</span></h1>
+
+                <div className="fullContentTests">
+                    <form className="formForSearch" onSubmit={handleSubmit}>
+                        <div>
+                            <select value={searchFilters.subject} name="subject" onChange={(evt) => newFilter(evt.target.name, evt.target.value)}>
+                                <option value="all">All subjects</option>
+                                <optgroup label="Academic Subjects">
+                                    <option value="mathematics">Mathematics</option>
+                                    <option value="science">Science</option>
+                                    <option value="history">History</option>
+                                    <option value="geography">Geography</option>
+                                    <option value="literature">Literature</option>
+                                    <option value="language_arts">Language Arts</option>
+                                    <option value="foreign_languages">Foreign Languages</option>
+                                    <option value="art_music">Art and Music</option>
+                                </optgroup>
+                                <optgroup label="General Knowledge">
+                                    <option value="current_events">Current Events</option>
+                                    <option value="pop_culture">Pop Culture</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="technology">Technology</option>
+                                    <option value="food_cooking">Food and Cooking</option>
+                                </optgroup>
+                                <optgroup label="Specialized Topics">
+                                    <option value="business_finance">Business and Finance</option>
+                                    <option value="health_medicine">Health and Medicine</option>
+                                    <option value="philosophy">Philosophy</option>
+                                    <option value="religion_mythology">Religion and Mythology</option>
+                                    <option value="psychology">Psychology</option>
+                                </optgroup>
+                                <optgroup label="Miscellaneous">
+                                    <option value="trivia">Trivia</option>
+                                    <option value="logic_puzzles">Logic and Puzzles</option>
+                                    <option value="lifestyle_hobbies">Lifestyle and Hobbies</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <input placeholder="The title of a quiz..." value={searchFilters.name} className="inputText" type="text" name="name" onChange={(evt) => newFilter(evt.target.name, evt.target.value)} />
+                        <button className="linkButton" type="submit">Search</button>
+                    </form>
+                    <div className="QuizzesContainer">
+                        {loading ?
+                            <figure className="loader2" />
+                            :
+                            <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 1000: 3 }}>
+                                <Masonry gutter={'15px'}>
+                                    {qizzes.map((quiz) => {
+                                        return <Card key={quiz.id} info={quiz} />
+                                    })}
+                                </Masonry>
+                            </ResponsiveMasonry>
+                        }
+                    </div>
+
+
                 </div>
-                <img alt="Folder that shows there is not quizies" className="folerImg" src={folder} />
-            </form>
-            <div className="quizzesContainer">
+            </div>
+            {/* <div className="quizzesContainer">
                 {loading && <div className="loadingContainer center" ><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>}
                 {qizzes.map((quiz) => {
                     return (
                         <Card key={quiz.id} title={quiz.title} theme={quiz.theme} img={quiz.urlImg} des={quiz.description} id={quiz.id} />
                     )
                 })}
-            </div>
+            </div> */}
         </>
     )
 }

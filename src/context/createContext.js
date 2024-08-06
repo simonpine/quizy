@@ -363,6 +363,7 @@ export const QuizProvider = ({ children }) => {
 
         const QuizToUpload = {
             ...formQuizSave,
+            title: formQuizSave.title.toLowerCase(),
             id: quizId,
             banner: url,
             creator: userName,

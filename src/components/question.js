@@ -44,12 +44,6 @@ export function Question({ info }) {
                     </div>
                 </div>
                 <div className='HorizontalSection'>
-                    {info?.banner !== undefined && <div className='ImageInputCont'>
-
-                        <img src={URL.createObjectURL(info.banner)} alt="Question banner" />
-
-
-                    </div>}
                     <div >
                         <h3>{info?.question}</h3>
                         <h4>- Aswer choices: </h4>
@@ -63,6 +57,12 @@ export function Question({ info }) {
                             }
                         </ul>
                     </div>
+                    {info?.banner !== undefined && <div className='ImageInputCont'>
+
+<img src={URL.createObjectURL(info.banner)} alt="Question banner" />
+
+
+</div>}
                 </div>
             </article>
         </>

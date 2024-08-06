@@ -1,129 +1,101 @@
-// .inputCode{
-//     border-radius: 20px;
-//     background: none;
-//     border: 1px solid map-get($map:$colors, $key:deta );
-//     padding: 5px 15px;
-//     width: 300px;
-//     margin-bottom: 15px;
-// }
-// .codeForm{
-//     width: 100%;
-//     position: relative;
-//     top: 30px;
-//     margin-bottom: 30px;
-//     @include flex(row, center, space-around, center, wrap);
-//     & div{
-//         width: 400px;
-//         & p{
-//             width: 100%;
-//         }
-//         @media screen and (max-width: 450px) {
-//             width: 100%;
-//             & input{
-//                 width: 100%;
-//             }
-//         }
-//     }
-// }
-// .folerImg{
-//     width: 200px;
-//     @media screen and (max-width: 650px) {
-//         display: none;
-//     }
-// }
-// .quizzesContainer{
-//     margin-top: 70px;
-//     @include flex(row, center, space-around, center, wrap);
-// }
-// .card{
-//     & img{
-//         border-radius: 20px 20px 0px 0px;
-//     }
-//     width: 18rem;
-//     background-color: map-get($map:$colors, $key:mainBlur );
-//     border-radius: 20px;
-//     margin: 20px;
-// }
-// .card-theme{
-//     font-size: 17px;
-// }
-// .card-text{
-//     font-size: 17px;
-//     font-weight: 100;
-// }
-// .center2{
-//     height: 75vh;
-// }
-// .textcont{
-//     text-align: right;
-//     width: 400px;
-//     @media screen and (max-width: 450px) {
-//         width: 100%;
-//     }
-// }
-// .sectionerror{
-//     width: 70%;
-// }
-// .quizCode{
-//     font-weight: 100;
-//     font-size: 20px;
-//     & span{
-//         color: map-get($map:$colors, $key:deta );
-//     }
-// }
-// .imgResolve{
-//     object-fit: cover;
-//     width: 100%;
-//     height: 100%;
-// }
-// .imgResolveContainer{
-//     overflow: hidden;
-//     width: 300px;
-//     height: 300px;
-//     border-radius: 20px;
-//     @media screen and (max-width: 1000px) {
-//        margin-top: 40px;
-//     }
-// }
-// label{
-//     &:hover{
-//         cursor: pointer;
-//     }
-//     margin-left: 10px;
-//     font-size: 20px;
-//     font-weight: 100;
-// }
-// .questionResolve{
-//     width: 490px;
-//     @media screen and (max-width: 1000px) {
-//         width: 100%;
-//     }
-//     margin: 20px 0px;
-//     background-color: map-get($map:$colors, $key:mainBlur );
-//     padding: 23px;
-//     border-radius: 20px;
-// }
-// .questionResolveContainer{
-//     margin-top: 40px;
-//     @include flex(row, center, space-between, center, wrap);
-//     @media screen and (max-width: 1000px) {
-//         flex-direction: column;
-//         justify-content: center;
-//     }
-// }
-// .questionText{
-//     font-size: 20px;
-// }
-// .result{
-//     font-size: 50px;
-//     font-weight: 700;
-//     color: map-get($map:$colors, $key:deta );
-// }
-// .resultCont{
-//     width: 100%;
-//     padding-top: 20px;
-//     padding-bottom: 16px;
-//     margin-top: 20px;
-//     text-align: center;
-//     border-top: 1px solid map-get($map:$colors, $key:deta );
-// }
+.formForSearch {
+    display: flex;
+    gap: 20px;
+}
+
+.QuizzesContainer {
+    margin-top: 20px;
+}
+
+.card {
+    overflow: hidden;
+    border: 0px;
+    border: 3px solid map-get($map: $colors, $key: 'main');
+    border-radius: 12px;
+    background-color: map-get($map: $colors, $key: 'mainBlur');
+    display: flex;
+    transition: .1s ease;
+
+    & .card-body {
+        padding: 10px;
+        width: 100%;
+        position: relative;
+        
+    }
+
+    & h2 {
+        color: map-get($map: $colors, $key: 'secuBlur');
+        text-align: left;
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin: 10px 0px 0px;
+    }
+
+    &:hover {
+        border: 3px dashed map-get($map: $colors, $key: 'secuBlur2');
+
+    }
+}
+
+.QuestionsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ResolveBanner{
+    width: 100%;
+    border-radius: 12px;
+    max-height: 200px;
+    object-fit: cover;
+
+}
+
+.quiestionAndAsideCont{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.SpeColor{
+    color: map-get($map: $colors, $key: 'deta');
+}
+
+.quizDescription{
+    margin: 0px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 8px;
+    color:  map-get($map: $colors, $key: 'main');
+    background-color: map-get($map: $colors, $key: 'secuBlur');
+    font-size: 1.5rem;
+
+    & span{
+        font-weight: 600;
+        color: map-get($map: $colors, $key: 'main');
+    }
+}
+.MoreInfo {
+    position: absolute;
+    display: flex;
+    width: calc(100% - 20px);
+    justify-content: space-between;
+    top: -15px;
+    opacity: .9;
+    & span{
+        color: map-get($map: $colors, $key: 'main');
+        padding: 2px 10px;
+        background-color: map-get($map: $colors, $key: 'deta');
+        border-radius: 100px;
+        font-size: 1.1rem;
+        font-weight: 600;
+
+    }
+}
+
+.BoxResult{
+    width: fit-content !important;
+    & h3{
+        font-size: 3rem;
+        font-weight: 600;
+    }
+}
