@@ -46,7 +46,8 @@ export const QuizProvider = ({ children }) => {
 
     const [formQuizSave, setFormQuizSave] = useState({
         description: '',
-
+        title: '',
+        subject: 'mathematics',
         banner: undefined,
     })
 
@@ -138,9 +139,11 @@ export const QuizProvider = ({ children }) => {
 
                             Step 3: Sort the group of question by the difficulty of each one, the difficulty of the questions is from 1 (the most easy ones) to 5 (The hardest ones).
 
-                            Step 4: From the sorted group of questions, just keep the one that have a level ${AIForm.dificulty} of difficulty.
+                            Step 4: From the sorted group of questions, just keep the one that have a difficulty level spesify by the user.
+                            The difficulty level will be delimited by triple sum symbol (+++).
 
-                            Step 5: From the previous group of questions, select ${AIForm.numQuestions}.
+                            Step 5: From the previous group of questions, select the number of questions the user specify.
+                            The number of questions will be delimited by triple quotation marks (''').
 
                             Step 6: For each question, create a correct answer.
 
@@ -153,7 +156,15 @@ export const QuizProvider = ({ children }) => {
                         },
                         {
                             role: 'user',
-                            content: `Create a quiz based on the following topic description ###${AIForm.description}###`
+                            content: `Create a quiz based on the following topic description ###This quiz focuses on our Solar System, including planets, moons, and other celestial bodies. It also explores the broader universe, covering stars, galaxies, black holes, and the latest discoveries in astronomy.###, with the next number of questions '''10''', and with a dificulty level of +++5+++.`
+                        },
+                        {
+                            role: 'assistant',
+                            content: '[{"id":1,"idOfTheCorrectAnswer":2,"question":"What is the largest planet in our Solar System?","answers":[{"id":1,"answer":"Earth"},{"id":2,"answer":"Jupiter"},{"id":3,"answer":"Saturn"},{"id":4,"answer":"Mars"}],"type":"MultipleChoice"},{"id":2,"idOfTheCorrectAnswer":1,"question":"Which celestial body is known as the Red Planet?","answers":[{"id":1,"answer":"Mars"},{"id":2,"answer":"Venus"},{"id":3,"answer":"Mercury"},{"id":4,"answer":"Neptune"}],"type":"MultipleChoice"},{"id":3,"idOfTheCorrectAnswer":3,"question":"What force keeps the planets in orbit around the Sun?","answers":[{"id":1,"answer":"Friction"},{"id":2,"answer":"Magnetism"},{"id":3,"answer":"Gravity"},{"id":4,"answer":"Inertia"}],"type":"MultipleChoice"},{"id":4,"idOfTheCorrectAnswer":4,"question":"Which of the following is a gas giant?","answers":[{"id":1,"answer":"Earth"},{"id":2,"answer":"Mars"},{"id":3,"answer":"Pluto"},{"id":4,"answer":"Uranus"}],"type":"MultipleChoice"},{"id":5,"idOfTheCorrectAnswer":1,"question":"What is the name of our galaxy?","answers":[{"id":1,"answer":"Milky Way"},{"id":2,"answer":"Andromeda"},{"id":3,"answer":"Triangulum"},{"id":4,"answer":"Whirlpool"}],"type":"MultipleChoice"},{"id":6,"idOfTheCorrectAnswer":2,"question":"What type of star is our Sun classified as?","answers":[{"id":1,"answer":"Red Giant"},{"id":2,"answer":"Yellow Dwarf"},{"id":3,"answer":"Blue Supergiant"},{"id":4,"answer":"White Dwarf"}],"type":"MultipleChoice"},{"id":7,"idOfTheCorrectAnswer":3,"question":"Which planet has the most moons?","answers":[{"id":1,"answer":"Earth"},{"id":2,"answer":"Mars"},{"id":3,"answer":"Jupiter"},{"id":4,"answer":"Saturn"}],"type":"MultipleChoice"},{"id":8,"idOfTheCorrectAnswer":4,"question":"What phenomenon occurs when a massive star collapses under its own gravity?","answers":[{"id":1,"answer":"Supernova"},{"id":2,"answer":"Nova"},{"id":3,"answer":"Black Hole"},{"id":4,"answer":"All of the above"}],"type":"MultipleChoice"},{"id":9,"idOfTheCorrectAnswer":1,"question":"Who was the first person to walk on the Moon?","answers":[{"id":1,"answer":"Neil Armstrong"},{"id":2,"answer":"Buzz Aldrin"},{"id":3,"answer":"Yuri Gagarin"},{"id":4,"answer":"Michael Collins"}],"type":"MultipleChoice"},{"id":10,"idOfTheCorrectAnswer":3,"question":"What is dark matter thought to make up in the universe?","answers":[{"id":1,"answer":"10% of the universe"},{"id":2,"answer":"25% of the universe"},{"id":3,"answer":"27% of the universe"},{"id":4,"answer":"50% of the universe"}],"type":"MultipleChoice"}]'
+                        },
+                        {
+                            role: 'user',
+                            content: `Create a quiz based on the following topic description ###${AIForm.description}###, with the next number of questions '''${AIForm.numQuestions}''', and with a dificulty level of +++5+++.`
                         }
                     ]
 
@@ -161,13 +172,19 @@ export const QuizProvider = ({ children }) => {
                     toast.error('Your API key is not working.', ToastStyle)
                     setAILoading(false)
                 })
-
+                await setQuestions([])
                 await navigate('/create/questions')
 
                 let result = []
 
                 for await (const partialObject of partialObjectStream) {
                     if (partialObject?.multipleChoiseQuestions) {
+                        setFormQuizSave({
+                            title: partialObject.quizTitle,
+                            description: partialObject.quizDescription,
+                            promptForBanner: undefined,
+                            subject: 'mathematics',
+                        })
                         setQuestions(partialObject.multipleChoiseQuestions)
                         result = partialObject.multipleChoiseQuestions
                     }
@@ -260,7 +277,7 @@ export const QuizProvider = ({ children }) => {
                 {
                     role: 'system',
                     content:
-                        `
+                    `
                     You are a quiz maker. Your task is to follow the next steps to create a quiz.
 
                     Step 1: First use the description of the topic to create the title of the quiz, the description of the quiz, and a prompt that will be used to create a banner for the quiz.
@@ -270,9 +287,11 @@ export const QuizProvider = ({ children }) => {
 
                     Step 3: Sort the group of question by the difficulty of each one, the difficulty of the questions is from 1 (the most easy ones) to 5 (The hardest ones).
 
-                    Step 4: From the sorted group of questions, just keep the one that have a level ${AIForm.dificulty} of difficulty.
+                    Step 4: From the sorted group of questions, just keep the one that have a difficulty level spesify by the user.
+                    The difficulty level will be delimited by triple sum symbol (+++).
 
-                    Step 5: From the previous group of questions, select ${AIForm.numQuestions}.
+                    Step 5: From the previous group of questions, select the number of questions the user specify.
+                    The number of questions will be delimited by triple quotation marks (''').
 
                     Step 6: For each question, create a correct answer.
 
@@ -285,7 +304,7 @@ export const QuizProvider = ({ children }) => {
                 },
                 {
                     role: 'user',
-                    content: `Create a quiz based on the following topic description ###${AIForm.description}###`
+                    content: `Create a quiz based on the following topic description ###${AIForm.description}###, with the next number of questions '''${AIForm.numQuestions}''', and with a dificulty level of +++5+++.`
                 },
                 {
                     role: "assistant",
@@ -342,7 +361,8 @@ export const QuizProvider = ({ children }) => {
             saveChanges,
             addQuestion,
             addAIQuestion,
-            changeValueFormQuizSave
+            changeValueFormQuizSave,
+            formQuizSave
         }} >
             {children}
         </QuizContext.Provider>

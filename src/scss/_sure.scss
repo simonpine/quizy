@@ -57,7 +57,7 @@
         left: 50%;
         top: 50%;
         width: 100%;
-        max-width: 700px;
+        max-width: 1000px;
         transform: translate(-50%, -50%);
         background-color: map-get($map: $colors, $key: 'main');
         padding: 20px;
@@ -65,7 +65,7 @@
         & h2{
             font-size: 2.5rem;
             font-weight: 600;
-            color: map-get($map: $colors, $key: 'deta2');
+            // color: map-get($map: $colors, $key: 'deta2');
         }
         @media screen and (max-width: 1000px) {
             // margin: 0px 30px;
@@ -79,6 +79,9 @@
                 & .imageChanger{
                     width: 100%;
                 }
+            }
+            & .AnswersConts{
+                max-height: 100%;
             }
     
         }
@@ -97,9 +100,18 @@
                 gap: 20px;
 
                 & .InputWriteFields{
+                    flex-grow: 1;
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
+
+                    & .AwnsConst{
+                        flex-grow: 1;
+                        display: flex;
+                        flex-direction: column;
+                        
+                    
+                    }
                 }
             }
 
@@ -112,8 +124,8 @@
             }
 
             & .imageChanger {
-                width: 300px;
-                height: 300px;
+                width: 400px;
+                height: 400px;
                 border: 3px dashed map-get($map: $colors, $key: 'secuBlur2');
                 transition: .3s ease;
                 border-radius: 8px;

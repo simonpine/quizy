@@ -7,7 +7,7 @@ import plusImg from '../img/plus-small.png'
 import trash from '../img/trash.png'
 import { useContext } from "react";
 import { QuizContext } from "../context/createContext";
-
+import cross from '../img/cross-small.png'
 
 export function EditingQuestion({ info, setState, state }) {
 
@@ -43,7 +43,11 @@ export function EditingQuestion({ info, setState, state }) {
             }
             <div className="sureContainer">
                 <div key={currentInfo?.id ? currentInfo?.id : Math.random()} ref={ref} className="flyBoxEdit">
-                    <h2>Edit your question: </h2>
+                    <div className="spaceBetween">
+                        <h2>Edit your question </h2>
+
+                        <button onClick={()=> setState(false)} className="closeButton"><img alt="Close the edit secction" src={cross}/></button>
+                    </div>
                     <form onSubmit={(evt)=>{
                         evt.preventDefault()
                         saveChanges(currentInfo.id, currentInfo)
@@ -51,7 +55,7 @@ export function EditingQuestion({ info, setState, state }) {
                     }} className="FormForEdit">
                         <div className="formFields">
                             <div className="InputWriteFields">
-                                <div>
+                                <div className="inputAndLabeGap">
                                     <label>Question: </label>
                                     <textarea onChange={(evt) => {
                                         setCurrentInfo(previus => {
@@ -62,7 +66,7 @@ export function EditingQuestion({ info, setState, state }) {
                                         })
                                     }} required className="inputText" type="text" value={currentInfo?.question} />
                                 </div>
-                                <div>
+                                <div className="AwnsConst">
 
                                     <label><img style={{ marginLeft: '0px' }} className="info" alt="Show more information" src={moreInfo} id="AnswersInfo" />Answers: </label>
                                     <div className="AnswersConts">

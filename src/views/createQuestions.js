@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { QuizContext } from "../context/createContext"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { Question } from "../components/question";
 import { Tooltip } from "react-tooltip";
@@ -10,13 +10,17 @@ import { closestCenter, DndContext } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import moreInfo from '../img/interrogation.png'
 import testImage from '../img/tests.svg'
+import { PublishSecction } from '../components/publishSection';
 
 
 export function CreateQuestions() {
     const { questions, AILoading, hundleDrag, addQuestion, addAIQuestion } = useContext(QuizContext)
     const { user } = useContext(UserContext)
+    const [publish, setPulish] = useState(false)
+
     return (
         <>
+            <PublishSecction setState={setPulish} state={publish} />
             {!user?.apikey &&
                 <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10, fontSize: '1.5rem', color: '#2F0C29', fontWeight: '500' }} clickable anchorSelect="#GenerateByAi" place="left">
                     You must be logged in and have an <br /> API key to use this feature.
@@ -36,7 +40,7 @@ export function CreateQuestions() {
                             {questions.length === 0 ?
                                 <button onClick={addQuestion} disabled={AILoading} className="SecundaryButton">Add first question <img alt="Add another question" src={plusImg} /></button>
                                 :
-                                <button disabled={questions.length === 0 || AILoading} className="linkButton">Publish quiz</button>
+                                <button onClick={()=>setPulish(true)} disabled={questions.length === 0 || AILoading} className="linkButton">Publish quiz</button>
                             }
                         </div>
 

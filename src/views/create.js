@@ -27,7 +27,7 @@ export function Create() {
         :
         (
             <>
-                <Sure msg={'If you generate new questions, the old ones will be delete.'} func={handleSubmit} setState={setDeleteCurrent} state={deleteCurrent} extraInfo={[user?.apikey]} />
+                <Sure disabled={AILoading} msg={'If you generate new questions, the old ones will be delete.'} func={handleSubmit} setState={setDeleteCurrent} state={deleteCurrent} extraInfo={[user?.apikey]} />
                 {!user?.apikey &&
                     <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10 }} clickable anchorSelect="#Generate" place="top">
                         <Link className="ApiKeyNeeded" to='/settings'>Add an API key <img alt="Arrow to indicate the page change" src={arrow} /></Link>
@@ -81,8 +81,8 @@ export function Create() {
                                 <label htmlFor="NumQuestions" ><span>*</span> Number (#) of questions:</label>
                                 <div className="InputNumberAndRange">
 
-                                    <input id="NumQuestions" value={numQuestions} min={1} max={10} type='number' name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
-                                    <input className="slider" id="NumQuestions2" value={numQuestions} min={1} max={10} type="range" name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
+                                    <input id="NumQuestions" value={numQuestions} min={1} max={15} type='number' name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
+                                    <input className="slider" id="NumQuestions2" value={numQuestions} min={1} max={15} type="range" name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
 
                                 </div>
                             </div>

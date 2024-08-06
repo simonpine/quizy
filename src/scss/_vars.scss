@@ -95,6 +95,13 @@ label {
 h1{
     z-index: 1;
 }
+.spaceBetween{
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between
+
+
+}
 .AddGap{
     display: flex;
     gap: 10px;

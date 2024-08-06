@@ -77,27 +77,6 @@
         justify-content: space-between;
         flex-wrap: wrap;
 
-        & select {
-            flex-grow: 1;
-            background-color: map-get($map: $colors, $key: 'secuBlur');
-            border: 3px solid map-get($map: $colors, $key: 'secu');
-            color: map-get($map: $colors, $key: 'main');
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-radius: 8px;
-            padding: 1px 10px;
-
-            &:focus {
-                border: 3px solid map-get($map: $colors, $key: 'deta');
-
-            }
-
-            & option {
-                color: map-get($map: $colors, $key: 'main');
-                font-weight: 500;
-            }
-        }
-
         & div {
             width: auto;
         }
@@ -332,7 +311,7 @@ textarea::-webkit-scrollbar-thumb {
     & .quizesCont {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        // gap: 20px;
 
         & .FunctionsQuiestions {
             gap: 20px;
@@ -379,7 +358,7 @@ textarea::-webkit-scrollbar-thumb {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     background-color: map-get($map: $colors, $key: 'mainBlur');
 
     & h3 {
@@ -437,6 +416,7 @@ textarea::-webkit-scrollbar-thumb {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        flex-grow: 1;
     }
 
     & .ImageInputCont {
@@ -482,11 +462,14 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .AnswersConts{
+    padding-right: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    // flex-grow: 1;
     overflow: auto;
-    max-height: 145px;
+    // height: 100%;
+    max-height: 245px;
 }
 
 
@@ -521,9 +504,43 @@ textarea::-webkit-scrollbar-thumb {
         & p{
             font-size: 2.4rem;
         }
-        // background-color: #4FFFB0;
-        // display: flex;
-        // flex-direction: column;
-        // gap: 10px;
     }
+}
+
+
+.inputAndLabeGap{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+select {
+    flex-grow: 1;
+    background-color: map-get($map: $colors, $key: 'secuBlur');
+    border: 3px solid map-get($map: $colors, $key: 'secu');
+    color: map-get($map: $colors, $key: 'main');
+    font-size: 1.4rem;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 6px 10px;
+
+    &:focus {
+        border: 3px solid map-get($map: $colors, $key: 'deta');
+
+    }
+
+    & option {
+        color: map-get($map: $colors, $key: 'main');
+        font-weight: 500;
+    }
+
+    & optgroup{
+        color: map-get($map: $colors, $key: 'main');
+
+    }
+}
+.specialColor{ 
+    opacity: 0.9;
+    // font-weight: 800;
+    animation: colorChange 5s ease infinite;
 }

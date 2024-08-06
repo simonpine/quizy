@@ -426,3 +426,11 @@ input[type='radio'] {
     width: 20px;
     accent-color: map-get($map: $colors, $key: 'deta');
 }
+
+
+.closeButton{
+    filter: brightness(0) invert(1);
+    &:hover{
+        filter: brightness(1) invert(0);
+    }
+}
