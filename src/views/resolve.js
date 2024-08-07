@@ -11,6 +11,8 @@ export function Resolve() {
     const [loading, setLoading] = useState(true);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [showResult, setShowresults] = useState(false)
+    const [correctOnes, setCorrectOnes] = useState(0)
+
     useEffect(() => {
         (async () => {
             setLoading(true);
@@ -30,14 +32,19 @@ export function Resolve() {
         }));
     };
 
+
+    const [showAns, setShowAns] = useState(false)
     const handleSubmit = (evt) => {
         evt.preventDefault();
         // console.log('Selected Answers:', selectedAnswers);
-        setShowresults()
-
+        setShowresults(true)
+        let correct = 0
         quiz.questions.forEach(element => {
-            
+            if (element.idOfTheCorrectAnswer === selectedAnswers[element.id]) {
+                correct++
+            }
         });
+        setCorrectOnes(correct)
 
     };
 
@@ -50,16 +57,23 @@ export function Resolve() {
                 </div>
             ) : (
                 <>
-                    {showResult && <div className="sureContainer">
-                        <div className="flyBoxEdit BoxResult">
-                            <h3>Result: </h3>
-                            <div>
-                                <button onClick={() => {
-                                    setSelectedAnswers({})
-                                }} className="SecundaryButton">Try again</button>
+                    {showResult &&
+                        <div className="sureContainer">
+                            <div className="flyBoxEdit BoxResult">
+                                <h3>Result: {`${correctOnes}/${quiz.questions.length}`}</h3>
+                                <div className="AddGap">
+                                    <button onClick={() => {
+                                        setShowresults(false)
+                                        setSelectedAnswers({})
+                                    }} className="SecundaryButton">Try again</button>
+
+                                    <button onClick={() => {
+                                        setShowresults(false)
+                                        setShowAns(true)
+                                    }} className="linkButton">Show Answers</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>}
+                        </div>}
                     {!quiz.questions ? (
                         <div className="Page404">
                             <img alt="The quiz was not found" src={emptyImg} />
@@ -96,15 +110,29 @@ export function Resolve() {
                                                     <ul className='listAnswers'>
                                                         {question.answers.map((ans) => (
                                                             <li key={ans.id || Math.random()}>
-                                                                <input
-                                                                    type="radio"
-                                                                    name={question.id} // Grouping radios per question
-                                                                    id={`${ans.id}_${question.id}`}
-                                                                    value={ans.answer} // Storing answer text
-                                                                    checked={selectedAnswers[question.id] === ans.id}
-                                                                    onChange={() => handleAnswerChange(question.id, ans.id)}
-                                                                    required
-                                                                />
+                                                                {(showAns && selectedAnswers[question.id] === ans.id) &&
+                                                                    <>
+                                                                        {selectedAnswers[question.id] !== question.idOfTheCorrectAnswer && '❌'}
+                                                                    </>
+
+                                                                }
+
+                                                                {(showAns && question.idOfTheCorrectAnswer === ans.id) &&
+                                                                    '✅'
+                                                                }
+                                                                {!(showAns && selectedAnswers[question.id] === ans.id) && !(showAns && question.idOfTheCorrectAnswer === ans.id) &&
+                                                                    <input
+                                                                        disabled={showAns}
+                                                                        type="radio"
+                                                                        name={question.id} // Grouping radios per question
+                                                                        id={`${ans.id}_${question.id}`}
+                                                                        value={ans.answer} // Storing answer text
+                                                                        checked={selectedAnswers[question.id] === ans.id}
+                                                                        onChange={() => handleAnswerChange(question.id, ans.id)}
+                                                                        required
+                                                                    />}
+
+
                                                                 <label htmlFor={`${ans.id}_${question.id}`}>{ans.answer}</label>
                                                             </li>
                                                         ))}
@@ -118,7 +146,10 @@ export function Resolve() {
                                             </div>
                                         </article>
                                     ))}
-                                    <button className="linkButton" type="submit">Submit</button>
+                                    {!showAns ? <button className="linkButton" type="submit">Submit</button> : <button onClick={() => {
+                                        setShowAns(false);
+                                        setSelectedAnswers({})
+                                    }} className="linkButton" type="button">Try again</button>}
                                 </form>
                             </div>
                         </>

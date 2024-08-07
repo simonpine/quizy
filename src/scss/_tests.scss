@@ -107,8 +107,11 @@
 }
 
 .BoxResult{
+    // display: flex;
+    
     width: fit-content !important;
     & h3{
+        text-align: center;
         font-size: 3rem;
         font-weight: 600;
     }
