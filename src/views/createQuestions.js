@@ -27,7 +27,7 @@ export function CreateQuestions() {
                 </Tooltip>
             }
             <Tooltip style={{ backgroundColor: "#F9604E", zIndex: 10, fontSize: '1.5rem', color: '#2F0C29', fontWeight: '500' }} clickable anchorSelect="#AIInfo" place="top">
-                You must be loged in To acces to the AI tools.
+                You must be loged in to access to the AI tools.
             </Tooltip>
             <h1 className="pageInto">Create the <span>Questions</span></h1>
             <br />
