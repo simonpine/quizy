@@ -30,7 +30,7 @@
         flex-direction: row;
         justify-content: space-between;
 
-        & h3 {
+        & span {
             font-size: 1.2rem;
             font-weight: 600;
             margin: 0px;
@@ -44,7 +44,7 @@
         }
 
         & .angry {
-            color: #DB2E3C;
+            color: #ff6572;
         }
     }
 

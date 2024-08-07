@@ -82,7 +82,7 @@ export function Create() {
                                 <div className="InputNumberAndRange">
 
                                     <input id="NumQuestions" value={numQuestions} min={1} max={15} type='number' name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
-                                    <input className="slider" id="NumQuestions2" value={numQuestions} min={1} max={15} type="range" name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
+                                    <input className="slider" id="NumQuestions" value={numQuestions} min={1} max={15} type="range" name="numQuestions" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
 
                                 </div>
                             </div>
@@ -93,10 +93,10 @@ export function Create() {
                                     <input id="Dificulty" value={dificulty} min={1} max={5} type='number' name="dificulty" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
                                     <div>
                                         <div className="dificultLable">
-                                            <h3> <img src={smile} alt="Smile that represent the easy questions" /> Easy</h3>
-                                            <h3 className="angry"><img src={angry} alt="Smile that represent the hard questions" /> Hard</h3>
+                                            <span> <img src={smile} alt="Smile that represent the easy questions" /> Easy</span>
+                                            <span className="angry"><img src={angry} alt="Smile that represent the hard questions" /> Hard</span>
                                         </div>
-                                        <input className="slider" id="Dificulty2" value={dificulty} min={1} max={5} type="range" name="dificulty" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
+                                        <input className="slider" id="Dificulty" value={dificulty} min={1} max={5} type="range" name="dificulty" onChange={(e) => changeValueForm(e.target.name, e.target.value)} />
                                     </div>
                                 </div>
                             </div>

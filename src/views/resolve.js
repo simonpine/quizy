@@ -85,7 +85,7 @@ export function Resolve() {
                     ) : (
                         <>
                             <div className="quiestionAndAsideCont">
-                                <Link to='/tests' className="SecundaryButton"><img style={{ rotate: '180deg' }} src={arrow} alt="Back to the quizzes" />Back to the quizzes</Link>
+                                <Link to='/tests' className="SecundaryButton"><img style={{ rotate: '180deg' }} src={arrow} alt="Arrow to indicate page change" />Back to the quizzes</Link>
 
                             </div>
                             <h1 className="pageInto">{quiz.title}</h1>
@@ -105,8 +105,8 @@ export function Resolve() {
                                         <article key={question.id} className="Question">
                                             <div className='HorizontalSection'>
                                                 <div>
-                                                    <h3><span className="SpeColor">{index + 1}.</span> {question.question}</h3>
-                                                    <h4> </h4>
+                                                    <h2><span className="SpeColor">{index + 1}.</span> {question.question}</h2>
+                                                    <h3> </h3>
                                                     <ul className='listAnswers'>
                                                         {question.answers.map((ans) => (
                                                             <li key={ans.id || Math.random()}>

@@ -11,7 +11,7 @@ export function Tests() {
         name: '',
         subject: 'all',
     })
-    const debouncedFilters = useDebounce(searchFilters, 300);
+    const debouncedFilters = useDebounce(searchFilters, 400);
 
 
 
@@ -35,7 +35,7 @@ export function Tests() {
             setLoading(true)
             const itemsColection = await collection(db, 'quizzes')
 
-            const q = await debouncedFilters.subject === 'all' ? query(itemsColection, where('title', '>=', debouncedFilters.name), where('title', '<=', debouncedFilters.name + '\uf8ff')) : query(itemsColection, where('subject', '==', debouncedFilters.subject))
+            const q = await debouncedFilters.subject === 'all' ? query(itemsColection, where('title', '>=', debouncedFilters.name), where('title', '<=', debouncedFilters.name + '\uf8ff')) : query(itemsColection, where('title', '>=', debouncedFilters.name), where('title', '<=', debouncedFilters.name + '\uf8ff'), where('subject', '==', debouncedFilters.subject))
 
             await getDocs(q).then((snap) => {
                 const prov = snap.docs.map((c) => {
