@@ -224,4 +224,10 @@
     position: sticky;
     height: fit-content;
     top: 130px;
+    @media screen and (max-width: 1200px) {
+        position: relative !important;
+        height: auto;
+        top: 0px;
+
+    }
 }
