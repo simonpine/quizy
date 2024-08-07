@@ -204,3 +204,24 @@
 .ChartFullCont {
     flex-grow: 1;
 }
+
+.YourQuizzesCont{
+    max-width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    & button{
+        flex-grow: 1;
+    }
+    & img{
+        height: 100px;
+        object-fit: cover;
+
+    }
+}
+
+.position-sticky{
+    position: sticky;
+    height: fit-content;
+    top: 130px;
+}

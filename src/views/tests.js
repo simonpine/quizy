@@ -11,7 +11,7 @@ export function Tests() {
         name: '',
         subject: 'all',
     })
-    const debouncedFilters = useDebounce(searchFilters, 200);
+    const debouncedFilters = useDebounce(searchFilters, 300);
 
 
 
@@ -22,6 +22,10 @@ export function Tests() {
     }
     const handleSubmit = (evt) => {
         evt.preventDefault()
+        setSearchFilters({
+            name: '',
+            subject: 'all',
+        })
     }
 
     const [qizzes, setQuizzes] = useState([])
@@ -46,10 +50,10 @@ export function Tests() {
     return (
         <>
             <div className="quiestionAndAsideCont">
-                <h1 className="pageInto">🔥 Find some <span>Tests</span></h1>
+                <h1 className="pageInto">Find some <span>Tests</span></h1>
 
                 <div className="fullContentTests">
-                    <form className="formForSearch" onSubmit={handleSubmit}>
+                    <form onSubmit={(evt)=> evt.preventDefault()} className="formForSearch">
                         <div>
                             <select value={searchFilters.subject} name="subject" onChange={(evt) => newFilter(evt.target.name, evt.target.value)}>
                                 <option value="all">All subjects</option>
@@ -85,7 +89,7 @@ export function Tests() {
                             </select>
                         </div>
                         <input placeholder="The title of a quiz..." value={searchFilters.name} className="inputText" type="text" name="name" onChange={(evt) => newFilter(evt.target.name, evt.target.value)} />
-                        <button className="linkButton" type="submit">Search</button>
+                        <button onClick={handleSubmit} className="linkButton" type="button">Clear filters</button>
                     </form>
                     <div className="QuizzesContainer">
                         {loading ?

@@ -10,7 +10,7 @@ export function Resolve() {
     const [quiz, setQuiz] = useState({});
     const [loading, setLoading] = useState(true);
     const [selectedAnswers, setSelectedAnswers] = useState({});
-
+    const [showResult, setShowresults] = useState(false)
     useEffect(() => {
         (async () => {
             setLoading(true);
@@ -32,8 +32,13 @@ export function Resolve() {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        console.log('Selected Answers:', selectedAnswers);
-        // Further processing, e.g., saving the results
+        // console.log('Selected Answers:', selectedAnswers);
+        setShowresults()
+
+        quiz.questions.forEach(element => {
+            
+        });
+
     };
 
     return (
@@ -45,7 +50,7 @@ export function Resolve() {
                 </div>
             ) : (
                 <>
-                    {/* {showResult && <div className="sureContainer">
+                    {showResult && <div className="sureContainer">
                         <div className="flyBoxEdit BoxResult">
                             <h3>Result: </h3>
                             <div>
@@ -54,7 +59,7 @@ export function Resolve() {
                                 }} className="SecundaryButton">Try again</button>
                             </div>
                         </div>
-                    </div>} */}
+                    </div>}
                     {!quiz.questions ? (
                         <div className="Page404">
                             <img alt="The quiz was not found" src={emptyImg} />
@@ -65,7 +70,11 @@ export function Resolve() {
                         </div>
                     ) : (
                         <>
-                            <h1 className="pageInto">{quiz.title}💥</h1>
+                            <div className="quiestionAndAsideCont">
+                                <Link to='/tests' className="SecundaryButton"><img style={{ rotate: '180deg' }} src={arrow} alt="Back to the quizzes" />Back to the quizzes</Link>
+
+                            </div>
+                            <h1 className="pageInto">{quiz.title}</h1>
                             <div className="quiestionAndAsideCont">
                                 <div>
                                     <img alt="Banner of the quiz" className="ResolveBanner" src={quiz.banner} />
@@ -77,20 +86,19 @@ export function Resolve() {
                                     </div>
                                 </div>
                                 <p className="quizDescription">{quiz.description} <span>By {quiz.creator}.</span></p>
-                                <Link to='/tests' className="SecundaryButton"><img style={{ rotate: '180deg' }} src={arrow} alt="Back to the quizzes" />Back to the quizzes</Link>
                                 <form onSubmit={handleSubmit} className="QuestionsContainer">
                                     {quiz.questions.map((question, index) => (
                                         <article key={question.id} className="Question">
                                             <div className='HorizontalSection'>
                                                 <div>
                                                     <h3><span className="SpeColor">{index + 1}.</span> {question.question}</h3>
-                                                    <h4>- Answer choices: </h4>
+                                                    <h4> </h4>
                                                     <ul className='listAnswers'>
                                                         {question.answers.map((ans) => (
                                                             <li key={ans.id || Math.random()}>
                                                                 <input
                                                                     type="radio"
-                                                                    name={ans.id} // Grouping radios per question
+                                                                    name={question.id} // Grouping radios per question
                                                                     id={`${ans.id}_${question.id}`}
                                                                     value={ans.answer} // Storing answer text
                                                                     checked={selectedAnswers[question.id] === ans.id}

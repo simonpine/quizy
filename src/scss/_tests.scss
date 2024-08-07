@@ -1,6 +1,17 @@
 .formForSearch {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    & input{
+        width: auto;
+        flex-grow: 1;
+    }
+    & div{
+        // flex-grow: 1;
+        & select{
+            width: 100%;
+        }
+    }
 }
 
 .QuizzesContainer {
@@ -55,6 +66,9 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    & h1{
+        padding: 0px;
+    }
 }
 .SpeColor{
     color: map-get($map: $colors, $key: 'deta');

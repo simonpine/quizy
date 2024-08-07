@@ -8,6 +8,10 @@ import eye from '../img/eye.png'
 import arrow from '../img/arrow.png'
 import { Sure } from "../components/sure";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { db } from "../firebasecom";
+import { query, where } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
+import { Card } from "../components/card";
 
 const data = [{ name: 'Quiz 1', uv: 400 }, { name: 'Super Quiz', uv: 200 }, { name: 'News Quiz', uv: 100 }, { name: 'Animals', uv: 10 }];
 
@@ -17,6 +21,19 @@ export function Settings() {
 
     const [verify, setVerify] = useState(false);
     const [apiKey, setApiKey] = useState('');
+
+    const [yourQuizzes, setYourQuizzes] = useState([])
+
+    useEffect(() => {
+        async function getQuizzes() {
+            const collectionRef = await collection(db, "quizzes");
+            const q = await query(collectionRef, where('creator', '==', user.name));
+            const data = await getDocs(q);
+            const result = data.docs.map(item => { return { ...item.data() } })
+            setYourQuizzes(result)
+        }
+        user && getQuizzes()
+    }, [user])
 
     useEffect(() => {
         setApiKey(user?.apikey ?? '')
@@ -36,7 +53,7 @@ export function Settings() {
                     <section>
                         <h1 className="pageInto">Welcome <span>{user?.name ? user.name : 'Loading'}</span></h1 >
                         <div className="SectionSidebySide dashboarSecction" >
-                            <div className="aside">
+                            <div className="aside position-sticky">
                                 <section className="userSettingCont">
                                     <div>
                                         <label>User info:</label>
@@ -77,13 +94,21 @@ export function Settings() {
                                 </section>
                             </div>
                             <figure className="separation" />
-                            <section>
+                            <section className="MaxWigth">
                                 <label>Your quizzes:</label>
-                                {
+                                {yourQuizzes.length === 0 ?
                                     <div className="Empty">
                                         <img src={emptyImg} alt="Person looking empty boxes" />
                                         <p>You have no quizzes, to display the stats of your quizzes create some.</p>
                                         <Link className="linkButton" to='/create'>Create your first quiz</Link>
+                                    </div>
+                                    :
+                                    <div className="YourQuizzesCont">
+                                        {yourQuizzes.map(quiz => {
+                                            return (
+                                                <Card key={quiz.id} info={quiz} />
+                                            )
+                                        })}
                                     </div>
                                 }
                             </section>
