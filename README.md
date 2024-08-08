@@ -4,8 +4,7 @@ Quiz app to create and resolve quizzes
 
 ## Deploy
 
-[quizy-pin.netlify.app/](https://quizy-pin.netlify.app/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a253097a-2925-4d33-bb21-7eb6cf663ab0/deploy-status)](https://app.netlify.com/sites/quizy-pin/deploys)
+[quizy-pin.netlify.app/](https://quizy.college/)
 
 ## Description
 
@@ -16,6 +15,7 @@ In 'Quizy' is implemented firebase to save the quizzes that have been created in
 - [Create React App][cra] - Project setup
 - [React Router][router] - Routing and navigation
 - [react-scroll-parallax][parallax] - Parallax scrolling effect
+- [AI sdk][aa] - To call the Open AI api
 - [Sass][ss] - Organized design
 - [Bootstrap][bts] -  Project design
 
@@ -57,3 +57,4 @@ In 'Quizy' is implemented firebase to save the quizzes that have been created in
 [ss]: https://sass-lang.com/
 [parallax]: https://react-scroll-parallax.damnthat.tv/docs/intro
 [bts]: https://getbootstrap.com/
+[aa]: https://sdk.vercel.ai/docs/introduction
