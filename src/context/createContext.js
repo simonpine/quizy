@@ -94,8 +94,8 @@ export const QuizProvider = ({ children }) => {
 
     async function handleSubmit(apiKey) {
 
-        if (AIForm.description.split(' ').length < 15) {
-            toast.error('The topic description must have at least 15 words.', ToastStyle)
+        if (AIForm.description.split(' ').length < 8) {
+            toast.error('The topic description must have at least 8 words.', ToastStyle)
         }
         else {
 

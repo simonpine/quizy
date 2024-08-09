@@ -112,13 +112,13 @@ export function Resolve() {
                                                             <li key={ans.id || Math.random()}>
                                                                 {(showAns && selectedAnswers[question.id] === ans.id) &&
                                                                     <>
-                                                                        {selectedAnswers[question.id] !== question.idOfTheCorrectAnswer && '❌'}
+                                                                        {selectedAnswers[question.id] !== question.idOfTheCorrectAnswer && '❌ '}
                                                                     </>
 
                                                                 }
 
                                                                 {(showAns && question.idOfTheCorrectAnswer === ans.id) &&
-                                                                    '✅'
+                                                                    '✅ '
                                                                 }
                                                                 {!(showAns && selectedAnswers[question.id] === ans.id) && !(showAns && question.idOfTheCorrectAnswer === ans.id) &&
                                                                     <input
